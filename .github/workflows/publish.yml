@@ -35,6 +35,12 @@ jobs:
         env:
           GIT_CREDENTIALS: ${{ secrets.GIT_CREDENTIALS }}
         run: npx antora antora-playbook.yml
+      - name: Upload artifacts 
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs-site
+          path: |
+            build/site
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
