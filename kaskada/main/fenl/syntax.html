@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Kaskada Docs</title>
+    <link rel="prev" href="data-model.html">
+    <link rel="next" href="entities.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../../..">Kaskada Docs</a>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header><div class="body">
+<div class="nav-container" data-component="kaskada" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1gPshkDfMQEb_DJ6qalGJVai-Uj0oV7zO?usp=sharing">Hello World Notebook (Collab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1dLK18pjf9puYZDuA_otIP3NvJYCUBSgR?usp=sharing">Customer Retention Demo Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1eFcrgVGcV2skqNEiNDhV5DvCPwLmuqVs?usp=sharing">ML Workshop Demo (Colab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1Wg02zrxrJI_EEN8sAtoEXsRM7u8oDdBw?usp=sharing">Comparison of Fenl SQL Pandas (Colab)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">How-To Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/exporting-for-training.html">Exporting Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/expected-file-format.html">Expected File Format</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/tables.html">Working with Tables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/views.html">Working with Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/writing-queries.html">Writing Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/example-queries.html">Examples Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-materializations.html">Working with Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-slices.html">Working with Slices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Fenl</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl-quick-start.html">Fenl Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="language-guide.html">Fenl Language Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-model.html">Data model</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="syntax.html">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="continuity.html">Continuity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="catalog.html">Fenl Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-records.html">Working with Records</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kaskada Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li>Fenl</li>
+    <li><a href="language-guide.html">Fenl Language Guide</a></li>
+    <li><a href="syntax.html">Syntax</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="paragraph">
+<p>Fenl is composed of <em>expressions</em>. Every Fenl expression describes a
+stream of values. Expressions may be composed to form new expressions.</p>
+</div>
+<div class="sect1">
+<h2 id="constructors"><a class="anchor" href="#constructors"></a><a class="link" href="#constructors">Constructors</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fenl supports a rich variety of value types. Each type has a
+corresponding syntax for writing values in Fenl. See the
+<a href="data-model.html" class="xref page">Data Model</a> section for example syntax for constructing
+different value types.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unary-and-binary-operations"><a class="anchor" href="#unary-and-binary-operations"></a><a class="link" href="#unary-and-binary-operations">Unary and Binary operations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Arithmetic operations can be expressed as they are in most languages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">1 + 2 / (3 * 4)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Logical operations use standard comparators, and can be combined with
+<code>and</code> and <code>or</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">true and (5 &gt;= 2) or !false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Data types that compose multiple values allow individual values to be
+referenced using dot-syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">{ a: 10, b: true }.a</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All Fenl expressions produce a value, so conditional logic is primarily
+used to determine when an expression&#8217;s value should be <code>null</code>, for
+example the following expression&#8217;s value is <code>null</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">5 | if(false)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="let-binding"><a class="anchor" href="#let-binding"></a><a class="link" href="#let-binding">Let Binding</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let-binding is a special operation that introduces local names for other
+expressions. It is useful when a given expression needs to be referenced
+multiple times, or when you want to break up a complex expression into
+smaller pieces.</p>
+</div>
+<div class="paragraph">
+<p>Let bindings have two components: name / expression bindings followed by
+a body expression in which the bound names may be referenced.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let the_answer = 42
+in the_answer * 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Multiple bindings may be introduced by repeating the <code>let</code> portion.
+Bindings may reference prior bindings.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let the_answer = 42
+let not_the_answer = the_answer * 2
+in the_answer != not_the_answer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of a let expression is the value of the <code>in</code> expression,
+evaluated in the context of the name bindings.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="function-calls"><a class="anchor" href="#function-calls"></a><a class="link" href="#function-calls">Function Calls</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Functions are called with parens. Function parameters are named.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">substring(s = "input", start = 0, end = 2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some parameters declare default values. These parameters may be omitted
+from the function call.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">substring("input")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, if you provide a value for a named parameter with a default
+value, the parameter name must be included.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">substring("input", 0) # invalid syntax
+substring("input", start = 0) # valid syntax</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pipe-syntax"><a class="anchor" href="#pipe-syntax"></a><a class="link" href="#pipe-syntax">Pipe Syntax</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Fenl the pipe operator <code>|</code> can be used to chain function calls. The
+pipe operator is a binary operation that binds the left-hand expression
+to the name <code>$input</code> within the right-hand expression. The pipe
+operation <code>lhs | rhs</code> is equivalent to the let-binding
+<code>let $input = lhs in rhs</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">42 | mul(2, $input)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Functions used within the RHS of a pipe expression may omit required
+arguments to use <code>$input</code>. The following is equivalent to the previous
+expression.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">42 | mul(2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pipe operators are useful for applying multiple operations in sequence.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">the_answer
+  | add(10)
+  | div(2)
+  | gt(0)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Design</div>
+<div class="paragraph">
+<p>Many functions can be though of having "data" parameters
+and "config" parameters. For example <code>substring</code> transforms a string
+(the "data" parameter) by selecting a range of characters from a start
+offset to and end offset (the "config" parameters). The start and end
+offsets are allowed to be any expression, but most of the time they&#8217;re
+constants, for example <code>substring(zipcode, start=0, end=6)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Fenl&#8217;s functions try to place "data" parameters as the last required /
+positional parameter. Placing "data" parameters last makes it easy to
+omit them when using pipe syntax. The resulting code emphases the
+"config" parameters when reading chains of operations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Generally, <code>A | B()</code> is equivalent to the explicit application
+<code>A | B($input)</code> which is equivalent to <code>B(A)</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="name-resolution"><a class="anchor" href="#name-resolution"></a><a class="link" href="#name-resolution">Name Resolution</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fenl name resolution is context-dependent. The context generally starts
+with the set of user-defined ref:tableservice[tables] and
+ref:viewservice[views]. ref:computeservice_query[Query requests] may
+provide additional name bindings with the <code>withTables</code> parameter.</p>
+</div>
+<div class="paragraph">
+<p>Names may be added to the context with <code>let</code> and the <code>|</code> operator. Names
+bound in these ways are only visible in the associated subexpressions,
+for example the <code>in</code> clause of <code>let</code> and the RHS expression of <code>|</code>.</p>
+</div>
+<div class="paragraph">
+<p>Names may be bound more than once. If a name is bound two times, the
+second binding is only visible within the <code>in</code> subexpression of the
+second binding.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let current_favorite = "pizza"
+let first_favorite = current_favorite
+let current_favorite = "hot dogs"
+
+in { current_favorite, first_favorite }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the name <code>first_favorite</code> is bound to the value of
+<code>current_favorite</code> <em>at the time it is declared</em>, then the name
+<code>current_favorite</code> is bound to a different value. The value of
+<code>first_favorite</code> is unaffected by the re-binding of <code>current_favorite</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{ "current_favorite": "hot dogs", "first_favorite": "pizza"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="syntax-design-principles"><a class="anchor" href="#syntax-design-principles"></a><a class="link" href="#syntax-design-principles">Syntax Design Principles</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fenl was designed with a few key principles in mind. In alphabetic order
+they are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Composable</strong>: Complex behaviors should be possible by composing simple
+operations.</p>
+</li>
+<li>
+<p><strong>Consistent</strong>: Similar operations should be expressed similarly.</p>
+</li>
+<li>
+<p><strong>Data Centric</strong>: Fenl focuses on manipulating data. Failures are data
+too.</p>
+</li>
+<li>
+<p><strong>Deterministic</strong>: Applying the same operations to the same data should
+produce the same results.</p>
+</li>
+<li>
+<p><strong>Explicit</strong>: Explicit syntax more clearly indicates what is happening
+than implicit behavior. It is easier to add implicit behavior than
+remove confusing implicit behaviors.</p>
+</li>
+<li>
+<p><strong>Familiar</strong>: All factors being equal, Fenl prefers to be familiar.
+Divergence must have clear benefits and rationale.</p>
+</li>
+<li>
+<p><strong>Flat</strong>: Flat syntax is easier to read and understand than nested.</p>
+</li>
+<li>
+<p><strong>Informative</strong>: Fenl strives to inform how to think about defining
+features and guide users to success.</p>
+</li>
+<li>
+<p><strong>Local</strong>: Reasoning about behavior should be possible with only the
+information "nearby". Generally, expressions should be self-contained.</p>
+</li>
+<li>
+<p><strong>Safe &amp; Performant</strong>: Features should be safe and performant by
+default.</p>
+</li>
+<li>
+<p><strong>Simple</strong>: Simple operations should be simple to express. Common
+operations should be simple. Not all conceivable operations are
+necessary.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="data-model.html">Data model</a></span>
+  <span class="next"><a href="entities.html">Entities</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

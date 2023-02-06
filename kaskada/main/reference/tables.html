@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Kaskada Docs</title>
+    <link rel="prev" href="expected-file-format.html">
+    <link rel="next" href="views.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../../..">Kaskada Docs</a>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header><div class="body">
+<div class="nav-container" data-component="kaskada" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1gPshkDfMQEb_DJ6qalGJVai-Uj0oV7zO?usp=sharing">Hello World Notebook (Collab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1dLK18pjf9puYZDuA_otIP3NvJYCUBSgR?usp=sharing">Customer Retention Demo Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1eFcrgVGcV2skqNEiNDhV5DvCPwLmuqVs?usp=sharing">ML Workshop Demo (Colab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1Wg02zrxrJI_EEN8sAtoEXsRM7u8oDdBw?usp=sharing">Comparison of Fenl SQL Pandas (Colab)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">How-To Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/exporting-for-training.html">Exporting Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="client-authentication.html">Client Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="client-credentials.html">Client Credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="client-installation.html">Client Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="expected-file-format.html">Expected File Format</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="tables.html">Working with Tables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="views.html">Working with Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="writing-queries.html">Writing Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="example-queries.html">Examples Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-materializations.html">Working with Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-slices.html">Working with Slices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Fenl</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-quick-start.html">Fenl Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../fenl/language-guide.html">Fenl Language Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/data-model.html">Data model</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/syntax.html">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/catalog.html">Fenl Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/working-with-records.html">Working with Records</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kaskada Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li>Reference</li>
+    <li><a href="tables.html">Working with Tables</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="paragraph">
+<p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
+each row is a value of the same type.</p>
+</div>
+<div class="paragraph">
+<p>All methods on this page use the <code>table</code> module. Be sure to import it
+before running any method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table</code></pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="table-methods"><a class="anchor" href="#table-methods"></a><a class="link" href="#table-methods">Table Methods</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
+<div class="paragraph">
+<p>When creating a table, you must provide information about how each row
+should be interpreted. You must describe:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A field containing the time associated with each row. The time should
+refer to when the event occurred.</p>
+</li>
+<li>
+<p>An initial <a href="#fenl:entities">entity</a> key associated with each row. The
+entity should identify a <em>thing</em> in the world related to each event.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optionally:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A subsort column associated with each row. This value is used to order
+rows associated with the same time value. If no subsort column is
+provided, Kaskada will generate one.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about these fields, see:
+<a href="#reference:expected-file-format">Expected File Format</a></p>
+</div>
+<div class="paragraph">
+<p>Here is an example of creating a table:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.create_table(
+  table_name = "Purchase",
+  time_column_name = "purchase_time",
+  entity_key_column_name = "customer_id",
+  subsort_column_name = "subsort_id",
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
+must have a timestamp field named <code>purchase_time</code>, <code>customer_id</code>, and a
+field called <code>subsort_id</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Idiomatic Kaskada</div>
+<div class="paragraph">
+<p>We like to use CamelCase to name tables because it
+helps distinguish data sources from transformed values and function
+names.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-tables"><a class="anchor" href="#list-tables"></a><a class="link" href="#list-tables">List Tables</a></h3>
+<div class="paragraph">
+<p>The list table method returns all tables defined for your user. An
+optional search string can filter the response set.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of listing tables:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.list_tables(search = "chase")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="get-table"><a class="anchor" href="#get-table"></a><a class="link" href="#get-table">Get Table</a></h3>
+<div class="paragraph">
+<p>You can get a table using its name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.get_table("Purchase")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-a-table"><a class="anchor" href="#updating-a-table"></a><a class="link" href="#updating-a-table">Updating a Table</a></h3>
+<div class="paragraph">
+<p>Tables are currently immutable. Updating a table requires deleting it
+and then re-creating it with a new expression.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-table"><a class="anchor" href="#deleting-a-table"></a><a class="link" href="#deleting-a-table">Deleting a table</a></h3>
+<div class="paragraph">
+<p>You can delete a table using its name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase")</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note that deleting a table also deletes any files uploaded to it.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A failed precondition error is returned if another view and/or
+materialization references the table. To continue with the deletion of
+the table, delete the dependent resources or supply the <code>force</code> flag to
+delete the table forcefully. Forcefully deleting a table without
+deleting the dependent resources may result in the dependent resources
+functioning incorrectly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase", force=True)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="uploading-data"><a class="anchor" href="#uploading-data"></a><a class="link" href="#uploading-data">Uploading Data</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Going Deeper</div>
+<div class="paragraph">
+<p>Under the hood, file uploads are a multi-part process.
+The first step is to create a staged file that requests an upload URL
+from the API. The Python client library will upload files to the upload
+URL through an HTTP PUT request. Then an additional API call is
+performed to load the staged file to a table where additional validation
+is performed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="from-a-remote-file-or-dataframe"><a class="anchor" href="#from-a-remote-file-or-dataframe"></a><a class="link" href="#from-a-remote-file-or-dataframe">From a Remote file or Dataframe</a></h3>
+<div class="paragraph">
+<p>Data can be loaded from a dataframe into a Kaskada table. Remote files
+can be read into a dataframe and then uploaded to Kaskada.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas
+
+# A sample Parquet file provided by Kaskada for testing
+purchases_url = "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk"
+
+# Read the file into a Pandas Dataframe
+purchases = pandas.read_parquet(purchases_url)
+
+# Upload the dataframe's contents to the Purchase table
+table.upload_dataframe("Purchase", purchases)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The contents of the dataframe are transferred to Kaskada and added to
+the Purchase table.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="from-amazon-s3"><a class="anchor" href="#from-amazon-s3"></a><a class="link" href="#from-amazon-s3">From Amazon S3</a></h3>
+<div class="paragraph">
+<p>Data can be loaded directly from Amazon S3 into a Kaskada table. Loading
+from S3 requires the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AWS Access Key - The access key with READ permissions to the bucket
+and path (optional).</p>
+</li>
+<li>
+<p>AWS Secret Access Key - The secret key associated with the access key
+(optional).</p>
+</li>
+<li>
+<p>Path - The path to the object. One of the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://s3.Region.amazonaws.com/bucket-name/key-name">Virtual Hosted
+Path</a> - E.g.
+<a href="https://s3.Region.amazonaws.com/bucket-name/key-name.parquet" class="bare">https://s3.Region.amazonaws.com/bucket-name/key-name.parquet</a></p>
+</li>
+<li>
+<p>Region, Bucket, Key</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Security and Credentials</div>
+<div class="literalblock">
+<div class="content">
+<pre> Kaskada does not store the provided
+credentials in any manner. The API only has access to the credentials
+throughout the load data call. If no access credentials are provided,
+the object must have public read permissions.</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+
+TABLE_NAME = 'Purchase'
+
+EXTERNAL_AWS_ACCESS_KEY = '&lt;AWS_ACCESS_KEY'
+EXTERNAL_AWS_SECRET_KEY = '&lt;AWS_SECRET_KEY&gt;'
+S3_PATH = 'events/2022/purchases.parquet'
+BUCKET = 'production.company'
+REGION = 'us-west-2'
+
+table.upload_from_s3(
+    TABLE_NAME,
+    access_key=EXTERNAL_AWS_ACCESS_KEY,
+    secret=EXTERNAL_AWS_SECRET_KEY,
+    bucket=BUCKET,
+    key=S3_PATH,
+    region=REGION
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The contents of the parquet object in S3 are transferred to Kaskada and
+added to the Purchase table.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="from-a-local-file"><a class="anchor" href="#from-a-local-file"></a><a class="link" href="#from-a-local-file">From a Local File</a></h3>
+<div class="paragraph">
+<p>Local files can be uploaded directly to Kaskada without converting them
+to a dataframe. However, the files must be in a specific format. See
+<a href="#reference:expected-file-format">Expected File Format</a> for details.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">fullPathToFile = "/content/drive/place/thing/purchases.parquet"
+table.upload_file("Purchases", fullPathToFile)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This uploads the contents of the file to the Purchases table.</p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="expected-file-format.html">Expected File Format</a></span>
+  <span class="next"><a href="views.html">Working with Views</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

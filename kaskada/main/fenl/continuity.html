@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Kaskada Docs</title>
+    <link rel="prev" href="aggregation-and-windowing.html">
+    <link rel="next" href="catalog.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../../..">Kaskada Docs</a>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header><div class="body">
+<div class="nav-container" data-component="kaskada" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1gPshkDfMQEb_DJ6qalGJVai-Uj0oV7zO?usp=sharing">Hello World Notebook (Collab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1dLK18pjf9puYZDuA_otIP3NvJYCUBSgR?usp=sharing">Customer Retention Demo Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1eFcrgVGcV2skqNEiNDhV5DvCPwLmuqVs?usp=sharing">ML Workshop Demo (Colab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1Wg02zrxrJI_EEN8sAtoEXsRM7u8oDdBw?usp=sharing">Comparison of Fenl SQL Pandas (Colab)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">How-To Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/exporting-for-training.html">Exporting Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/expected-file-format.html">Expected File Format</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/tables.html">Working with Tables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/views.html">Working with Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/writing-queries.html">Writing Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/example-queries.html">Examples Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-materializations.html">Working with Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-slices.html">Working with Slices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Fenl</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl-quick-start.html">Fenl Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="language-guide.html">Fenl Language Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-model.html">Data model</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="syntax.html">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="continuity.html">Continuity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="catalog.html">Fenl Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-records.html">Working with Records</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kaskada Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li>Fenl</li>
+    <li><a href="language-guide.html">Fenl Language Guide</a></li>
+    <li><a href="continuity.html">Continuity</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="paragraph">
+<p>Fenl expressions are either <em>discrete</em> or <em>continuous</em>. Discrete
+expressions describe values that are only meaningful at specific times.
+Continuous expressions describe values that are meaningful over ranges
+of time.</p>
+</div>
+<div class="sect1">
+<h2 id="discrete-expressions"><a class="anchor" href="#discrete-expressions"></a><a class="link" href="#discrete-expressions">Discrete Expressions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A discrete expression produces values at a finite set of times, at all
+other times its value is <code>null</code>. Tables contain a finite set of events,
+and each event is associated with a specific time. A table only has a a
+meaningful value at the set of times for which events exist. Similarly,
+simple operations such as field reference produce discrete results when
+applied to discrete expressions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/discrete-expressions.png" alt="discrete expressions">
+</div>
+</div>
+<div class="paragraph">
+<p>Discrete expressions may be combined in various ways, for
+example by adding them together as shown.</p>
+</div>
+<div class="paragraph">
+<p>In most cases operations produce output values any time one of their
+input expressions produces a value. In this example we can see that many
+of the values produced are <code>null</code>, since the expression
+<code>Purchase.amount</code> is defined at different times than <code>Review.stars</code>, and
+adding <code>null</code> to a number produces <code>null</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="continuous-expressions"><a class="anchor" href="#continuous-expressions"></a><a class="link" href="#continuous-expressions">Continuous Expressions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A continuous expression has a meaningful value at all points in time.
+Continuous expressions produce values at every time contributing to
+their value. Aggregations generally produce continuous values.</p>
+</div>
+<div class="paragraph">
+<p>For example, at <em>any</em> point in time we can describe the sum of all
+<code>Purchase.amount</code> values seen so far.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/continuous-expression.png" alt="continuous expression">
+</div>
+</div>
+<div class="paragraph">
+<p>Continuous expressions <em>have</em> a value at all times, but they
+<em>produce</em> values at specific times. These times are illustrated above as
+circles. A continuous expression can be thought of as producing a stream
+of updates; at any given time the stream takes the value of the most
+recent update.</p>
+</div>
+<div class="paragraph">
+<p>When continuous values are aggregated, the aggregation is updated when a
+value is produced. For example, <code>count</code> produces the same result for a
+discrete expression with and without an intermediate aggregation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">Purchase.amount | count() == Purchase.amount | sum() | count()</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Design</div>
+<div class="paragraph">
+<p>The distinction between "having" a value and "producing"
+a value allows aggregations to be applied in the same way to both
+continuous and discrete expression. Applying an operation such as <code>sum</code>
+to a continuous value (in the mathematical sense) would correspond to
+integrating the value.</p>
+</div>
+<div class="paragraph">
+<p>We feel interpreting aggregations of continuous values as integration
+would be surprising, especially in cases such as <code>count</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="interactions-between-continuous-and-discrete-expressions"><a class="anchor" href="#interactions-between-continuous-and-discrete-expressions"></a><a class="link" href="#interactions-between-continuous-and-discrete-expressions">Interactions Between Continuous and Discrete Expressions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The continuity of the result of an operation involving multiple
+expressions depends on the continuity of the operation&#8217;s inputs. In
+general discreteness is "greedy". Given discrete expressions defined at
+the set of times <code>A</code> and <code>B</code> and a continuous expression, the result of
+a binary operation between any pair is described in the following table.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top"><code>Discrete[A]</code></th>
+<th class="tableblock halign-left valign-top"><code>Discrete[B]</code></th>
+<th class="tableblock halign-left valign-top"><code>Continuous</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>Discrete[A]</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[A]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[A and B]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[A]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>Discrete[B]</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[A and B]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[B]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[B]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>Continuous</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[A]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Discrete[B]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Continuous</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="_images/interactions-between-continuous-and-discrete.png" alt="interactions between continuous and discrete">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> When a discrete expression is combined with a continuous
+expression, each the value at time present in the discrete expression is
+combined with the value the continuous expression has at that same time
+to produce a result.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="filtering-when-values-are-produced"><a class="anchor" href="#filtering-when-values-are-produced"></a><a class="link" href="#filtering-when-values-are-produced">Filtering when Values are Produced</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As mentioned, most operations between expressions produce a value when
+<em>any</em> input expression produces a value. This can lead to values being
+produced at undesirable times. The <code>when</code> operation allows filtering the
+times at which an expression produces values. It works by producing the
+value of an expression whenever a predicate expression produces the
+value <code>true</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/filtering.png" alt="filtering">
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="aggregation-and-windowing.html">Aggregation and Windowing</a></span>
+  <span class="next"><a href="catalog.html">Fenl Catalog</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

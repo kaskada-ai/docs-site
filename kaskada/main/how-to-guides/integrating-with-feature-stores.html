@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Kaskada Docs</title>
+    <link rel="prev" href="exporting-for-training.html">
+    <link rel="next" href="../reference/client-authentication.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../../..">Kaskada Docs</a>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header><div class="body">
+<div class="nav-container" data-component="kaskada" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1gPshkDfMQEb_DJ6qalGJVai-Uj0oV7zO?usp=sharing">Hello World Notebook (Collab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1dLK18pjf9puYZDuA_otIP3NvJYCUBSgR?usp=sharing">Customer Retention Demo Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1eFcrgVGcV2skqNEiNDhV5DvCPwLmuqVs?usp=sharing">ML Workshop Demo (Colab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1Wg02zrxrJI_EEN8sAtoEXsRM7u8oDdBw?usp=sharing">Comparison of Fenl SQL Pandas (Colab)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">How-To Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="exporting-for-training.html">Exporting Features</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="integrating-with-feature-stores.html">Serving Features</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/expected-file-format.html">Expected File Format</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/tables.html">Working with Tables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/views.html">Working with Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/writing-queries.html">Writing Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/example-queries.html">Examples Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-materializations.html">Working with Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-slices.html">Working with Slices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Fenl</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-quick-start.html">Fenl Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../fenl/language-guide.html">Fenl Language Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/data-model.html">Data model</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/syntax.html">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/catalog.html">Fenl Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/working-with-records.html">Working with Records</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kaskada Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li>How-To Guides</li>
+    <li><a href="integrating-with-feature-stores.html">Serving Features</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="online-feature-stores"><a class="anchor" href="#online-feature-stores"></a><a class="link" href="#online-feature-stores">Online Feature Stores</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Models being used in production often have strict latency and freshness
+requirements — real-time models in particular. Feature engines address
+the freshness, while feature stores address latency. Kaskada&#8217;s feature
+engine keeps real-time features fresh and integrates with several
+existing data stores for low-latency key retrieval.</p>
+</div>
+<div class="sect2">
+<h3 id="aws-dynamodb"><a class="anchor" href="#aws-dynamodb"></a><a class="link" href="#aws-dynamodb">AWS DynamoDB</a></h3>
+<div class="paragraph">
+<p>DynamoDB is a hosted key-value store that provides consistent
+low-latency query responses and elastic scalability.</p>
+</div>
+<div class="paragraph">
+<p>Features can be loaded into DynamoDB by exporting features as Parquet
+and using an AWS client to upload each feature vector using the
+batch-write API. To load features into DynamoDB, first construct a query
+describing the feature vectors.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">%%fenl
+{
+  key: Purchase.customer_id,
+  max_amount: Purchase.amount | max(),
+  min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The dataframe returned by this query can be loaded into DynamoDB using
+the <code>boto</code> Python library.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas as pd
+import boto3
+
+df = pd.read_parquet(_)
+
+dynamo = boto3.resource('dynamodb')
+table = dynamo.Table('data-services-dev-testing')
+
+with table.batch_writer() as bw:
+    for i, record in enumerate(df.to_dict("records")):
+        bw.put_item(Item=record)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redis"><a class="anchor" href="#redis"></a><a class="link" href="#redis">Redis</a></h3>
+<div class="paragraph">
+<p>Redis is an OpenSource in-memory data-structure store. The RedisAI
+module provides support for tensor data structures and allows applying a
+variety of trained models to input tensors within the Redis process.</p>
+</div>
+<div class="paragraph">
+<p>Kaskada can export feature vectors to Redis as tensors. To load features
+into Redis, first construct a query describing the feature vectors. This
+query must produce a record including a field named <code>key</code>. All other
+fields in the record must produce numeric values.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">{
+  key: Purchase.customer_id,
+  max_amount: Purchase.amount | max(),
+  min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The results of a Fenl query can be written to an external data store and
+kept up to date as the data underlying the query changes using
+materializations. A materialization is similar to a query, except that
+the results are updated any time data is added to a table used by the
+query.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">redis_db = 1
+redis_host = "redisai"
+redis_port = 6379
+destination = materialization.RedisAIDestination(redis_db, redis_host, redis_port)
+
+materialization.create_materialization(
+    name = "MaterializedFeatures",
+    destination = destination,
+    query = "{
+      key: Purchase.customer_id,
+      max_amount: Purchase.amount | max(),
+      min_amount: Purchase.amount | min(),
+    }"
+)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="offline-feature-stores"><a class="anchor" href="#offline-feature-stores"></a><a class="link" href="#offline-feature-stores">Offline Feature Stores</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Models used for batch inference benefit from having access to feature
+vectors in a data store optimized for throughput rather than latency.
+Kaskada supports serving high-throughput feature vectors by integrating
+with a number of existing data stores designed for bulk-data management.</p>
+</div>
+<div class="sect2">
+<h3 id="snowflake"><a class="anchor" href="#snowflake"></a><a class="link" href="#snowflake">Snowflake</a></h3>
+<div class="paragraph">
+<p>Snowflake is a hosted data warehouse that provides scalable SQL queries
+over large data sets.</p>
+</div>
+<div class="paragraph">
+<p>Features can be loaded into Snowflake by exporting features as Parquet
+and using the <code>COPY</code> instruction to load the Parquet file into a Parquet
+table. To load features into Snowflake, first construct a query
+describing the feature vectors. Query results can be returned as a URL
+identifying the output Parquet file by supplying the output config
+<code>--output parquet</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">%%fenl --output parquet
+{
+  key: Purchase.customer_id,
+  max_amount: Purchase.amount | max(),
+  min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting Parquet file can be loaded into a temporary Snowflake
+table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create or replace temporary table feature_vectors (
+  key varchar default null,
+  max_amount number,
+  min_amount number
+);
+
+create or replace file format feature_vector_parquet_format
+  type = 'parquet';
+
+create or replace temporary stage feature_vector_stage
+  file_format = feature_vector_parquet_format;
+
+put &lt;file url&gt; @sf_tut_stage;
+
+copy into cities
+  from (select * from @sf_tut_stage/&lt;filename&gt;.parquet);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redshift"><a class="anchor" href="#redshift"></a><a class="link" href="#redshift">Redshift</a></h3>
+<div class="paragraph">
+<p>Redshift is a hosted data warehouse that provides scalable SQL queries
+over large data sets.</p>
+</div>
+<div class="paragraph">
+<p>Features can be loaded into Redshift by exporting features as Parquet
+and using the <code>COPY</code> instruction to load the Parquet file into a Parquet
+table. To load features into Redshift, first construct a query
+describing the feature vectors. Query results can be returned as a URL
+identifying the output Parquet file by supplying the output config
+<code>--output parquet</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">%%fenl --output parquet
+{
+  key: Purchase.customer_id,
+  max_amount: Purchase.amount | max(),
+  min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting Parquet file can be loaded into a Redshift table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">COPY feature_vectors
+FROM '&lt;file url&gt;'
+FORMAT AS PARQUET;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="exporting-for-training.html">Exporting Features</a></span>
+  <span class="next"><a href="../reference/client-authentication.html">Client Authentication</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Kaskada Docs</title>
+    <link rel="prev" href="working-with-materializations.html">
+    <link rel="next" href="../fenl/fenl-quick-start.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../../..">Kaskada Docs</a>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header><div class="body">
+<div class="nav-container" data-component="kaskada" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1gPshkDfMQEb_DJ6qalGJVai-Uj0oV7zO?usp=sharing">Hello World Notebook (Collab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1dLK18pjf9puYZDuA_otIP3NvJYCUBSgR?usp=sharing">Customer Retention Demo Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1eFcrgVGcV2skqNEiNDhV5DvCPwLmuqVs?usp=sharing">ML Workshop Demo (Colab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1Wg02zrxrJI_EEN8sAtoEXsRM7u8oDdBw?usp=sharing">Comparison of Fenl SQL Pandas (Colab)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">How-To Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/exporting-for-training.html">Exporting Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="client-authentication.html">Client Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="client-credentials.html">Client Credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="client-installation.html">Client Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="expected-file-format.html">Expected File Format</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tables.html">Working with Tables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="views.html">Working with Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="writing-queries.html">Writing Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="example-queries.html">Examples Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-materializations.html">Working with Materializations</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="working-with-slices.html">Working with Slices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Fenl</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-quick-start.html">Fenl Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../fenl/language-guide.html">Fenl Language Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/data-model.html">Data model</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/syntax.html">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/catalog.html">Fenl Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/working-with-records.html">Working with Records</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kaskada Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li>Reference</li>
+    <li><a href="working-with-slices.html">Working with Slices</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="paragraph">
+<p><em>This document assumes the client is authenticated.</em></p>
+</div>
+<div class="paragraph">
+<p>Kaskada offers the ability to interact with slices of datasets. A
+<strong>slice</strong> represents a way to filter a large dataset to create a smaller
+dataset. By slicing a vast dataset, queries may access a subset of the
+data and thus run significantly faster.</p>
+</div>
+<div class="paragraph">
+<p>Slices preserve the statistical properties of the entire dataset. In
+general, slices either include all of a given entity&#8217;s data or none of
+it - sampling occurs at the granularity of individual entities.</p>
+</div>
+<div class="paragraph">
+<p>Slicing only ever affects the produced set of results - never the data
+<em>used</em> to produce a given result. As a result, some expressions like
+<code>lookup</code> cannot slice as efficiently as others because the entire
+dataset may be required to produce any result.</p>
+</div>
+<div class="sect1">
+<h2 id="entity-key-percent-filter"><a class="anchor" href="#entity-key-percent-filter"></a><a class="link" href="#entity-key-percent-filter">Entity Key Percent Filter</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This filter type slices the input dataset down to a percentage of the
+entity keys. Recall that Kaskada manages data with tables, and creating
+a table requires an <code>entity_key_column_name</code>. An entity key is a key
+associated with each row. The entity should identify a thing in the
+world related to each event.</p>
+</div>
+<div class="paragraph">
+<p>This filter will read every row and remove rows based on the entity key
+column in a deterministic and scalable fashion. The filter only runs on
+the new data when adding additional data to the table. Re-computation of
+previous sliced data is not required.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of creating an entity key filter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.slice_filters import EntityPercentFilter
+
+filter_percentage = 12.34
+entity_filter = EntityPercentFilter(filter_percentage)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The example above creates a new <code>EntityPercentFilter</code> from the Kaskada
+Compute module with a filtering percentage of 12.34%.</p>
+</div>
+<div class="sect2">
+<h3 id="entity-key-percent-filter-additional-details"><a class="anchor" href="#entity-key-percent-filter-additional-details"></a><a class="link" href="#entity-key-percent-filter-additional-details">Entity Key Percent Filter Additional Details</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The provided filter percentage must be between 0.1% and 100%
+inclusive.</p>
+</li>
+<li>
+<p>Slices with larger percentages include entities from smaller
+percentages. For example:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Given a slice with 10% included results from entities: A, B, and C.</p>
+</li>
+<li>
+<p>A slice with 20% would at least include A, B, and C plus additional
+entities D, E, and F.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If new data is added to the table, the previously sliced entity keys
+will also be included in the latest data with an additional probability
+of new entity keys. For example:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Given a slice with 10% included results from entities: A and B.</p>
+</li>
+<li>
+<p>New data is uploaded to the table with entities: A, C, D, and E. A
+will automatically be included in the slice. C, D, and E all have a 10%
+chance of being included in the slice.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a><a class="link" href="#usage">Usage</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The usage of a slice is only applicable at query time, and only <em>one</em>
+filter can be applied per query. To apply a filter to a query, use the
+Kaskada module method: <code>set_default_slice</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of setting the slice filter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">#entity_filter is created in the example above
+kda.set_default_slice(entity_filter)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After setting the slice, all subsequent queries will utilize the slice
+filter on the same session.</p>
+</div>
+<div class="sect2">
+<h3 id="ipython-jupyter-extension"><a class="anchor" href="#ipython-jupyter-extension"></a><a class="link" href="#ipython-jupyter-extension">IPython (Jupyter) Extension</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ipython hljs" data-lang="ipython">%%fenl
+{
+    time: Purchase.purchase_time,
+    entity: Purchase.customer_id,
+    max_amount: Purchase.amount | max(),
+    min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="python"><a class="anchor" href="#python"></a><a class="link" href="#python">Python</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import compute
+
+query = '''
+{
+    time: Purchase.purchase_time,
+    entity: Purchase.customer_id,
+    max_amount: last(Purchase.amount) | max(), min_amount: Purchase.amount | min()
+}
+'''
+
+compute.query(query=query)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="entity-keys-filter"><a class="anchor" href="#entity-keys-filter"></a><a class="link" href="#entity-keys-filter">Entity Keys Filter</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The entity keys filter slices the input dataset to the provided entity
+keys. Once the filter is applied, only data with an entity key in the
+provided entity keys will be queryable. Currently, we only support
+numeric and string entity key filtering.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of creating an entity key filter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.slice_filters import EntityFilter
+
+entity_keys = ["customer_01", "customer_03"]
+entity_filter = EntityFilter(entity_keys)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The example above creates a new <code>EntityFilter</code> from the Kaskada Compute
+module with entity key filters for "customer_01" and "customer_03".</p>
+</div>
+<div class="sect2">
+<h3 id="entity-key-filter-additional-details"><a class="anchor" href="#entity-key-filter-additional-details"></a><a class="link" href="#entity-key-filter-additional-details">Entity Key Filter Additional Details</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The provided keys must match the table&#8217;s entity key type, and only
+numeric/string types are supported.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="working-with-materializations.html">Working with Materializations</a></span>
+  <span class="next"><a href="../fenl/fenl-quick-start.html">Fenl Quick Start</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Kaskada Docs</title>
+    <link rel="prev" href="language-guide.html">
+    <link rel="next" href="syntax.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../../..">Kaskada Docs</a>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header><div class="body">
+<div class="nav-container" data-component="kaskada" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1gPshkDfMQEb_DJ6qalGJVai-Uj0oV7zO?usp=sharing">Hello World Notebook (Collab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1dLK18pjf9puYZDuA_otIP3NvJYCUBSgR?usp=sharing">Customer Retention Demo Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1eFcrgVGcV2skqNEiNDhV5DvCPwLmuqVs?usp=sharing">ML Workshop Demo (Colab)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://colab.research.google.com/drive/1Wg02zrxrJI_EEN8sAtoEXsRM7u8oDdBw?usp=sharing">Comparison of Fenl SQL Pandas (Colab)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">How-To Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/exporting-for-training.html">Exporting Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/expected-file-format.html">Expected File Format</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/tables.html">Working with Tables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/views.html">Working with Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/writing-queries.html">Writing Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/example-queries.html">Examples Queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-materializations.html">Working with Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/working-with-slices.html">Working with Slices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Fenl</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl-quick-start.html">Fenl Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="language-guide.html">Fenl Language Guide</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="data-model.html">Data model</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="syntax.html">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="continuity.html">Continuity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="catalog.html">Fenl Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-records.html">Working with Records</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kaskada Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li>Fenl</li>
+    <li><a href="language-guide.html">Fenl Language Guide</a></li>
+    <li><a href="data-model.html">Data model</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="types"><a class="anchor" href="#types"></a><a class="link" href="#types">Types</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fenl operates on typed values. Fenl&#8217;s type system describes several
+different kinds of values.</p>
+</div>
+<div class="paragraph">
+<p>Every expression has an associated type. Since every expression produces
+a column of values (corresponding to the value at specific points in
+time), each expression can be thought of as a column of the given type.</p>
+</div>
+<div class="paragraph">
+<p>Simple values such as the string "hello" or the integer 57 are <em>scalar</em>
+types. They correspond to a column containing values of the given type
+(or <code>null</code>).</p>
+</div>
+<div class="paragraph">
+<p>Types may be combined to create <em>records</em>. Record fields may be scalar
+or nested record types. An expression producing a record type is a
+column that produces a value of the given record type or <code>null</code> at each
+point in time.</p>
+</div>
+<div class="sect2">
+<h3 id="scalars"><a class="anchor" href="#scalars"></a><a class="link" href="#scalars">Scalars</a></h3>
+<div class="paragraph">
+<p>Scalar types include booleans, numbers, strings, timestamps, durations
+and calendar intervals.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code>, <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Booleans represent true or false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8, u32, u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code>, <code>1</code>, `10000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsigned integer numbers of a particular bit size.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i8, i32, i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code>, <code>1</code>, <code>-100</code>, <code>10000</code>, <code>0.0</code>, <code>-1.0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signed integer numbers of a particular bit size.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32, f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code>, <code>1</code>, <code>-100</code>, <code>10000</code>, <code>0.0</code>, <code>-1.0</code>, <code>-100837.631</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Floating point numbers. When using a decimal a leading numeric character is required.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"hello"</code>, <code>"hello \"john\""</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unicode strings. Strings are written with double-quotes. Double quotes may be escaped within the string.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp_s,</p>
+<p class="tableblock">timestamp_ms,</p>
+<p class="tableblock">timestamp_us,</p>
+<p class="tableblock">timestamp_ns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1639595174 as timestamp_s</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The point in time a given number of seconds, milliseconds, microseconds or nanoseconds after the Unix Epoch (00:00:00 UTC on January 1, 1970).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">duration_s,</p>
+<p class="tableblock">duration_ms,</p>
+<p class="tableblock">duration_us,</p>
+<p class="tableblock">duration_ns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0 as duration_s</code>, <code>1 as duration_ms</code>, <code>-100 as duration_us</code>, <code>10000 as duration_ns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A given number of seconds, milliseconds, microseconds or nanoseconds.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interval_days,</p>
+<p class="tableblock">interval_months</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0 as interval_days</code>, <code>1 as interval_days</code>, <code>-100 as interval_months</code>, <code>10000 as interavl_months</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A calendrical interval.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="records"><a class="anchor" href="#records"></a><a class="link" href="#records">Records</a></h3>
+<div class="paragraph">
+<p>Records allow combining multiple different types into a single value.
+Records are unnamed - any two records with the same set of fields and
+value types are considered equal. Fields within a record may have
+different types. Field names must start with a letter.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Examples</th>
+<th class="tableblock halign-left valign-top">Description"</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name: string, age: number}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name: \"john\", age: 32}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"A record is a composite type made up of 0 or (generally) more components. Each component is associated with a field name</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="type-coercion"><a class="anchor" href="#type-coercion"></a><a class="link" href="#type-coercion">Type Coercion</a></h3>
+<div class="paragraph">
+<p>Fenl implicitly coerces numeric types when different kinds of numbers
+are combined. For example adding a 64-bit signed integer value to a
+32-bit floating point value produces a 64-point floating point value.</p>
+</div>
+<div class="sect3">
+<h4 id="type-promotion-rules"><a class="anchor" href="#type-promotion-rules"></a><a class="link" href="#type-promotion-rules">Type Promotion Rules</a></h4>
+<div class="paragraph">
+<p>Type coercion will never produce an integer overflow or reduction in
+numeric precision. Such conversions may be explicitly specified using
+<code>as</code>.</p>
+</div>
+<div class="paragraph">
+<p>The coercion rules can be summarized with the following rules:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Integers can be widened: <code>i8 &#8594; i16 &#8594; i32 &#8594; i64</code>.</p>
+</li>
+<li>
+<p>Unsigned integers can be widened: <code>u8 &#8594; u16 &#8594; u32 &#8594; u64</code>.</p>
+</li>
+<li>
+<p>Floating point numbers can be widened: <code>f16 &#8594; f32 &#8594; f64</code>.</p>
+</li>
+<li>
+<p>Unsigned integers can be promoted to the next wider integer <code>u8</code> &#8594;
+<code>i16</code>, <code>u16 &#8594; i32</code>, <code>u32 &#8594; i64</code>.</p>
+</li>
+<li>
+<p>All numbers may be converted to <code>f64</code>.</p>
+</li>
+<li>
+<p>Strings may be implicitly converted to timestamps by attempting to
+parse them as RFC3339 values. The timestamp will be <code>null</code> for strings
+that don&#8217;t successfully parse.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="numeric-type-coercion-table"><a class="anchor" href="#numeric-type-coercion-table"></a><a class="link" href="#numeric-type-coercion-table">Numeric Type Coercion Table</a></h4>
+<div class="paragraph">
+<p>When two numbers are used, Fenl attempts to promote them to a compatible
+type as the smallest type that both types may be converted to. The
+following table shows the result of this promotion for pairs of numeric
+types.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3333%;">
+<col style="width: 8.3337%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">i8</th>
+<th class="tableblock halign-left valign-top">i16</th>
+<th class="tableblock halign-left valign-top">i32</th>
+<th class="tableblock halign-left valign-top">i64</th>
+<th class="tableblock halign-left valign-top">u8</th>
+<th class="tableblock halign-left valign-top">u16</th>
+<th class="tableblock halign-left valign-top">u32</th>
+<th class="tableblock halign-left valign-top">u64</th>
+<th class="tableblock halign-left valign-top">f16</th>
+<th class="tableblock halign-left valign-top">f32</th>
+<th class="tableblock halign-left valign-top">f64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>i8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>i16</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>i32</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>i64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>u8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>u16</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>u32</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>u64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f16</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f32</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>f64</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f64</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Coercion to Floating-Point</div>
+<div class="paragraph">
+<p>Note that when <code>u64</code> is combined with a
+signed type the result is <code>f64</code>. This is the only case where an
+operation between integers produces a floating-point value.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="functions-and-signatures"><a class="anchor" href="#functions-and-signatures"></a><a class="link" href="#functions-and-signatures">Functions and Signatures</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every function in Fenl has a type signature. For example,
+<code>count(input: any, window: window = null) &#8594; u32</code>. This tells us many
+things about the function:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It takes two arguments <code>input</code> and <code>window</code>.</p>
+</li>
+<li>
+<p>The first argument can be of any type (scalar or record).</p>
+</li>
+<li>
+<p>The second argument must be a type of <code>window</code> (the result of a
+<a href="catalog.html#window-functions" class="xref page">window</a> function such as
+<a href="catalog.html#since" class="xref page"><code>since</code></a> or <a href="catalog.html#sliding" class="xref page"><code>sliding</code></a>).</p>
+</li>
+<li>
+<p>The second argument (<code>window</code>) is optional, and provides a default
+value of <code>null</code>.</p>
+</li>
+<li>
+<p>The result is a <a href="#scalars"><code>u32</code></a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Parameters without default values are required. Required arguments may
+be provided by position or keyword. One required argument may be
+omitted, in which case it is implicitly <code>$input</code>. This allows for use of
+functions with the <code>|</code> (pipe) syntax. For instance, <code>TableFoo | count()</code>
+is treated as <code>TableFoo | count($input)</code> which is the same as
+<code>TableFoo | count(input=$input, window=null)</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="optional-parameters"><a class="anchor" href="#optional-parameters"></a><a class="link" href="#optional-parameters">Optional Parameters</a></h3>
+<div class="paragraph">
+<p>Parameters with default values in the signature are optional. Arguments
+for optional parameters must be keyword arguments. For example
+<code>count(window = since(&#8230;&#8203;))</code> but not <code>count(since(&#8230;&#8203;))</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="type-constraints"><a class="anchor" href="#type-constraints"></a><a class="link" href="#type-constraints">Type Constraints</a></h3>
+<div class="paragraph">
+<p>When a type constraint (such as <code>any</code>) appears in a signature, all
+occurrences of that must be the same type. <a href="#type-coercion">Type
+coercion</a> is applied as necessary to make all of the arguments for that
+constraint compatible.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, each type constraint imposes restrictions on the types
+that are valid for arguments with that constraint, as shown in the table
+below.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type Constraint</th>
+<th class="tableblock halign-left valign-top">Valid Types</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>any</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any scalar or record type.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>key</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any hashable type. This includes <code>bool</code>, <code>i8</code>, <code>i16</code>, <code>i32</code>,
+<code>i64</code>, <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code> and <code>string</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>number</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any numeric scalar type. This includes <code>i8</code>, <code>i16</code>, <code>i32</code>,
+<code>i64</code>, <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>f16</code>, <code>f32</code> and <code>f64</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>signed</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any signed numeric scalar type. This includes <code>i8</code>, <code>i16</code>,
+<code>i32</code>, <code>i64</code>, <code>f16</code>, <code>f32</code> and <code>f64</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>float</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any floating point numeric scalar type. This includes <code>f16</code>,
+<code>f32</code> and <code>f64</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timedelta</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any time delta scalar type. This includes <code>duration_s</code>,
+<code>duration_ms</code>, <code>duration_us</code>, <code>duration_ns</code>, <code>interval_days</code> and
+<code>interval_months</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ordered</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any ordered scalar type. This includes <code>i8</code>, <code>i16</code>, <code>i32</code>,
+<code>i64</code>, <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>f16</code>, <code>f32</code>, <code>f64</code>, <code>timestamp_s</code>,
+<code>timestamp_ms</code>, <code>timestamp_us</code>, and <code>timestamp_ns</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>window</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any result of a <a href="catalog.html#window-functions" class="xref page">window
+function</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="language-guide.html">Fenl Language Guide</a></span>
+  <span class="next"><a href="syntax.html">Syntax</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
