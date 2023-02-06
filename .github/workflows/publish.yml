@@ -13,6 +13,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,9 +32,9 @@ jobs:
       - name: Install Antora
         run: npm i antora
       - name: Generate Site
-        env: 
+        env:
           GIT_CREDENTIALS: ${{ secrets.GIT_CREDENTIALS }}
-        run: | 
+        run: |
           echo "HERE!"
           echo $GIT_CREDENTIALS 
           npx antora antora-playbook.yml
