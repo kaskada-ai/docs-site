@@ -28,7 +28,10 @@ jobs:
       - name: Generate Site
         env: 
           GIT_CREDENTIALS: ${{ secrets.GIT_CREDENTIALS }}
-        run: npx antora antora-playbook.yml
+        run: | 
+          echo "HERE!"
+          echo $GIT_CREDENTIALS 
+          npx antora antora-playbook.yml
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
