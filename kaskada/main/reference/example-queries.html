@@ -234,7 +234,7 @@ used when writing queries.</p>
 <div class="paragraph">
 <p>First, we create two tables and load some data. The <em>purchases</em> table
 contains a small amount of data loaded from 2 files. The <em>transactions</em>
-table contains 100000 rows of data loaded from a single file.</p>
+table contains 50000 rows of data loaded from a single file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -261,8 +261,8 @@ print(indent(file_purchases2, 2, "\t"))
 
 t_transactions = kt.create_table(
     table_name =             "transactions",
-    time_column_name =       "transaction_date",
-    entity_key_column_name = "msno",
+    time_column_name =       "transaction_time",
+    entity_key_column_name = "id",
     subsort_column_name =    "idx",
 )
 file_transactions1 = kt.upload_file(table=t_transactions, file_path="transactions_part1.parquet")
