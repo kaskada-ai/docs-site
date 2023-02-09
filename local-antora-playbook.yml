@@ -12,7 +12,11 @@ content:
 
 asciidoc:
   sourcemap: true
+  extensions:
+    - ./lib/generate_stream_viz.js
+    - asciidoctor-kroki
   attributes:
+    kroki-fetch-diagram: true
     page-pagination: ""
     sectanchors: ""
     sectlinks: ""
