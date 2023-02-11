@@ -1,0 +1,92 @@
+
+toc::[]
+
+
+This is the main repository for building the Kaskada docs using https://antora.org/[antora]. This repository reads from two other repositories 
+
+. https://github.com/kaskada-ai/kaskada[kaskada] for the contents
+. https://github.com/kaskada-ai/docs-ui[docs-ui] for the HTML UI components 
+
+== Prerequisites
+
+. https://github.com/nvm-sh/nvm#installation-and-update[NVM]
+. Node 
+.. Use `nvm` to install node 
+[,shell]
+----
+> nvm install --lts
+----
+
+
+== Setup 
+
+For local setup this repository provides the file `local-antora-playbook.yml` that locally overrides antora's setup to read from local disk rather than fetch the 2 dependent repos. The file locally overrides *both* content and ui components. 
+
+* Create a new folder to use for your work (e.g., `docs-workspace`)
+* Go into that folder and checkout this repository and both dependent repositories 
+[,shell]
+----
+> cd docs-workspace
+> git clone git@github.com:kaskada-ai/kaskada.git
+> git clone git@github.com:kaskada-ai/kaskada.git
+> git clone git@github.com:kaskada-ai/docs-ui.git
+----
+
+* Go into the `docs-ui` folder and build the bundle 
+
+[,shell]
+----
+> cd docs-ui
+> npm install 
+> ./node_modules/.bin/gulp bundle
+----
+
+* Go back into `docs-site` and build the docs *locally*
+
+[,shell]
+----
+> cd ../docs-site
+> npm install
+> npx antora --fetch local-antora-playbook.yml --stacktrace
+----
+
+* If all goes well you should see 
+[,shell]
+----
+Site generation complete!
+Open file:///Users/johndoe/docs-workspace/docs-site/build/site/index.html in a browser to view your site.
+----
+
+Paste `file:///Users/johndoe/docs-workspace/docs-site/build/site/index.html` into your browser's address bar the local version of the site should render on your browser. 
+
+Start making changes 
+
+* if you are adding content, 
+.. alter the files in `kaskada`
+.. come back to `docs-site`, run the last build command `npx ...`
+.. hit refresh on your browser window 
+* if you are altering the ui components, 
+.. alter the files in `docs-ui`
+.. rebuild the ui bundle inside `docs-ui` by running `./node_modules/.bin/gulp bundle`
+.. come back to `docs-site`, run the last build command `npx ...`
+.. hit refresh on your browser window
+
+When you are happy with your changes make sure you commit and open PRs for *all* changes you made in *each* repo. 
+
+=== Build targets 
+
+For convenience the project also defines the following targets that you can run with `npm run <target>`
+
+[,shell]
+----
+  clean
+    rm -rf build
+  cleanall
+    rm -rf build node_modules
+  lb
+    npx antora --fetch local-antora-playbook.yml --stacktrace
+  lbr
+    npm install && npm run lb
+  rebuild
+    npm run clean && npm run lb
+----
