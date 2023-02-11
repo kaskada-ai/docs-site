@@ -1,0 +1,10 @@
+<script src="{{{uiRootPath}}}/js/site.js"></script>
+{{!--
+<script async src="{{{uiRootPath}}}/js/vendor/highlight.js"></script>
+--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script async src="{{{uiRootPath}}}/js/vendor/fenl.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{{#if env.SITE_SEARCH_PROVIDER}}
+{{> search-scripts}}
+{{/if}}
