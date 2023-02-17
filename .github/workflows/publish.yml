@@ -42,7 +42,6 @@ jobs:
           path: |
             build/site
       - name: Publish to GitHub Pages
-        if: ${{ }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
