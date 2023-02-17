@@ -23,6 +23,7 @@ asciidoc:
     idprefix: ""
     idseparator: "-"
     table-stripes: even
+    listing-caption: Listing
 
 ui:
   bundle:
