@@ -203,75 +203,281 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="why-kaskada"><a class="anchor" href="#why-kaskada"></a><a class="link" href="#why-kaskada">Why Kaskada?</a></h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With Kaskada, you can connect directly to your event-based data and
-calculate aggregated feature values at any point in time to train models
-without the risk of leakage.</p>
-</div>
-<div class="paragraph">
-<p>When you’re ready, you can compute the current value of the same
-features to make predictions using the latest data and a live model in
-production.</p>
+<p>Kaskada is the engine for real-time ML.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="simplified-process"><a class="anchor" href="#simplified-process"></a><a class="link" href="#simplified-process">Simplified Process</a></h2>
+<h2 id="what-is-real-time-aiml"><a class="anchor" href="#what-is-real-time-aiml"></a><a class="link" href="#what-is-real-time-aiml">What is real-time AI/ML?</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Real-time ML is making predictions based on recent events - reacting to what&#8217;s happening now,
+rather than what happened yesterday.
+Many outcomes can&#8217;t be predicted accurately from features computed the day before.</p>
+</div>
+<div class="paragraph">
+<p>Real-time models can be difficult to build.
+Models must be trained from examples that each capture specific instants in time, computed over historical datasets spanning months or years.
+Once a model is trained those same features must be kept up-to-date as new events arrive.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-does-kaskada-help-build-real-time-aiml"><a class="anchor" href="#how-does-kaskada-help-build-real-time-aiml"></a><a class="link" href="#how-does-kaskada-help-build-real-time-aiml">How does Kaskada help build real-time AI/ML?</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Temporal computation makes it easy to build training datasets from raw events, where each example reflects a different point in time so that you can train real-time models without temporal leakage or time-consume data collection jobs.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start with an example - imagine we&#8217;re trying to build a real-time model for a game of some sort.
+We want to predict an outcome, for example, user will pay for an upgrade.
+We&#8217;re collecting a events about users in various ways and storing them for later analysis.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/event.png" alt="Example event">
+</div>
+</div>
+<div class="paragraph">
+<p>These events describe what our users are doing - when they win, when they lose, when they buy things, when they they talk to each other.
+We can&#8217;t make predictions without training a model and we can&#8217;t train a model without building a bunch of training examples.
+An event by itself  doesn&#8217;t tell us much - usable insights require aggregation across time and users.</p>
+</div>
+<div class="paragraph">
+<p>When building AI/ML using batch techniques we might map, filter, and reduce those events to generate some information about each user.
+This tells us something about the current differences between users, but it doesn&#8217;t tell us much about why they&#8217;re different.
+To get at "why", we need a different way of thinking about our data - look what happens when we visualize  events in order, per user.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/event-context.png" alt="Events in time">
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can think about how these events played out in relation to each other.
+We can start to understand the context of each event, and the  story of what&#8217;s happening.
+This is how we can understand causation and behavior.</p>
+</div>
+<div class="paragraph">
+<p>The first player likes to brag, the game was too hard for the second player, the third player buys upgrades when she gets frustrated.
+This is the value of real-time ML - these stories play out over the span of minutes and hours, not days and weeks.</p>
+</div>
+<div class="paragraph">
+<p>Our goal is to capture this type of insight as feature values we can use to train a model.
+Think back the the aggregations we were looked at earlier - we can draw the result of an aggregation as a timeline showing how the result of the operation changes as each event is observed.</p>
+</div>
+<div class="paragraph">
+<p>This step function allows us to “observe” the value of the aggregation at any point in time.
+This perspective - capturing the time axis of computations - is really powerful.</p>
+</div>
+<div class="paragraph">
+<p>Thinking about timelines gives us a framework for training real-time ML models:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/framework.png" alt="Real-time AI/ML framework">
+</div>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Connect your event-based data</p>
+<p>Start with raw events and compute feature timelines</p>
 </li>
 <li>
-<p>Build and iterate with familiar interfaces</p>
+<p>Observe features at the points in time a prediction would be made to build a training example</p>
 </li>
 <li>
-<p>Share features as code</p>
+<p>Shift each example forward in time until the predicted outcome can be observe</p>
 </li>
 <li>
-<p>Deploy feature vectors to production</p>
+<p>Compute the correct target value and append it to the example</p>
 </li>
 </ol>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rapidly-author-and-iterate-on-features"><a class="anchor" href="#rapidly-author-and-iterate-on-features"></a><a class="link" href="#rapidly-author-and-iterate-on-features">Rapidly Author and Iterate on Features</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Features are composed using <a href="../fenl/language-guide.html" class="xref page">Fenl</a>, a query language
-designed for authoring and sharing feature definitions.</p>
+<p>Kaskada treats events as rows in tables.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even" style="width: 45%;">
+<caption class="title">Table 1. <code>GameVictory</code> events</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">time</th>
+<th class="tableblock halign-left valign-top">entity</th>
+<th class="tableblock halign-left valign-top">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2:30</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 10s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3:58</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 23s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4:25</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 8s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5:05</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 53s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10:01</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 43s}</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stripes-even" style="width: 45%;">
+<caption class="title">Table 2. <code>GameDefeat</code> events</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">time</th>
+<th class="tableblock halign-left valign-top">entity</th>
+<th class="tableblock halign-left valign-top">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2:35</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 3s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3:46</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 8s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5:36</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 2s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7:22</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 7s}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8:35</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 5s}</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For example, at 2:30 Alice won a game after playing for 10 seconds.
+At 2:35 Bob lost a game.</p>
 </div>
 <div class="paragraph">
-<p>Fenl expressions are <em>temporal</em>&#8201;&#8212;&#8201;they describe how the result of a
-computation changes over time rather than just the current result.
-Temporal queries make it easy to reconstruct the information available
-at arbitrary times in the past.</p>
+<p>We want to predict if a user will pay for an upgrade.
+The first step is to compute features from events.
+As a first simple feature, let&#8217;s describe the amount of time a user as spent losing at the game - it&#8217;s reasonable to expect that users who lose a lot will be motivated to pay for upgrades.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) }</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The rich time-traveling tools provided by Fenl make it easy to build
-training datasets without leaking knowledge of the future.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="go-directly-to-production"><a class="anchor" href="#go-directly-to-production"></a><a class="link" href="#go-directly-to-production">Go Directly to Production</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Collaborate by sharing code, not just data. Fenl&#8217;s composability allows
-you to share and re-use cleaned or pre-aggregated expressions.</p>
+<p>In this example we construct a record containing a single feature “loss_dur”, whose value is the sum of each victory event&#8217;s duration field.</p>
 </div>
 <div class="paragraph">
-<p>Authoring in Fenl ensures your features are scalable, reproducible, and
-can be computed incrementally.</p>
+<p>Notice that the result is a timeline describing the step function of how this feature has changed over time. We can “observe” the value of this step function at any time, regardless of the times at which the original events occurred.</p>
 </div>
 <div class="paragraph">
-<p>Features can be exported to external storage for training. When you&#8217;re
-ready to host a model, the same feature definitions used in training can
-be continuously written to a feature-vector cache.</p>
+<p>Another thing to notice is that these results are automatically grouped by user. We didm&#8217;t have to explicitly group by user because tables in Kaskada specify an "entity" associated with each row.
+Automatically aggregating per-entity reduces the amount boilerplate code you have to write relative to SQL.</p>
+</div>
+<div class="paragraph">
+<p>Moving on to the second step - observing our feature at the times a prediction would have been made.
+Let&#8217;s assume that the game designers want to offer an upgrade any time a user loses the game twice in a row.
+We can construct a set of examples associated with this prediction time by observing our feature <code>when</code> the user loses twice in a row.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) }
+    | when(count(GameDefeat, window=since(GameVictory)) == 2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This starts to build a pipeline of operations using the pipe operator <code>|</code>.
+Think of this query as walking over our events chronologically - at each event it updates an internal counter and produces an output.</p>
+</div>
+<div class="paragraph">
+<p>The third step is to move each example to the time when the outcome we&#8217;re predicting can be observed.
+We want to give the user some time to see the upgrade offer, decide to accept it, and pay - but we don’t want to give them forever.
+Let&#8217;s check to see if they accepted an hour after we make the offer.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) }
+    | when(count(GameDefeat, window=since(GameVictory)) == 2)
+    | shift_to(time_of($input) | add_time(hours(1)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we&#8217;ve shifted the results of the last step forward in time by one hour.  Visually you could imagine dragging that timeline to the right by one hour. This code continues the use of chaining - the <code>$input</code> reference is just a way to use the LHS of the pipe from within the RHS</p>
+</div>
+<div class="paragraph">
+<p>The final step is to see if a purchase happened after the prediction was made. This will be our target value and we&#8217;ll add it to the record that contains our feature.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) }
+    | when(count(GameDefeat, window=since(GameVictory)) == 2)
+    | shift_to(time_of($input) | add_time(hours(1)))
+    | extend({target: time_of($input) - time_of(last(Purchase)) &lt; hours(1)})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We know a purchase occurred in the last hour if the time of the most recent purchase is less than an hour from the time of each shifted example.</p>
+</div>
+<div class="paragraph">
+<p>In this code we use the <code>time_of</code> function to operate on each row&#8217;s time as a value, then use the <code>extend</code> function to add a new field to the example record.</p>
+</div>
+<div class="paragraph">
+<p>To review the process so far:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/framework.png" alt="Real-time AI/ML framework">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We computed the time spent in loosing games from the events we collected events about our friend here</p>
+</li>
+<li>
+<p>We generated training examples each time the user lost twice in a row</p>
+</li>
+<li>
+<p>We shifted those examples forward in time one hour</p>
+</li>
+<li>
+<p>Finally, we computed the target value by checking for purchases since the prediction was made.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
