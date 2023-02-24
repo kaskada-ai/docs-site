@@ -394,7 +394,8 @@ As a first simple feature, we describe the amount of time a user as spent losing
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) } <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = { <i class="conum" data-value="1"></i><b>(1)</b>
+  loss_duration: sum(GameVictory.duration) } <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -466,8 +467,11 @@ We can construct a set of examples associated with this prediction time by obser
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) } <i class="conum" data-value="1"></i><b>(1)</b>
-   | when(count(GameDefeat, window=since(GameVictory)) == 2) <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = {
+  loss_duration: sum(GameVictory.duration) }
+
+let examples = features <i class="conum" data-value="1"></i><b>(1)</b>
+  | when(count(GameDefeat, window=since(GameVictory)) == 2) <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -524,9 +528,12 @@ We want to give the user some time to see the upgrade offer, decide to accept it
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) }
-    | when(count(GameDefeat, window=since(GameVictory)) == 2) <i class="conum" data-value="1"></i><b>(1)</b>
-    | shift_to(time_of($input) | add_time(hours(1))) <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = {
+  loss_duration: sum(GameVictory.duration) }
+
+let examples = features
+  | when(count(GameDefeat, window=since(GameVictory)) == 2) <i class="conum" data-value="1"></i><b>(1)</b>
+  | shift_by(hours(1)) <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -537,10 +544,6 @@ We want to give the user some time to see the upgrade offer, decide to accept it
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>$input</code> reference is a way to use the left-hand-side of the pipe from within the right-hand-side</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>Shift the results of the last step forward in time by one hour - visually you could imagine dragging the examples forward in the timeline by one hour</td>
 </tr>
 </table>
@@ -583,25 +586,32 @@ Notice that the values in the time column are an hour later than the previous st
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">{ loss_dur: sum(GameVictory.duration) }
-    | when(count(GameDefeat, window=since(GameVictory)) == 2)
-    | shift_to(time_of($input) | add_time(hours(1))) <i class="conum" data-value="1"></i><b>(1)</b>
-    | extend({target: time_of($input) - time_of(last(Purchase)) &lt; hours(1)}) <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = {
+  loss_duration: sum(GameVictory.duration),
+  purchase_count: count(Purchase) } <i class="conum" data-value="1"></i><b>(1)</b>
+
+let example = features
+  | when(count(GameDefeat, window=since(GameVictory)) == 2)
+  | shift_by(hours(1))
+
+let target = count(Purchase) &gt; example.purchase_count <i class="conum" data-value="2"></i><b>(2)</b>
+
+in extend(example, {target}) <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The examples we shifted forward in time previously.</td>
+<td>Capture purchase count as a feature</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>time_of</code> function lets you access the time associated with each row as a value.</td>
+<td>Compare purchase count at prediction and label time.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Compare the time of each example to the time of the most recent purchase to see if that purchase was more than an hour ago.</td>
+<td>Append the target value to each example</td>
 </tr>
 </table>
 </div>
