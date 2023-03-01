@@ -1,0 +1,35 @@
+name: PR
+on:
+  pull_request:
+    branches: [main]
+
+# In cases of concurrent workflows running (consecutive pushes to PR)
+# leave the latest workflow and cancel the other (older) workflows
+# See https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pr_build:
+    name: PR Build (no publish)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install Antora
+        run: npm i antora
+      - name: Generate Site
+        env:
+          GIT_CREDENTIALS: ${{ secrets.GIT_CREDENTIALS }}
+        run: npx antora antora-playbook.yml
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs-site
+          path: |
+            build/site
