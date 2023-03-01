@@ -213,17 +213,18 @@ version 2. Additionally, it expects the following:</p>
 should be of integer type and contain a nano-second unix timestamp.</p>
 </li>
 <li>
-<p>All rows within the dataset must be sorted by <code>time_column</code>,
+<p>All rows within the dataset must be sorted by the <code>time_column</code>,
 ascending.</p>
 </li>
 <li>
-<p>The combination of the <code>time_column</code> and the <code>subsort_column</code> should
-guarantee that each row is unique.</p>
+<p>The combination of the <code>group_column</code> (entity id), <code>time_column</code>
+and <code>subsort_column</code> should guarantee that each row is unique.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>An easy way to do this is to use add an index column to your dataset,
-that contains the row index, and set this as the <code>subsort_column</code>.</p>
+that contains the row index, and set this as the <code>subsort_column</code>. If
+this is not necessary, the subsort column is optional.</p>
 </li>
 </ul>
 </div>
