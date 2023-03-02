@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Working with Slices :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/reference/working-with-slices.html">
     <link rel="prev" href="working-with-materializations.html">
     <link rel="next" href="../fenl/fenl-quick-start.html">
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="client-installation.html">Client Installation</a>
   </li>
@@ -203,6 +197,9 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Working with Slices</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p><em>This document assumes the client is authenticated.</em></p>
 </div>
@@ -222,6 +219,8 @@ it - sampling occurs at the granularity of individual entities.</p>
 <em>used</em> to produce a given result. As a result, some expressions like
 <code>lookup</code> cannot slice as efficiently as others because the entire
 dataset may be required to produce any result.</p>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="entity-key-percent-filter"><a class="anchor" href="#entity-key-percent-filter"></a><a class="link" href="#entity-key-percent-filter">Entity Key Percent Filter</a></h2>

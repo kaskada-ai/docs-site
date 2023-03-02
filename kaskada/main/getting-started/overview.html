@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Overview :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/overview.html">
     <link rel="prev" href="../index.html">
     <link rel="next" href="hello-world.html">
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
   </li>
@@ -203,8 +197,8 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="overview"><a class="anchor" href="#overview"></a><a class="link" href="#overview">Overview</a></h2>
+<h1 class="page">Overview</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kaskada is a query engine for event-based data, designed for building &amp; operating real-time ML at scale.</p>
@@ -395,7 +389,7 @@ As a first simple feature, we describe the amount of time a user as spent losing
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = { <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = { <i class="conum" data-value="1"></i><b>(1)</b>
   loss_duration: sum(GameVictory.duration) } <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -468,7 +462,7 @@ We can construct a set of examples associated with this prediction time by obser
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = {
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = {
   loss_duration: sum(GameVictory.duration) }
 
 let examples = features <i class="conum" data-value="1"></i><b>(1)</b>
@@ -529,7 +523,7 @@ We want to give the user some time to see the upgrade offer, decide to accept it
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = {
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = {
   loss_duration: sum(GameVictory.duration) }
 
 let examples = features
@@ -587,9 +581,9 @@ Notice that the values in the time column are an hour later than the previous st
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">let features = {
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = {
   loss_duration: sum(GameVictory.duration),
-  purchase_count: count(Purchase) } <i class="conum" data-value="1"></i><b>(1)</b>
+  purchase_count: count(Purchase) }   <i class="conum" data-value="1"></i><b>(1)</b>
 
 let example = features
   | when(count(GameDefeat, window=since(GameVictory)) == 2)

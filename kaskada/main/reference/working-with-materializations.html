@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Working with Materializations :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/reference/working-with-materializations.html">
     <link rel="prev" href="example-queries.html">
     <link rel="next" href="working-with-slices.html">
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="client-installation.html">Client Installation</a>
   </li>
@@ -203,6 +197,9 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Working with Materializations</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>The results of a Fenl query can be written to an external data store and
 kept up to date as the data underlying the query changes using
@@ -219,6 +216,8 @@ to import it before running any method:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">

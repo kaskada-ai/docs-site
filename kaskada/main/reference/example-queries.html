@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Example Queries :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/reference/example-queries.html">
     <link rel="prev" href="writing-queries.html">
     <link rel="next" href="working-with-materializations.html">
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="client-installation.html">Client Installation</a>
   </li>
@@ -203,9 +197,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Example Queries</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>The following examples will cover some of the common optional parameters
 used when writing queries.</p>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="prerequisite-table-setup"><a class="anchor" href="#prerequisite-table-setup"></a><a class="link" href="#prerequisite-table-setup">Prerequisite: Table Setup</a></h2>
@@ -217,7 +216,7 @@ table contains 50000 rows of data loaded from a single file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>from kaskada import table as kt
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table as kt
 
 def indent(text, amount, ch=' '):
         padding = amount * ch
@@ -249,7 +248,7 @@ print(f"SUCCESS: Created Transactions table and uploaded data.")
 print("\t Table Response:")
 print(indent(t_transactions, 2, "\t"))
 print("\t Upload Response:")
-print(indent(file_transactions1, 2, "\t"))</pre>
+print(indent(file_transactions1, 2, "\t"))</code></pre>
 </div>
 </div>
 <div class="listingblock">

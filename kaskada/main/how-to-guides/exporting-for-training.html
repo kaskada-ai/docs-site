@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Example Modeling Problem :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/how-to-guides/exporting-for-training.html">
     <link rel="prev" href="../getting-started/hello-sharing-queries.html">
     <link rel="next" href="integrating-with-feature-stores.html">
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
   </li>
@@ -203,8 +197,8 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="example-modeling-problem"><a class="anchor" href="#example-modeling-problem"></a><a class="link" href="#example-modeling-problem">Example Modeling Problem</a></h2>
+<h1 class="page">Example Modeling Problem</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>We&#8217;ll begin by laying out a simple modeling problem, based on the
@@ -213,8 +207,11 @@ model predicting if a given purchase will result in a fraud report
 within the next 30 days given two event tables; a <code>Purchase</code> table and a
 <code>FraudReport</code> table.</p>
 </div>
-<div class="sect2">
-<h3 id="setup"><a class="anchor" href="#setup"></a><a class="link" href="#setup">Setup</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup"><a class="anchor" href="#setup"></a><a class="link" href="#setup">Setup</a></h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.create_table(
@@ -243,7 +240,6 @@ table.create_table(
 frauds_url = "https://drive.google.com/uc?export=download&amp;id=1WXRW1zt1EEPcbrw4nw9rCdhTqlatxTSR"
 frauds = pandas.read_parquet(frauds_url)
 table.upload_dataframe("FraudReport", frauds)</code></pre>
-</div>
 </div>
 </div>
 </div>

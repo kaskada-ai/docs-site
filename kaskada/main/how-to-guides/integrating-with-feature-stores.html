@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Online Feature Stores :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/how-to-guides/integrating-with-feature-stores.html">
     <link rel="prev" href="exporting-for-training.html">
-    <link rel="next" href="../reference/client-authentication.html">
+    <link rel="next" href="../reference/client-installation.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
   </li>
@@ -203,8 +197,8 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="online-feature-stores"><a class="anchor" href="#online-feature-stores"></a><a class="link" href="#online-feature-stores">Online Feature Stores</a></h2>
+<h1 class="page">Online Feature Stores</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Models being used in production often have strict latency and freshness
@@ -213,8 +207,11 @@ the freshness, while feature stores address latency. Kaskada&#8217;s feature
 engine keeps real-time features fresh and integrates with several
 existing data stores for low-latency key retrieval.</p>
 </div>
-<div class="sect2">
-<h3 id="aws-dynamodb"><a class="anchor" href="#aws-dynamodb"></a><a class="link" href="#aws-dynamodb">AWS DynamoDB</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="aws-dynamodb"><a class="anchor" href="#aws-dynamodb"></a><a class="link" href="#aws-dynamodb">AWS DynamoDB</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>DynamoDB is a hosted key-value store that provides consistent
 low-latency query responses and elastic scalability.</p>
@@ -255,8 +252,10 @@ with table.batch_writer() as bw:
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="redis"><a class="anchor" href="#redis"></a><a class="link" href="#redis">Redis</a></h3>
+</div>
+<div class="sect1">
+<h2 id="redis"><a class="anchor" href="#redis"></a><a class="link" href="#redis">Redis</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Redis is an OpenSource in-memory data-structure store. The RedisAI
 module provides support for tensor data structures and allows applying a
@@ -300,7 +299,6 @@ materialization.create_materialization(
       min_amount: Purchase.amount | min(),
     }"
 )</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -402,7 +400,7 @@ FORMAT AS PARQUET;</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="exporting-for-training.html">Exporting Features</a></span>
-  <span class="next"><a href="../reference/client-authentication.html">Client Authentication</a></span>
+  <span class="next"><a href="../reference/client-installation.html">Client Installation</a></span>
 </nav>
 </article>
   </div>

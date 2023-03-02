@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Kaskada Docs</title>
+    <title>Installation :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/hello-client-setup.html">
     <link rel="prev" href="hello-world.html">
     <link rel="next" href="hello-loading-data.html">
@@ -84,12 +84,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-authentication.html">Client Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reference/client-credentials.html">Client Credentials</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../reference/client-installation.html">Client Installation</a>
   </li>
@@ -204,6 +198,9 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Installation</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>To use Kaskada within a Jupyter notebook you&#8217;ll need to have the following pieces of software installed</p>
 </div>
@@ -243,6 +240,8 @@ nbformat         : 5.7.0
 notebook         : 6.5.2
 qtconsole        : 5.3.2
 traitlets        : 5.5.0</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -380,7 +379,13 @@ To make it easier to load make sure you save this test data file in the same fol
 </div>
 </div>
 <div class="paragraph">
-<p>TODO: get the output from the notebook here so that the reader knows what to expect on success</p>
+<p>Once the data load is complete you should see something similar to the following.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/load-table-output.png" alt="Sample output from data load">
+</div>
+<div class="title">Figure 3. Sample output from data load</div>
 </div>
 <div class="sect3">
 <h4 id="enable-the-kaskada-magic-command-and-run-a-query"><a class="anchor" href="#enable-the-kaskada-magic-command-and-run-a-query"></a><a class="link" href="#enable-the-kaskada-magic-command-and-run-a-query">Enable the Kaskada magic command and run a query</a></h4>
@@ -414,7 +419,13 @@ transactions</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>TODO: add expected output from the query</p>
+<p>The result of the query should look similar to the following.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/query-output.png" alt="Sample output from querying the transactions table">
+</div>
+<div class="title">Figure 4. Sample output querying the transactions table.</div>
 </div>
 <div class="paragraph">
 <p>Congratulations, you now have Kaskada locally installed and you can start loading and querying your data using Kaskada inside a Jupyter notebook.</p>
