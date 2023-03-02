@@ -2,7 +2,7 @@ site:
   title: Kaskada Docs
   start_page: kaskada::index.adoc
   robots: allow
-  # url: TBD
+  url: https://kaskada-ai.github.io/docs-site/
 content:
   sources:
     - url: https://github.com/kaskada-ai/kaskada.git
@@ -24,6 +24,7 @@ asciidoc:
     idseparator: "-"
     table-stripes: even
     listing-caption: Listing
+    icons: font
 
 ui:
   bundle:
