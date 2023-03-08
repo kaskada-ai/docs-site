@@ -401,7 +401,7 @@ purchases_url = "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RG
 purchases = pandas.read_parquet(purchases_url)
 
 # Upload the dataframe's contents to the Purchase table
-table.upload_dataframe("Purchase", purchases)</code></pre>
+table.load_dataframe("Purchase", purchases)</code></pre>
 </div>
 </div>
 <div class="paragraph">
