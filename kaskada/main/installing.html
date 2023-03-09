@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Client Installation :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/reference/client-installation.html">
-    <link rel="prev" href="../how-to-guides/integrating-with-feature-stores.html">
-    <link rel="next" href="expected-file-format.html">
+    <title>Installing Kaskada :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/installing.html">
+    <link rel="prev" href="getting-started/hello-sharing-queries.html">
+    <link rel="next" href="loading-data.html">
     <meta name="generator" content="Antora 3.1.2">
-    <link rel="stylesheet" href="../../../_/css/site.css">
-    <script>var uiRootPath = '../../../_'</script>
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
   </head>
   <body class="article">
 <header class="header">
@@ -29,7 +29,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="index.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -38,22 +38,16 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../getting-started/hello-world.html">Hello World</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/hello-client-setup.html">Client Setup</a>
+    <a class="nav-link" href="getting-started/hello-world.html">Quick Start</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/hello-loading-data.html">Loading Data</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started/hello-client-setup.html">Installation</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/hello-querying-data.html">Querying Data</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started/hello-querying-data.html">Querying Data</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../getting-started/hello-sharing-queries.html">Sharing Queries</a>
-  </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started/hello-sharing-queries.html">Sharing Queries</a>
   </li>
 </ul>
   </li>
@@ -61,20 +55,11 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="installing.html">Installing</a>
+  </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">How-To Guides</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../how-to-guides/training-realtime-ml-models.html">Training real-time ML models</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../how-to-guides/exporting-for-training.html">Exporting Features</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a>
-  </li>
-</ul>
+    <a class="nav-link" href="loading-data.html">Loading Data</a>
   </li>
 </ul>
   </li>
@@ -84,29 +69,52 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="client-installation.html">Client Installation</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="developing/tables.html">Working with Tables</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="expected-file-format.html">Expected File Format</a>
+    <a class="nav-link" href="developing/writing-queries.html">Writing Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="tables.html">Working with Tables</a>
+    <a class="nav-link" href="developing/example-queries.html">Examples Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="views.html">Working with Views</a>
+    <a class="nav-link" href="developing/working-with-slices.html">Working with Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="writing-queries.html">Writing Queries</a>
+    <a class="nav-link" href="developing/views.html">Working with Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="example-queries.html">Examples Queries</a>
+    <a class="nav-link" href="developing/working-with-materializations.html">Working with Materializations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrating</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="integrating/integrating-with-feature-stores.html">Integrating with ML feature stores</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tools and Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tools-and-resources/training-realtime-ml-models.html">Training real-time ML models</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="working-with-materializations.html">Working with Materializations</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="working-with-slices.html">Working with Slices</a>
+    <a class="nav-link" href="tools-and-resources/exporting-for-training.html">Example Modeling Problem</a>
   </li>
 </ul>
   </li>
@@ -119,40 +127,40 @@
     <span class="nav-text">Fenl</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../fenl/fenl-quick-start.html">Fenl Quick Start</a>
+    <a class="nav-link" href="fenl/fenl-quick-start.html">Fenl Quick Start</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../fenl/language-guide.html">Fenl Language Guide</a>
+    <a class="nav-link" href="fenl/language-guide.html">Fenl Language Guide</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/data-model.html">Data model</a>
+    <a class="nav-link" href="fenl/data-model.html">Data model</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/syntax.html">Syntax</a>
+    <a class="nav-link" href="fenl/syntax.html">Syntax</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/entities.html">Entities</a>
+    <a class="nav-link" href="fenl/entities.html">Entities</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
+    <a class="nav-link" href="fenl/temporal-aggregation.html">Temporal Computation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
+    <a class="nav-link" href="fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
+    <a class="nav-link" href="fenl/continuity.html">Continuity</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../fenl/catalog.html">Fenl Catalog</a>
+    <a class="nav-link" href="fenl/catalog.html">Fenl Catalog</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../fenl/fenl-faq.html">Fenl FAQ</a>
+    <a class="nav-link" href="fenl/fenl-faq.html">Fenl FAQ</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../fenl/working-with-records.html">Working with Records</a>
+    <a class="nav-link" href="fenl/working-with-records.html">Working with Records</a>
   </li>
 </ul>
   </li>
@@ -168,10 +176,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <a class="title" href="index.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../index.html">main</a>
+          <a href="index.html">main</a>
         </li>
       </ul>
     </li>
@@ -183,12 +191,11 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../index.html" class="home-link"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Kaskada Documentation</a></li>
-    <li>Reference</li>
-    <li><a href="client-installation.html">Client Installation</a></li>
+    <li><a href="index.html">Kaskada Documentation</a></li>
+    <li><a href="installing.html">Installing</a></li>
   </ul>
 </nav>
 </div>
@@ -197,37 +204,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Client Installation</h1>
+<h1 class="page">Installing Kaskada</h1>
 <div class="sect1">
-<h2 id="python-client"><a class="anchor" href="#python-client"></a><a class="link" href="#python-client">Python Client</a></h2>
+<h2 id="using-kaskada-with-python"><a class="anchor" href="#using-kaskada-with-python"></a><a class="link" href="#using-kaskada-with-python">Using Kaskada with Python</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The Kaskada Python client can be installed using <code>pip</code></p>
-</div>
 <div class="listingblock">
+<div class="title">Listing 1. Installing Kaskada using pip</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install kaskada</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will download and install the latest stable Kaskada library.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ipython-jupyter-extension"><a class="anchor" href="#ipython-jupyter-extension"></a><a class="link" href="#ipython-jupyter-extension">IPython (Jupyter) Extension</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>IPython is an interactive Python runtime used by Jupyter and other
-notebooks to evaluate Python code blocks. IPython supports "magic
-extensions" for customizing how code blocks are interpreted. Kaskada
-provides a magic extension that simplifies querying Kaskada. To use the
-extension you must first install the <code>fenlmagic</code> python package, for
-example using <code>pip</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install fenlmagic</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pip install kaskada</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -237,18 +221,47 @@ example using <code>pip</code>:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Make sure to install this package in the same environment IPython will be running in.
+<div class="title">Pip and pip3</div>
+<div class="paragraph">
+<p>Depending on you Python installation and configuration you may have <code>pip3</code> instead of <code>pip</code> available in your terminal.
+If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code> in your command, i.e., <code>pip3 install kaskada</code></p>
+</div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Inside an IPython session (for example a Jupyter notebook) the extension
-can be loaded using the magic command <code>%load_ext</code>:</p>
+<p>Kaskada is now installed. Kaskada can be used locally by creating a local session.</p>
+</div>
+<div class="listingblock python">
+<div class="title">Listing 2. Creating a local Kaskada session in Python</div>
+<div class="content">
+<pre>from kaskada.api.session import LocalBuilder
+session = LocalBuilder().build()</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Creating a local session will download and run the Kaskada service, and configure the client to use the local endpoint.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-kaskada-with-ipython-jupyter"><a class="anchor" href="#using-kaskada-with-ipython-jupyter"></a><a class="link" href="#using-kaskada-with-ipython-jupyter">Using Kaskada with IPython (Jupyter)</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IPython is an interactive Python runtime used by Jupyter and other
+notebooks to evaluate Python code blocks. IPython supports "magic
+extensions" for customizing how code blocks are interpreted. Kaskada
+provides a magic extension that simplifies querying Kaskada.</p>
+</div>
+<div class="paragraph">
+<p>Kaskada&#8217;s python library includes notebook customizations that allow us to write queries in the Fenl language but also receive and render the results of our queries in our notebooks.
+We need to enable these customizations first before we can use them.</p>
 </div>
 <div class="listingblock">
+<div class="title">Listing 3. Enable fenlmagic in this notebook</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ipython hljs" data-lang="ipython">%load_ext fenlmagic</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%load_ext fenlmagic</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -292,8 +305,8 @@ optional arguments:
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../how-to-guides/integrating-with-feature-stores.html">Serving Features</a></span>
-  <span class="next"><a href="expected-file-format.html">Expected File Format</a></span>
+  <span class="prev"><a href="getting-started/hello-sharing-queries.html">Sharing Queries</a></span>
+  <span class="next"><a href="loading-data.html">Loading Data</a></span>
 </nav>
 </article>
   </div>
@@ -301,10 +314,10 @@ optional arguments:
 </div>
 <footer class="footer">
 &copy; Copyright The Kaskada Authors 
-</footer><script src="../../../_/js/site.js"></script>
+</footer><script src="../../_/js/site.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-<script src="../../../_/js/vendor/fenl.min.js"></script>
+<script src="../../_/js/vendor/fenl.min.js"></script>
 <script>hljs.highlightAll();</script>
   </body>
 </html>
