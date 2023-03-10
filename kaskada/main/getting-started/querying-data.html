@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Querying Data :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/hello-querying-data.html">
-    <link rel="prev" href="hello-client-setup.html">
-    <link rel="next" href="hello-sharing-queries.html">
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/querying-data.html">
+    <link rel="prev" href="loading-data.html">
+    <link rel="next" href="../installing.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -29,7 +29,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="installation.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -38,16 +38,13 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="hello-world.html">Quick Start</a>
+    <a class="nav-link" href="installation.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="hello-client-setup.html">Installation</a>
+    <a class="nav-link" href="loading-data.html">Loading Data</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="hello-querying-data.html">Querying Data</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="hello-sharing-queries.html">Sharing Queries</a>
+    <a class="nav-link" href="querying-data.html">Querying Data</a>
   </li>
 </ul>
   </li>
@@ -70,22 +67,22 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/tables.html">Working with Tables</a>
+    <a class="nav-link" href="../developing/tables.html">Tables</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/writing-queries.html">Writing Queries</a>
+    <a class="nav-link" href="../developing/queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/example-queries.html">Examples Queries</a>
+    <a class="nav-link" href="../developing/example-queries.html">Example Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/working-with-slices.html">Working with Slices</a>
+    <a class="nav-link" href="../developing/slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/views.html">Working with Views</a>
+    <a class="nav-link" href="../developing/views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/working-with-materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="../developing/materializations.html">Working with Materializations</a>
   </li>
 </ul>
   </li>
@@ -176,10 +173,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Kaskada Documentation</a>
+      <a class="title" href="installation.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../index.html">main</a>
+          <a href="installation.html">main</a>
         </li>
       </ul>
     </li>
@@ -191,12 +188,12 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../index.html" class="home-link"></a>
+  <a href="installation.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Kaskada Documentation</a></li>
+    <li><a href="installation.html">Kaskada Documentation</a></li>
     <li>Getting Started</li>
-    <li><a href="hello-querying-data.html">Querying Data</a></li>
+    <li><a href="querying-data.html">Querying Data</a></li>
   </ul>
 </nav>
 </div>
@@ -206,26 +203,6 @@
 </aside>
 <article class="doc">
 <h1 class="page">Querying Data</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="title">Setup Required</div>
-<div class="paragraph">
-<p>The following examples assume you&#8217;ve already completed
-<a href="hello-loading-data.html" class="xref page">Loading Data</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="writing-queries"><a class="anchor" href="#writing-queries"></a><a class="link" href="#writing-queries">Writing Queries</a></h2>
 <div class="sectionbody">
@@ -234,7 +211,7 @@
 with fenlmagic because these queries are not persistent. As you are
 iterating in Jupyter it can be helpful to build up your feature and time
 selection as you go, once you&#8217;d like to persist a query, check out our
-article on <a href="hello-sharing-queries.html" class="xref page">Sharing Queries</a>.</p>
+article on <a href="../developing/views.html" class="xref page">Sharing Queries</a>.</p>
 </div>
 <div class="paragraph">
 <p>You can make Fenl queries by prefixing a query block with <code>%%fenl</code>. The
@@ -327,14 +304,14 @@ df_explore.dataframe.columns</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more help writing queries, see <a href="../developing/writing-queries.html" class="xref page">Reference -
+<p>For more help writing queries, see <a href="../developing/queries.html" class="xref page">Reference -
 Writing Queries</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="hello-client-setup.html">Installation</a></span>
-  <span class="next"><a href="hello-sharing-queries.html">Sharing Queries</a></span>
+  <span class="prev"><a href="loading-data.html">Loading Data</a></span>
+  <span class="next"><a href="../installing.html">Installing</a></span>
 </nav>
 </article>
   </div>
