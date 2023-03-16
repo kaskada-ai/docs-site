@@ -296,6 +296,154 @@
 <p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
 each row is a value of the same type.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-tables-with-the-cli"><a class="anchor" href="#managing-tables-with-the-cli"></a><a class="link" href="#managing-tables-with-the-cli">Managing tables with the CLI</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CLI manages Kaskada resources declaratively by managing spec files.
+A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
+</div>
+<div class="sect2">
+<h3 id="the-format-of-tables-in-a-spec-file"><a class="anchor" href="#the-format-of-tables-in-a-spec-file"></a><a class="link" href="#the-format-of-tables-in-a-spec-file">The format of tables in a spec file.</a></h3>
+<div class="paragraph">
+<p>Tables are described in a spec file as a list of table objects under the <code>tables</code> key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- tableName: GamePlay
+  timeColumnName: event_at
+  entityKeyColumnName: entity_key
+  subsortColumnName: offset
+  groupingId: User
+  tableSource:
+    kaskada: {}
+- tableName: Purchase
+  timeColumnName: event_at
+  entityKeyColumnName: entity_id
+  groupingId: User
+  tableSource:
+    kaskada: {}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-the-current-tables-as-a-spec-file"><a class="anchor" href="#exporting-the-current-tables-as-a-spec-file"></a><a class="link" href="#exporting-the-current-tables-as-a-spec-file">Exporting the current tables as a spec file.</a></h3>
+<div class="paragraph">
+<p>You can export all the tables currently defined using the CLI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --all</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The export result is shown below</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+- tableName: GamePlay
+  timeColumnName: event_at
+  entityKeyColumnName: entity_key
+  subsortColumnName: offset
+  groupingId: User
+  tableSource:
+    kaskada: {}
+- tableName: Purchase
+  timeColumnName: event_at
+  entityKeyColumnName: entity_id
+  groupingId: User
+  tableSource:
+    kaskada: {}
+views:
+    # ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternately, if you know a specific table you&#8217;d like to export you can specify it explicitly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --table Purchase</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+- tableName: Purchase
+  timeColumnName: event_at
+  entityKeyColumnName: entity_id
+  groupingId: User
+  tableSource:
+    kaskada: {}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-kaskada-to-reflect-the-contents-of-a-spec-file"><a class="anchor" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file"></a><a class="link" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file">Updating Kaskada to reflect the contents of a spec file</a></h3>
+<div class="paragraph">
+<p>To change a table with the CLI, you first modify the table in a spec file, then "apply" the spec file with the CLI.
+When a spec file is applied, the CLI inspects all of the server&#8217;s resources and all of the resources
+defined in your spec file, then takes whatever actions are necessary to reconcile the server&#8217;s state.
+Applying a spec can create new tables, change a tables&#8217;s mutable fields, or delete tables.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Table updates are destructive</div>
+<div class="paragraph">
+<p>Tables are currently immutable.
+When the CLI updates a table, it does so by deleting the table and re-creating it.
+When this happens, all data previously loaded into the table is lost.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Before applying a spec file, it&#8217;s a good idea to see what changes will be made.
+You can see these changes by creating an apply plan.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync plan --file spec.yaml
+
+# &gt; 2:18PM INF starting plan
+# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:18PM INF Success!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this command will not make any changes to the server, but will print out the changes that will be made if you apply the given spec file.</p>
+</div>
+<div class="paragraph">
+<p>You can apply a spec file using the CLI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync apply --file spec.yaml
+
+# &gt; 2:25PM INF starting apply
+# &gt; 2:25PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:25PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:25PM INF Success!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-tables-with-python"><a class="anchor" href="#managing-tables-with-python"></a><a class="link" href="#managing-tables-with-python">Managing tables with Python</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>All methods on this page use the <code>table</code> module. Be sure to import it
 before running any method:</p>
@@ -305,11 +453,6 @@ before running any method:</p>
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="table-methods"><a class="anchor" href="#table-methods"></a><a class="link" href="#table-methods">Table Methods</a></h2>
-<div class="sectionbody">
 <div class="sect2">
 <h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
 <div class="paragraph">
@@ -431,7 +574,7 @@ and then re-creating it with a new expression.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Note that deleting a table also deletes any files uploaded to it.</p>
+<p>Note that deleting a table also deletes any events uploaded to it.</p>
 </div>
 </td>
 </tr>
@@ -449,153 +592,6 @@ functioning incorrectly.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase", force=True)</code></pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="uploading-data"><a class="anchor" href="#uploading-data"></a><a class="link" href="#uploading-data">Uploading Data</a></h2>
-<div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Going Deeper</div>
-<div class="paragraph">
-<p>Under the hood, file uploads are a multi-part process.
-The first step is to create a staged file that requests an upload URL
-from the API. The Python client library will upload files to the upload
-URL through an HTTP PUT request. Then an additional API call is
-performed to load the staged file to a table where additional validation
-is performed.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="from-a-remote-file-or-dataframe"><a class="anchor" href="#from-a-remote-file-or-dataframe"></a><a class="link" href="#from-a-remote-file-or-dataframe">From a Remote file or Dataframe</a></h3>
-<div class="paragraph">
-<p>Data can be loaded from a dataframe into a Kaskada table. Remote files
-can be read into a dataframe and then uploaded to Kaskada.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas
-
-# A sample Parquet file provided by Kaskada for testing
-purchases_url = "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk"
-
-# Read the file into a Pandas Dataframe
-purchases = pandas.read_parquet(purchases_url)
-
-# Upload the dataframe's contents to the Purchase table
-table.load_dataframe("Purchase", purchases)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The contents of the dataframe are transferred to Kaskada and added to
-the Purchase table.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="from-amazon-s3"><a class="anchor" href="#from-amazon-s3"></a><a class="link" href="#from-amazon-s3">From Amazon S3</a></h3>
-<div class="paragraph">
-<p>Data can be loaded directly from Amazon S3 into a Kaskada table. Loading
-from S3 requires the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>AWS Access Key - The access key with READ permissions to the bucket
-and path (optional).</p>
-</li>
-<li>
-<p>AWS Secret Access Key - The secret key associated with the access key
-(optional).</p>
-</li>
-<li>
-<p>Path - The path to the object. One of the following:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://s3.Region.amazonaws.com/bucket-name/key-name">Virtual Hosted
-Path</a> - E.g.
-<a href="https://s3.Region.amazonaws.com/bucket-name/key-name.parquet" class="bare">https://s3.Region.amazonaws.com/bucket-name/key-name.parquet</a></p>
-</li>
-<li>
-<p>Region, Bucket, Key</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Security and Credentials</div>
-<div class="literalblock">
-<div class="content">
-<pre> Kaskada does not store the provided
-credentials in any manner. The API only has access to the credentials
-throughout the load data call. If no access credentials are provided,
-the object must have public read permissions.</pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
-
-TABLE_NAME = 'Purchase'
-
-EXTERNAL_AWS_ACCESS_KEY = '&lt;AWS_ACCESS_KEY'
-EXTERNAL_AWS_SECRET_KEY = '&lt;AWS_SECRET_KEY&gt;'
-S3_PATH = 'events/2022/purchases.parquet'
-BUCKET = 'production.company'
-REGION = 'us-west-2'
-
-table.upload_from_s3(
-    TABLE_NAME,
-    access_key=EXTERNAL_AWS_ACCESS_KEY,
-    secret=EXTERNAL_AWS_SECRET_KEY,
-    bucket=BUCKET,
-    key=S3_PATH,
-    region=REGION
-)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The contents of the parquet object in S3 are transferred to Kaskada and
-added to the Purchase table.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="from-a-local-file"><a class="anchor" href="#from-a-local-file"></a><a class="link" href="#from-a-local-file">From a Local File</a></h3>
-<div class="paragraph">
-<p>Local files can be uploaded directly to Kaskada without converting them
-to a dataframe. However, the files must be in a specific format. See
-<a href="#reference:expected-file-format">Expected File Format</a> for details.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">fullPathToFile = "/content/drive/place/thing/purchases.parquet"
-table.upload_file("Purchases", fullPathToFile)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This uploads the contents of the file to the Purchases table.</p>
 </div>
 </div>
 </div>

@@ -407,6 +407,23 @@ When a spec file is applied, the CLI inspects all of the server&#8217;s resource
 defined in your spec file, then takes whatever actions are necessary to reconcile the server&#8217;s state.
 Applying a spec can create new views, change a view&#8217;s mutable fields, or delete views.</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">View updates are destructive</div>
+<div class="paragraph">
+<p>Vies are current immutable.
+When the CLI updates a view, it does so by deleting the view and re-creating it.
+When this happens, the view may be temporarily unavailable to queries.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Before applying a spec file, it&#8217;s a good idea to see what changes will be made.
 You can see these changes by creating an apply plan.</p>
@@ -450,6 +467,22 @@ name. In this case, we&#8217;re interested in some purchase statistics for
 each user. This definition depends on business logic and might require
 some iteration to get just right.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.create_view(
+    view_name = "PurchaseStats",
+    expression = "{
+        time: Purchase.purchase_time,
+        entity: Purchase.customer_id,
+        max_amount: Purchase.amount | max(),
+        min_amount: Purchase.amount | min(),
+    }"
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates a view names <code>PurchaseStats</code>.</p>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -468,19 +501,6 @@ query.</p>
 </td>
 </tr>
 </table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.create_view(
-    view_name = "PurchaseStats",
-    expression = "{
-        time: Purchase.purchase_time,
-        entity: Purchase.customer_id,
-        max_amount: Purchase.amount | max(),
-        min_amount: Purchase.amount | min(),
-    }"
-)</code></pre>
-</div>
 </div>
 <div class="paragraph">
 <p>If you&#8217;re using IPython/Jupyter, you can create a view from the contents of a <code>%%fenl</code> block using the <code>--var</code> argument</p>

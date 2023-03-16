@@ -293,118 +293,89 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
-each row is a value of the same type.</p>
+each row is a value of the same type.
+The <a href="developing/tables.html" class="xref page">Tables</a> section of the reference docs has more information about managing tables.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h2>
+<h2 id="file-format"><a class="anchor" href="#file-format"></a><a class="link" href="#file-format">File Format</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>When creating a table, you must provide some information about how each
-row should be interpreted. You must describe:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A field containing the time associated with each row
-(<code>time_column_name</code>). The time should refer to when the event occurred.</p>
-</li>
-<li>
-<p>An initial <a href="#fenl:entities">entity</a> key associated with each row
-(<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
-world that each event is associated with. Don&#8217;t worry too much about
-picking the "right" value here - it&#8217;s easy to change the entity key in
-Fenl.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Additionally, you may describe:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A subsort column associated with each row (<code>subsort_column_name</code>).
-This value is used to order rows associated with the same time value.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
-
-table.create_table(
-  table_name = "Purchase",
-  time_column_name = "purchase_time",
-  entity_key_column_name = "customer_id",
-)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
-must have a timestamp field named <code>purchase_time</code>, and a field named
-<code>customer_id</code>.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">Idiomatic Kaskada</div>
-<div class="paragraph">
-<p>We like to use CamelCase to name tables because it
-helps distinguish data sources from transformed values and function
-names.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The response from the <code>create_table</code> is a <code>table</code> object with contents
-similar to:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">table {
-  table_id: "76b***2e5"
-  table_name: "Purchase"
-  time_column_name: "purchase_time"
-  entity_key_column_name: "customer_id"
-  create_time {
-    seconds: 1634250064
-    nanos: 422017488
-  }
-  update_time {
-    seconds: 1634250064
-    nanos: 422017488
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Now that we&#8217;ve created a table, we&#8217;re ready to load some data into it.</p>
-</div>
 <div class="paragraph">
 <p>Any data loaded into a table must include all columns used in the table definition.
 The full schema of a table is inferred from the data loaded into it.
 At the moment, all data loaded into a table must have the same schema.</p>
 </div>
 <div class="paragraph">
-<p>Data can be loaded into a table in multiple ways. In this example we&#8217;ll
-load the contents of a Pandas dataframe into the table.</p>
+<p>The Kaskada compute engine expects uploaded file data to be either CSV or parquet version 2.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it expects the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>time_column</code> (and all other date-time columns in your dataset)
+should be a type that can be <a href="fenl/data-model.html#type-coercion" class="xref page">cast</a> to a <a href="fenl/data-model.html#scalars" class="xref page">timestamp</a>, for example an integer or RFC3330-formatted string.</p>
+</li>
+<li>
+<p>If <code>subsort_id</code> is user-defined, the combination of the <code>group_column</code> (entity id), <code>time_column</code> and <code>subsort_column</code> should guarantee that each row is unique.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-data-with-the-cli"><a class="anchor" href="#loading-data-with-the-cli"></a><a class="link" href="#loading-data-with-the-cli">Loading data with the CLI</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Files can be loaded into a table using the CLI.
+When loading files with the CLI, the given path must be local to the Kaskada service.</p>
+</div>
+<div class="paragraph">
+<p>The file must be encoded as either CSV or Parquet version 2.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli load \
+  --table Purchase \
+  --file-type csv \
+  --file-path file://path/to/purchases.csv</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-data-with-python"><a class="anchor" href="#loading-data-with-python"></a><a class="link" href="#loading-data-with-python">Loading data with Python</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data can be loaded into a table in multiple ways, depending on where it is located.</p>
+</div>
+<div class="sect2">
+<h3 id="from-a-local-file"><a class="anchor" href="#from-a-local-file"></a><a class="link" href="#from-a-local-file">From a Local File</a></h3>
+<div class="paragraph">
+<p>Local files can be uploaded directly to Kaskada without converting them
+to a dataframe. However, the files must be in a specific format. See
+<a href="#reference:expected-file-format">Expected File Format</a> for details.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+
+fullPathToFile = "/content/drive/place/thing/purchases.parquet"
+table.upload_file("Purchases", fullPathToFile)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This uploads the contents of the file to the Purchases table.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="from-a-pandas-dataframe"><a class="anchor" href="#from-a-pandas-dataframe"></a><a class="link" href="#from-a-pandas-dataframe">From a Pandas dataframe</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+import pandas
 
 # A sample Parquet file provided by Kaskada for testing
 purchases_url = "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk"
@@ -429,70 +400,6 @@ system.</p>
 <div class="paragraph">
 <p>The file is added to the table.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="inspecting-the-tables-contents"><a class="anchor" href="#inspecting-the-tables-contents"></a><a class="link" href="#inspecting-the-tables-contents">Inspecting the Table&#8217;s Contents</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To verify the file was loaded as expected you can use the table list
-method (<code>list_tables</code>) to see all the tables defined for your user and the files
-loaded into each:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.list_tables()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>list_tables</code> shows all the tables accessible by the user and returns a
-<code>list</code> of <code>table</code>. The table created above is shown here:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">tables {
-  table_id: "76b***2e5"
-  table_name: "Purchase"
-  time_column_name: "purchase_time"
-  entity_key_column_name: "customer_id"
-  subsort_column_name: "subsort_id"
-  create_time {
-    seconds: 1634067588
-    nanos: 312567086
-  }
-  update_time {
-    seconds: 1634067603
-    nanos: 70745776
-  }
-  version: 1
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After executing this block, all tables that have been defined are
-returned.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="file-format"><a class="anchor" href="#file-format"></a><a class="link" href="#file-format">File Format</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Kaskada compute engine expects uploaded file data to be either CSV or parquet version 2.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, it expects the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>time_column</code> (and all other date-time columns in your dataset)
-should be a type that can be <a href="fenl/data-model.html#type-coercion" class="xref page">cast</a> to a <a href="fenl/data-model.html#scalars" class="xref page">timestamp</a>, for example an integer or RFC3330-formatted string.</p>
-</li>
-<li>
-<p>If <code>subsort_id</code> is user-defined, the combination of the <code>group_column</code> (entity id), <code>time_column</code> and <code>subsort_column</code> should guarantee that each row is unique.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
