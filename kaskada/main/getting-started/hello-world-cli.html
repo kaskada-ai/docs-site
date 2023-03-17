@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Querying Data :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/querying-data.html">
-    <link rel="prev" href="loading-data.html">
+    <title>Hello World (CLI) :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/hello-world-cli.html">
+    <link rel="prev" href="hello-world-jupyter.html">
     <link rel="next" href="../installing.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -116,8 +116,21 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="installation.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../overview/what-is-kaskada.html">What Is Kaskada?</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
@@ -125,13 +138,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="installation.html">Installation</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="loading-data.html">Loading Data</a>
+    <a class="nav-link" href="hello-world-jupyter.html">Hello World (Jupyter)</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="querying-data.html">Querying Data</a>
+    <a class="nav-link" href="hello-world-cli.html">Hello World (CLI)</a>
   </li>
 </ul>
   </li>
@@ -260,10 +270,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="installation.html">Kaskada Documentation</a>
+      <a class="title" href="../overview/what-is-kaskada.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="installation.html">main</a>
+          <a href="../overview/what-is-kaskada.html">main</a>
         </li>
       </ul>
     </li>
@@ -275,12 +285,12 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="installation.html" class="home-link"></a>
+  <a href="../overview/what-is-kaskada.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="installation.html">Kaskada Documentation</a></li>
+    <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Getting Started</li>
-    <li><a href="querying-data.html">Querying Data</a></li>
+    <li><a href="hello-world-cli.html">Hello World (CLI)</a></li>
   </ul>
 </nav>
 </div>
@@ -289,22 +299,239 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Querying Data</h1>
+<h1 class="page">Hello World (CLI)</h1>
 <div class="sect1">
-<h2 id="writing-queries"><a class="anchor" href="#writing-queries"></a><a class="link" href="#writing-queries">Writing Queries</a></h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a><a class="link" href="#installation">Installation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can write queries in a number of ways with Kaskada. Here we start
-with fenlmagic because these queries are not persistent. As you are
-iterating in Jupyter it can be helpful to build up your feature and time
-selection as you go, once you&#8217;d like to persist a query, check out our
-article on <a href="../developing/views.html" class="xref page">Sharing Queries</a>.</p>
+<p>To use Kaskada on the command line, you&#8217;ll need to install three components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Kaskada command-line executable</p>
+</li>
+<li>
+<p>The Kaskada manager, which serves the Kaskada API</p>
+</li>
+<li>
+<p>The Kaskada engine, which executes queries</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>You can make Fenl queries by prefixing a query block with <code>%%fenl</code>. The
-query results will be computed and returned as a Pandas dataframe. The
-query content starts on the next line and includes the rest of the code
-block&#8217;s contents.</p>
+<p>Each of these are available as pre-compiled binaries in the <a href="#url:https://github.com/kaskada-ai/kaskada/releases">Releases</a> section of Kaskada&#8217;s Github repository.
+This example assumes you have installed <code>curl</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">VERSION=0.4.1
+ARCH=$(uname -m | awk '{print tolower($0)}')
+OS=$(uname -s | awk '{print tolower($0)}')
+
+curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-cli-$OS-$ARCH" -o kaskada-cli
+curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-engine-$OS-$ARCH" -o kaskada-engine
+curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-manager-$OS-$ARCH" -o kaskada-manager
+
+chmod +x kaskada-*</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Authorizing applications on OSX</div>
+<div class="paragraph">
+<p>If you&#8217;re using OSX, you may need to unblock the applications.
+OSX prevents applications you download from running as a security feature.
+You can remove the block placed on the file when it was downloaded with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should now be able to run all three components.
+To verify they&#8217;re installed correctly and executable, try running the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli -h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">A CLI tool for interacting with the Kaskada API
+
+Usage:
+  cli [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  load        A set of commands for loading data into kaskada
+  query       A set of commands for running queries on kaskada
+  sync        A set of commands for interacting with kaskada resources as code
+
+Flags:
+      --config string               config file (default is $HOME/.cli.yaml)
+  -d, --debug                       get debug log output
+  -h, --help                        help for cli
+      --kaskada-api-server string   Kaskada API Server
+      --kaskada-client-id string    Kaskada Client ID
+      --use-tls                     Use TLS when connecting to the Kaskada API (default true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can start a local instance of the Kaskada service by running the manager and engine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
+./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-resources"><a class="anchor" href="#managing-resources"></a><a class="link" href="#managing-resources">Managing resources</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CLI manages Kaskada resources declaratively by managing spec files.
+A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll begin by creating a table.
+The first step is to create a spec file containing the table&#8217;s definition.</p>
+</div>
+<div class="paragraph">
+<p>When creating a table, you must provide some information about how each
+row should be interpreted. You must describe:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A field containing the time associated with each row
+(<code>time_column_name</code>). The time should refer to when the event occurred.</p>
+</li>
+<li>
+<p>An initial <a href="#fenl:entities">entity</a> key associated with each row
+(<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
+world that each event is associated with. Don&#8217;t worry too much about
+picking the "right" value here - it&#8217;s easy to change the entity key in
+Fenl.</p>
+</li>
+<li>
+<p>A subsort column associated with each row (<code>subsort_column_name</code>).
+This value is used to order rows associated with the same time value.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about these fields, see:
+<a href="#how-to-guides:expected-file-format">Expected File Format</a></p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1. spec.yaml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+- tableName: Purchase
+  timeColumnName: purchase_time
+  entityKeyColumnName: customer_id
+  tableSource:
+    kaskada: {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To create this table, we much sync the state of the Kaskada service with the contents of the file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli sync apply -f spec.yaml
+
+# &gt; 2:18PM INF starting plan
+# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:18PM INF Success!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
+must have a timestamp field named <code>purchase_time</code>, a field named
+<code>customer_id</code>, and a field named <code>subsort_id</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Idiomatic Kaskada</div>
+<div class="paragraph">
+<p>We like to use CamelCase to name tables because it
+helps distinguish data sources from transformed values and function
+names.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You&#8217;ve now created your first table!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we&#8217;ve created a table, we&#8217;re ready to load some data into it.</p>
+</div>
+<div class="paragraph">
+<p>Data can be loaded into a table in multiple ways. In this example we&#8217;ll
+load the contents of a Parquet file into the table. To learn about
+the different ways data can be loaded into a table, see the
+<a href="../developing/tables.html#uploading-data" class="xref page">"Uploading Data"
+section of the "Tables"</a> page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk" -o purchase.parquet
+
+./kaskada-cli load \
+    --table Purchase \
+    --file-path file://purchase.parquet</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The file&#8217;s content is added to the table.</p>
+</div>
+<div class="paragraph">
+<p>For more help with tables and loading data, see <a href="../developing/tables.html" class="xref page">Reference -
+Working with Tables</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="querying-data"><a class="anchor" href="#querying-data"></a><a class="link" href="#querying-data">Querying Data</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can write queries in a number of ways with Kaskada. As you are
+iterating it can be helpful to build up your queries as components
+as you go.  Once you&#8217;d like to persist a query, check out our
+article on <a href="../developing/views.html" class="xref page">Sharing Queries</a>.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s start by looking at the Purchase table without any filters, this
@@ -312,31 +539,34 @@ query will return all of the columns and rows contained in a table:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl
-Purchase</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
+Purchase
+EOS</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Note: this table is intentionally small so that you can get to know
 queries with Kaskada. When you upload your own data, you may want to
-filter down the results so that you can see just a relevant sample:</p>
+write the results to a file rather than <code>stdout</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl
-Purchase | when(Purchase.customer_id == "patrick")</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --response-as csv &gt; results.csv &lt;&lt;EOS
+Purchase | when(Purchase.customer_id == "patrick")
+EOS</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>As you begin to better understand your data you can start using
-aggregations over your data such as the max() function:</p>
+aggregations over your data such as the <code>max()</code> function:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 {
    max_purchase: Purchase.amount | max(),
-}</code></pre>
+}
+EOS</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -360,7 +590,7 @@ information about the future from "leaking" into the past.</p>
 Language Guide</a></p>
 </div>
 <div class="paragraph">
-<p>Now we can start building up our features. To reduce the set of columns
+<p>Now we can start building up more complex queries. To reduce the set of columns
 output in your query, you can define a record with the curly braces
 <code>{ }</code> and name the columns with a label shown on the left of the <code>:</code> in
 the below query. In order to debug your features, we recommend including
@@ -369,25 +599,14 @@ results in time:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 {
     time: Purchase.purchase_time,
     entity: Purchase.customer_id,
     max_amount: Purchase.amount | max(),
     min_amount: Purchase.amount | min(),
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Tip: the result of a previous cell in Jupyter is available to be saved
-by setting a variable to the result temporarily stored as <code>_</code>. You can
-then interact with these results at a typical dataframe such as
-displaying the columns or plotting a histogram:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">df_explore = _
-df_explore.dataframe.columns</code></pre>
+}
+EOS</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -397,7 +616,7 @@ Writing Queries</a></p>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="loading-data.html">Loading Data</a></span>
+  <span class="prev"><a href="hello-world-jupyter.html">Hello World (Jupyter)</a></span>
   <span class="next"><a href="../installing.html">Installing</a></span>
 </nav>
 </article>

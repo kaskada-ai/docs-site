@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Loading Data :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/loading-data.html">
-    <link rel="prev" href="installation.html">
-    <link rel="next" href="querying-data.html">
+    <title>Hello World (Jupyter) :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/hello-world-jupyter.html">
+    <link rel="prev" href="../overview/what-is-kaskada.html">
+    <link rel="next" href="hello-world-cli.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -116,22 +116,32 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="installation.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../overview/what-is-kaskada.html">What Is Kaskada?</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="installation.html">Installation</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="loading-data.html">Loading Data</a>
+    <a class="nav-link" href="hello-world-jupyter.html">Hello World (Jupyter)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="querying-data.html">Querying Data</a>
+    <a class="nav-link" href="hello-world-cli.html">Hello World (CLI)</a>
   </li>
 </ul>
   </li>
@@ -260,10 +270,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="installation.html">Kaskada Documentation</a>
+      <a class="title" href="../overview/what-is-kaskada.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="installation.html">main</a>
+          <a href="../overview/what-is-kaskada.html">main</a>
         </li>
       </ul>
     </li>
@@ -275,12 +285,12 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="installation.html" class="home-link"></a>
+  <a href="../overview/what-is-kaskada.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="installation.html">Kaskada Documentation</a></li>
+    <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Getting Started</li>
-    <li><a href="loading-data.html">Loading Data</a></li>
+    <li><a href="hello-world-jupyter.html">Hello World (Jupyter)</a></li>
   </ul>
 </nav>
 </div>
@@ -289,18 +299,155 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Loading Data</h1>
-<div id="preamble">
+<h1 class="page">Hello World (Jupyter)</h1>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a><a class="link" href="#installation">Installation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use Kaskada within a Jupyter notebook you&#8217;ll need to have the following pieces of software installed</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://realpython.com/installing-python/">Python</a> (version 3.6 and above)</p>
+</li>
+<li>
+<p><a href="https://docs.jupyter.org/en/latest/install/notebook-classic.html">Jupyter</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once you have both prerequisites installed ensure that you can run them.
+Open a terminal in your OS (command line prompt on Windows) and check the output of the following commands</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1. Verifying Kaskada prerequisites. The output shown here is from an Ubuntu system&#8212;&#8203;the output on your machine may vary.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ python --version
+Python 3.10.6
+
+
+$ jupyter --version
+Selected Jupyter core packages...
+IPython          : 7.34.0
+ipykernel        : 6.17.0
+ipywidgets       : 8.0.2
+jupyter_client   : 7.4.4
+jupyter_core     : 4.11.2
+jupyter_server   : 1.21.0
+jupyterlab       : 3.6.1
+nbclient         : 0.7.0
+nbconvert        : 7.2.3
+nbformat         : 5.7.0
+notebook         : 6.5.2
+qtconsole        : 5.3.2
+traitlets        : 5.5.0</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kaskada-client-installation"><a class="anchor" href="#kaskada-client-installation"></a><a class="link" href="#kaskada-client-installation">Kaskada Client Installation</a></h3>
+<div class="paragraph">
+<p>The first step in using Kaskada in a notebook is to install the Kaskada Python client package.
+Open a terminal in your OS and using <code>pip</code> install the Kaskada Python client.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 2. Installing Kaskada using pip</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pip install kaskada</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Pip and pip3</div>
+<div class="paragraph">
+<p>Depending on you Python installation and configuration you may have <code>pip3</code> instead of <code>pip</code> available in your terminal.
+If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code> in your command, i.e., <code>pip3 install kaskada</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now that we have everything installed let&#8217;s fire up a notebook and get the remaining components of Kaskada installed.</p>
+</div>
+<div class="paragraph">
+<p>Using a terminal start a new Jupyter notebook using the command</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 3. Start a Jupyter notebook.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">jupyter notebook</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The jupyter command should activate your browser and you can open a new notebook.
+Create a new code cell in your new notebook and enter the following code in the code cell.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run this cell inside your notebook and you should see some output similar to the following</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kaskada-install-output.png" alt="Sample output of Kaskada installation within a Jupyter notebook">
+</div>
+<div class="title">Figure 1. Sample output of Kaskada&#8217;s installation within a Jupyter notebook.</div>
+</div>
+<div class="paragraph">
+<p>This command imports the client&#8217;s <code>LocalBuilder</code> and uses this builder to create a session.
+This is the first time we are running the builder on this machine.
+The builder will download (if needed) the latest release of Kaskada&#8217;s components from GitHub and then run these components on your local machine.
+The command will generate some output during the download, install and run process.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s now create a small table and write a simple query to see that everything is working correctly with our setup.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enable-the-kaskada-magic-command"><a class="anchor" href="#enable-the-kaskada-magic-command"></a><a class="link" href="#enable-the-kaskada-magic-command">Enable the Kaskada magic command</a></h3>
+<div class="paragraph">
+<p>Kaskada&#8217;s client includes notebook customizations that allow us to write queries in the Fenl language but also receive and render the results of our queries in our notebooks.
+We need to enable these customizations first before we can use them.</p>
+</div>
+<div class="paragraph">
+<p>So in a new code cell input the following command and run this cell.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 4. Enable fenlmagic in this notebook</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%load_ext fenlmagic</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can start a code cell in our notebook with the first line being the string <code>%%fenl</code> to indicate that this cell will contain code in the Fenl language.
+The special string <code>%%fenl</code> will also connect to the Kaskada components that we installed that will execute the query and report back any results to our notebook.</p>
+</div>
+<div class="paragraph">
+<p>Congratulations, you now have Kaskada locally installed and you can start loading and querying your data using Kaskada inside a Jupyter notebook.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
 each row is a value of the same type.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
 <div class="paragraph">
 <p>When creating a table, you must provide some information about how each
 row should be interpreted. You must describe:</p>
@@ -389,10 +536,8 @@ request_details {
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="loading-data-2"><a class="anchor" href="#loading-data-2"></a><a class="link" href="#loading-data-2">Loading Data</a></h3>
 <div class="paragraph">
 <p>Now that we&#8217;ve created a table, we&#8217;re ready to load some data into it.</p>
 </div>
@@ -418,7 +563,7 @@ table.load_dataframe("Purchase", purchases)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result of running <code>load_dataframe</code> returns a <code>data_token_id</code>. The
+<p>The result of running <code>load_dataframe</code> is a <code>data_token_id</code>. The
 data token ID is a unique reference to the data currently stored in the
 system.</p>
 </div>
@@ -431,13 +576,11 @@ request_details {
 </div>
 </div>
 <div class="paragraph">
-<p>The file is transferred to Kaskada and added to the table.</p>
+<p>The file is transferred to Kaskada and it&#8217;s content added to the table.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="inspecting-the-tables-contents"><a class="anchor" href="#inspecting-the-tables-contents"></a><a class="link" href="#inspecting-the-tables-contents">Inspecting the Table&#8217;s Contents</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="inspecting-the-tables-contents"><a class="anchor" href="#inspecting-the-tables-contents"></a><a class="link" href="#inspecting-the-tables-contents">Inspecting the Table&#8217;s Contents</a></h3>
 <div class="paragraph">
 <p>To verify the file was loaded as expected you can use the table list
 endpoint to see all the tables defined for your user and the files
@@ -485,9 +628,116 @@ Working with Tables</a></p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="querying-data"><a class="anchor" href="#querying-data"></a><a class="link" href="#querying-data">Querying Data</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="writing-queries"><a class="anchor" href="#writing-queries"></a><a class="link" href="#writing-queries">Writing Queries</a></h3>
+<div class="paragraph">
+<p>You can write queries in a number of ways with Kaskada. Here we start
+with fenlmagic because these queries are not persistent. As you are
+iterating in Jupyter it can be helpful to build up your feature and time
+selection as you go, once you&#8217;d like to persist a query, check out our
+article on <a href="../developing/views.html" class="xref page">Sharing Queries</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can make Fenl queries by prefixing a query block with <code>%%fenl</code>. The
+query results will be computed and returned as a Pandas dataframe. The
+query content starts on the next line and includes the rest of the code
+block&#8217;s contents.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start by looking at the Purchase table without any filters, this
+query will return all of the columns and rows contained in a table:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
+Purchase</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>This table is intentionally small so that you can get to know
+queries with Kaskada.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you begin to better understand your data you can start using
+aggregations over your data such as the <code>max()</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
+{
+   max_purchase: Purchase.amount | max(),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These results may be surprising if you were expecting a single value,
+this is a feature, not a bug!</p>
+</div>
+<div class="paragraph">
+<p>Computations in Fenl are temporal: they produce a time-series of values
+describing the full history of a computation&#8217;s results. Temporal
+computation allows Fenl to capture what an expression&#8217;s value would have
+been at arbitrary times in the past.</p>
+</div>
+<div class="paragraph">
+<p>Fenl values can time-travel forward through time. Time travel allows
+combining the result of different computations at different points in
+time. Because values can only travel forward in time, Fenl prevents
+information about the future from "leaking" into the past.</p>
+</div>
+<div class="paragraph">
+<p>Read more in the <a href="../fenl/language-guide.html" class="xref page">Fenl
+Language Guide</a></p>
+</div>
+<div class="paragraph">
+<p>Now we can start building up our features. To reduce the set of columns
+output in your query, you can define a record with the curly braces
+<code>{ }</code> and name the columns with a label shown on the left of the <code>:</code> in
+the below query. In order to debug your features, we recommend including
+the time and the entity with each query so that you can walk through the
+results in time:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
+{
+    time: Purchase.purchase_time,
+    entity: Purchase.customer_id,
+    max_amount: Purchase.amount | max(),
+    min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>The result of a previous cell in Jupyter is available to be saved
+by setting a variable to the result temporarily stored as `_`. You can
+then interact with these results at a typical dataframe such as
+displaying the columns or plotting a histogram:</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">df_explore = _
+df_explore.dataframe.columns</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more help writing queries, see <a href="../developing/queries.html" class="xref page">Reference -
+Writing Queries</a></p>
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="installation.html">Installation</a></span>
-  <span class="next"><a href="querying-data.html">Querying Data</a></span>
+  <span class="prev"><a href="../overview/what-is-kaskada.html">What Is Kaskada?</a></span>
+  <span class="next"><a href="hello-world-cli.html">Hello World (CLI)</a></span>
 </nav>
 </article>
   </div>

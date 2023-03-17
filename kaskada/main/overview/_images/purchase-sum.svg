@@ -1,0 +1,105 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" height="228" width="800">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata&amp;display=swap');
+
+    circle.continuous {
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    circle.discrete {
+      fill: white;
+      stroke-width: 4;
+    }
+
+    circle.background {
+      fill: white;
+    }
+
+    line.baseline {
+      stroke: #b6b9be;
+      stroke-width: 1;
+    }
+
+    line.lead {
+      stroke-width: 1;
+      stroke-dasharray: 3,3;
+    }
+    line.continuous.lead {
+      stroke-dasharray: 6,3;
+    }
+
+    line.continuous {
+      stroke-width: 4;
+    }
+
+    polyline.window {
+      stroke: #FF323C;
+      stroke-width: 2;
+    }
+
+    text.label {
+      font: 1em Inconsolata;
+      text-anchor: start;
+      dominant-baseline: hanging;
+    }
+
+    text.data {
+      fill: black;
+      font: 1em Inconsolata;
+      text-anchor: middle;
+    }
+  </style>
+
+  <defs>
+    <marker id="closed" markerWidth="6" markerHeight="6" refX="3" refY="3">
+      <circle cx="3" cy="3" r="2" fill="#FF323C" stroke="none"/>
+    </marker>
+    <marker id="open" markerWidth="6" markerHeight="6" refX="3" refY="3">
+      <circle cx="3" cy="3" r="2" stroke="#FF323C" stroke-width="1" fill="white" />
+    </marker>
+  </defs>
+  <text class="axis" x="400" y="178">time →</text>
+  <g transform="translate(0, 50)">
+    <line class="baseline lead" x1="50" x2="80" y1="0" y2="0"/>
+    <line class="baseline" x1="80" x2="720" y1="0" y2="0"/>
+    <line class="baseline lead" x1="720" x2="750" y1="0" y2="0"/>
+    <g transform="translate(80, 0)">
+                <circle class="background" r="10"/>
+                <circle stroke="#ff323c" class="discrete" r="4"/>
+                <text class="data" y="-8">2.31</text>
+              </g>
+              <g transform="translate(151.11111111111111, 0)">
+                <circle class="background" r="10"/>
+                <circle stroke="#ff323c" class="discrete" r="4"/>
+                <text class="data" y="-8">1.99</text>
+              </g>
+              <g transform="translate(435.55555555555554, 0)">
+                <circle class="background" r="10"/>
+                <circle stroke="#ff323c" class="discrete" r="4"/>
+                <text class="data" y="-8">5.00</text>
+              </g>
+              <g transform="translate(720, 0)">
+                <circle class="background" r="10"/>
+                <circle stroke="#ff323c" class="discrete" r="4"/>
+                <text class="data" y="-8">7.89</text>
+              </g>
+              <text class="label" x="50" y="22">Purchase.amount</text>
+  </g>
+  <g transform="translate(0, 114)">
+    <line class="baseline lead" x1="50" x2="80" y1="0" y2="0"/>
+    <line class="baseline" x1="80" x2="720" y1="0" y2="0"/>
+    <line class="continuous" stroke="#ff323c" x1="80" x2="720" y1="0" y2="0"/>
+                <line class="continuous lead" stroke="#ff323c" x1="720" x2="750" y1="0" y2="0"/>
+              <circle cx="80" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <circle cx="151.11111111111111" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="115.55555555555556" y="-8">2.31</text>
+    <circle cx="435.55555555555554" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="293.33333333333337" y="-8">4.20</text>
+    <circle cx="720" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="577.7777777777778" y="-8">9.20</text>
+    <text class="data" x="735" y="-8">18.09</text>
+    <text class="label" x="50" y="22">Purchase.amount | sum()</text>
+  </g>
+</svg>

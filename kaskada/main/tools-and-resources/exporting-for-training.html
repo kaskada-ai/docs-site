@@ -116,8 +116,21 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../getting-started/installation.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../overview/what-is-kaskada.html">What Is Kaskada?</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
@@ -125,13 +138,10 @@
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started/installation.html">Installation</a>
+    <a class="nav-link" href="../getting-started/hello-world-jupyter.html">Hello World (Jupyter)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started/loading-data.html">Loading Data</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started/querying-data.html">Querying Data</a>
+    <a class="nav-link" href="../getting-started/hello-world-cli.html">Hello World (CLI)</a>
   </li>
 </ul>
   </li>
@@ -260,10 +270,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../getting-started/installation.html">Kaskada Documentation</a>
+      <a class="title" href="../overview/what-is-kaskada.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../getting-started/installation.html">main</a>
+          <a href="../overview/what-is-kaskada.html">main</a>
         </li>
       </ul>
     </li>
@@ -275,10 +285,10 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../getting-started/installation.html" class="home-link"></a>
+  <a href="../overview/what-is-kaskada.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../getting-started/installation.html">Kaskada Documentation</a></li>
+    <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Tools and Resources</li>
     <li><a href="exporting-for-training.html">Example Modeling Problem</a></li>
   </ul>
@@ -382,7 +392,7 @@ different query variables.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl --var examples
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var examples
 
 let average_purchase_by_customer = PurchaseByCustomer.amount
   | mean()
@@ -434,7 +444,7 @@ training locally.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
 
 Examples
   | when(time_of($input) &gt; ("2020-01-01T00:00:00Z" as timestamp_ns))
@@ -447,7 +457,7 @@ validation dataset.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%%fenl --var training
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var training
 
 Examples
   | when(time_of($input) &gt; ("2020-02-03T00:00:00Z" as timestamp_ns))

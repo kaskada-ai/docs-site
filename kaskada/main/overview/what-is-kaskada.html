@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installation :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/getting-started/installation.html">
-    <link rel="next" href="loading-data.html">
+    <title>What Is Kaskada? :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/overview/what-is-kaskada.html">
+    <link rel="next" href="../getting-started/hello-world-jupyter.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -115,22 +115,32 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="installation.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="what-is-kaskada.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="what-is-kaskada.html">What Is Kaskada?</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Getting Started</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="installation.html">Installation</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/hello-world-jupyter.html">Hello World (Jupyter)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="loading-data.html">Loading Data</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="querying-data.html">Querying Data</a>
+    <a class="nav-link" href="../getting-started/hello-world-cli.html">Hello World (CLI)</a>
   </li>
 </ul>
   </li>
@@ -259,10 +269,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="installation.html">Kaskada Documentation</a>
+      <a class="title" href="what-is-kaskada.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="installation.html">main</a>
+          <a href="what-is-kaskada.html">main</a>
         </li>
       </ul>
     </li>
@@ -274,12 +284,12 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="installation.html" class="home-link is-current"></a>
+  <a href="what-is-kaskada.html" class="home-link is-current"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="installation.html">Kaskada Documentation</a></li>
-    <li>Getting Started</li>
-    <li><a href="installation.html">Installation</a></li>
+    <li><a href="what-is-kaskada.html">Kaskada Documentation</a></li>
+    <li>Overview</li>
+    <li><a href="what-is-kaskada.html">What Is Kaskada?</a></li>
   </ul>
 </nav>
 </div>
@@ -288,244 +298,311 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installation</h1>
+<h1 class="page">What Is Kaskada?</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>To use Kaskada within a Jupyter notebook you&#8217;ll need to have the following pieces of software installed</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="https://realpython.com/installing-python/">Python</a> (version 3.6 and above)</p>
-</li>
-<li>
-<p><a href="https://docs.jupyter.org/en/latest/install/notebook-classic.html">Jupyter</a></p>
-</li>
-</ol>
+<p>Understanding and reacting to the world in real-time is increasingly important, but doing so requires understanding what is happening <em>now</em> in the context of what happened in the past.
+It&#8217;s not enough to know that something just happened - we need the ability to understand if what just happened is unusual, how it relates to what happened previously, and how it relates to other things that are happening at the same time.</p>
 </div>
 <div class="paragraph">
-<p>Once you have both prerequisites installed ensure that you can run them.
-Open a terminal in your OS (command line prompt on Windows) and check the output of the following commands</p>
+<p>Getting to this type of contextual real-time insight has historically been difficult, as it required bringing together hard-to-integrate tools and methodologies.</p>
 </div>
-<div class="listingblock">
-<div class="title">Listing 1. Verifying Kaskada prerequisites. The output shown here is from an Ubuntu system&#8212;&#8203;the output on your machine may vary.</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ python --version
-Python 3.10.6
-
-
-$ jupyter --version
-Selected Jupyter core packages...
-IPython          : 7.34.0
-ipykernel        : 6.17.0
-ipywidgets       : 8.0.2
-jupyter_client   : 7.4.4
-jupyter_core     : 4.11.2
-jupyter_server   : 1.21.0
-jupyterlab       : 3.6.1
-nbclient         : 0.7.0
-nbconvert        : 7.2.3
-nbformat         : 5.7.0
-notebook         : 6.5.2
-qtconsole        : 5.3.2
-traitlets        : 5.5.0</code></pre>
-</div>
+<div class="paragraph">
+<p>Kaskada was designed to bridge the gap between historical/analytic workloads and real-time stream processing by building on a new abstraction: the timeline. With Kaskada, you can efficiently analyze historical trends in your events or react as they happen in real-time.
+Kaskada&#8217;s timeline-based query languge lets you use the same query, unchanged, in either batch or streaming mode.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="kaskada-client-installation"><a class="anchor" href="#kaskada-client-installation"></a><a class="link" href="#kaskada-client-installation">Kaskada Client Installation</a></h2>
+<h2 id="what-are-timelines"><a class="anchor" href="#what-are-timelines"></a><a class="link" href="#what-are-timelines">What are Timelines?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The first step in using Kaskada in a notebook is to install the Kaskada Python client package.
-Open a terminal in your OS and using <code>pip</code> install the Kaskada Python client.</p>
+<p>Having the right tool makes every job easier: different data-processing jobs benefit from different ways of thinking. Tables are useful for inter-related records, graphs are useful for thinking about networks - Kaskada was designed for thinking about real-time streaming behavior, and is built on the idea of a timeline</p>
 </div>
-<div class="listingblock">
-<div class="title">Listing 2. Installing Kaskada using pip</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pip install kaskada</code></pre>
+<div class="paragraph">
+<p>A timeline describes how a value changes over time. In the same way that SQL queries transform tables and graph queries transform nodes and edges, Kaskada queries transforms timelines. In comparison to a timeseries which is defined at fixed, periodic times (i.e., every minute), a timeline is defined at arbitrary times.</p>
+</div>
+<div class="paragraph">
+<p>Timelines simplify reasoning about time, change, and behavior. Timelines support SQL’s aggregations but extend them with sequential operations provided by complex event processing (CEP) systems.</p>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
+</div>
+<div class="sect1">
+<h2 id="current-challenges"><a class="anchor" href="#current-challenges"></a><a class="link" href="#current-challenges">Current Challenges</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s imagine you have two tables containing different kinds of events.</p>
+</div>
+<div class="paragraph">
+<p>One table contains an event for each time a user visits your web page:</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even fit-content">
+<caption class="title">Table 1. Pageview table</caption>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Pip and pip3</div>
-<div class="paragraph">
-<p>Depending on you Python installation and configuration you may have <code>pip3</code> instead of <code>pip</code> available in your terminal.
-If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code> in your command, i.e., <code>pip3 install kaskada</code></p>
-</div>
-</td>
+<th class="tableblock halign-left valign-top">time</th>
+<th class="tableblock halign-left valign-top">user</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8:20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9:45</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2:10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8:52</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11:03</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bob</p></td>
+</tr>
+</tbody>
 </table>
+<div class="paragraph">
+<p>Another table contains an event for each time a user makes a purchase:</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even fit-content">
+<caption class="title">Table 2. Purchase table</caption>
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">time</th>
+<th class="tableblock halign-left valign-top">user</th>
+<th class="tableblock halign-left valign-top">amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7:02</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$3.99</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10:47</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$5.00</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>We can do a lot with these tables! SQL provides many ways to transform, filter, and aggregate these events.
+But what if we want to answer questions that depend on time and order? We might want to know how a result changes over time, or aggregate over time-based groups, or detect when a condition is first met.</p>
 </div>
 <div class="paragraph">
-<p>Now that we have everything installed let&#8217;s fire up a notebook and get the remaining components of Kaskada installed.</p>
-</div>
-<div class="paragraph">
-<p>Using a terminal start a new Jupyter notebook using the command</p>
+<p>Many of these things are <em>possible</em> with SQL, but they&#8217;re not always simple and/or easy. Reasoning about time using abstractions designed for tables forces you to carefully reflect temporal logic in your query code, for example to see how a simple sum changes over time you might write:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. Start a Jupyter notebook.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">jupyter notebook</code></pre>
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">SELECT sum(amount) OVER (PARTITION BY customer_id ORDER BY timestamp)
+FROM Purchase</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The jupyter command should activate your browser and you can open a new notebook.
-Create a new code cell in your new notebook and enter the following code in the code cell.</p>
+<p>This uses a slightly arcane (and inconsistently supported) feature of SQL, windowed aggregations.
+Queries like this can get complex and unreadable quickly, because the abstractions do not easily facilitate these types of queries.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you wanted to know how many times each user had visited your website since the last time they purchased something, you&#8217;d need to write something like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.session import LocalBuilder
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">WITH last_purchase AS(
+    SELECT user_id, max(timestamp) FROM purchase GROUP BY user_id
+)
 
-session = LocalBuilder().build()</code></pre>
+SELECT user_id, count(*)
+FROM pageview
+JOIN last_purchase ON pageview.user_id = last_purchase.user_id
+WHERE pageview.timestamp &gt; last_purchase.timestamp
+GROUP BY user_id</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Run this cell inside your notebook and you should see some output similar to the following</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/kaskada-install-output.png" alt="Sample output of Kaskada installation within a Jupyter notebook">
-</div>
-<div class="title">Figure 1. Sample output of Kaskada&#8217;s installation within a Jupyter notebook.</div>
+<p>If you wanted to know how that value has changed over time you&#8217;d need to re-write the query from scratch, and the result would be too long to show in this quick introduction.</p>
 </div>
 <div class="paragraph">
-<p>This command imports the client&#8217;s <code>LocalBuilder</code> and uses this builder to create a session.
-This is the first time we are running the builder on this machine.
-The builder will download (if needed) the latest release of Kaskada&#8217;s components from GitHub and then run these components on your local machine.
-The command will generate some output during the download, install and run process.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s now create a small table and write a simple query to see that everything is working correctly with our setup.</p>
+<p>Many time and sequence related questions end up being surprisingly hard to answer with SQL. This is where the notion of timelines can make your life much easier.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="verify-our-kaskada-setup"><a class="anchor" href="#verify-our-kaskada-setup"></a><a class="link" href="#verify-our-kaskada-setup">Verify our Kaskada Setup</a></h2>
+<h2 id="the-solution-offered-by-timelines"><a class="anchor" href="#the-solution-offered-by-timelines"></a><a class="link" href="#the-solution-offered-by-timelines">The solution offered by timelines</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To verify that our installation is working we will</p>
+<p>Rather than thinking of each event as a row in a table, we can think of it as a point along a timeline.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>create a table for some sample data</p>
-</li>
-<li>
-<p>load some sample date into our table</p>
-</li>
-<li>
-<p>write a simple query to print out the contents of our table</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="_images/purchase.svg" alt="purchase">
 </div>
-<div class="sect2">
-<h3 id="create-a-table-for-some-sample-data"><a class="anchor" href="#create-a-table-for-some-sample-data"></a><a class="link" href="#create-a-table-for-some-sample-data">Create a table for some sample data</a></h3>
+</div>
 <div class="paragraph">
-<p>We will use the Kaskada client&#8217;s <code>create_table</code> function to create our first table.
-Create a new code cell in your notebook and include the following code.</p>
+<p>Kaskada provides many ways of transforming timelines, for example we can compute the simple sum we saw earlier:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 4. Table creation in Kaskada</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import kaskada.table
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Purchase.amount | sum()</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/purchase-sum.svg" alt="purchase sum">
+</div>
+</div>
+<div class="paragraph">
+<p>Aggregating a timeline produces a <em>new</em> timeline - rather than computing a single answer, the timeline describes how the result of the aggregation changes over time.</p>
+</div>
+<div class="paragraph">
+<p>Since the value of a timeline is specific to a point in time, we can easily describe aggregations in a temporal context.
+See how easy it is to describe the earlier example of counting page views since the last purchase:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Pageview
+| count(since(Purchase))</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/pageview-since-purchase.svg" alt="pageview since purchase">
+</div>
+</div>
+<div class="paragraph">
+<p>This timeline describes the result of a query at every point in time, so we can easily observe its value at specific points in time without making any changes to the query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Pageview
+| count(since(Purchase))
+| when(daily())</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/daily-pageview-since-purchase.svg" alt="daily pageview since purchase">
+</div>
+</div>
+<div class="paragraph">
+<p>Taking this a step further, we can re-aggregate the previous result. Here we compute the average of each day&#8217;s pageview-since-purchase count:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Pageview
+| count(since(Purchase))
+| when(daily())
+| mean()</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mean-daily-pageview-since-purchase.svg" alt="mean daily pageview since purchase">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, we&#8217;re not limited to only thinking about a single point in time.
+By shifting timelines relative to each other we can easily describe how values change over time, for example how the previous result has changed hour-over-hour:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let daily_average = Pageview
+| count(since(Purchase))
+| when(daily())
+| mean()
 
-kaskada.table.create_table(
-    table_name = 'transactions',
-    time_column_name = 'transaction_time',
-    entity_key_column_name = 'id')</code></pre>
+in daily_average - (daily_average | shift_by(hours(1)))</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Run this code cell and if the call is successful you should see something similar to the following.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/create-table-output.png" alt="Sample output from a call to create_table">
-</div>
-<div class="title">Figure 2. Sample output from a call to <code>create_table</code></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="loading-some-sample-data-into-our-table"><a class="anchor" href="#loading-some-sample-data-into-our-table"></a><a class="link" href="#loading-some-sample-data-into-our-table">Loading some sample data into our table</a></h3>
-<div class="paragraph">
-<p>Now that we have a table created let&#8217;s load some data. We can use a small parquet file from the Kaskada project&#8217;s testing data.
-Download and save this <a href="https://github.com/kaskada-ai/kaskada/raw/main/testdata/transactions/transactions_part1.parquet">test data file</a>.
-To make it easier to load make sure you save this test data file in the same folder from where we started the jupyter notebook above.</p>
-</div>
-<div class="paragraph">
-<p>Now let&#8217;s create a new code cell in our notebook and add the following code inside this new code cell.</p>
-</div>
-<div class="listingblock">
-<div class="title">Listing 5. Loading data into the table using <code>table.load</code>.</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">kaskada.table.load('transactions', 'transactions_part1.parquet')</code></pre>
+<img src="_images/wow.svg" alt="wow">
 </div>
 </div>
 <div class="paragraph">
-<p>Once the data load is complete you should see something similar to the following.</p>
+<p>Writing these simple-seeming queries over timelines with SQL queries over tables would have been <em>much</em> harder, more verbose, and less maintainable due to the lack of alignment between the problem and the abstractions used to solve the problem.
+Aligning our mental model with the problem being solved makes reasoning about time and behavior much easier.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/load-table-output.png" alt="Sample output from data load">
 </div>
-<div class="title">Figure 3. Sample output from data load</div>
 </div>
-<div class="sect3">
-<h4 id="enable-the-kaskada-magic-command-and-run-a-query"><a class="anchor" href="#enable-the-kaskada-magic-command-and-run-a-query"></a><a class="link" href="#enable-the-kaskada-magic-command-and-run-a-query">Enable the Kaskada magic command and run a query</a></h4>
+<div class="sect1">
+<h2 id="the-shift-away-from-technology-specific-solutions"><a class="anchor" href="#the-shift-away-from-technology-specific-solutions"></a><a class="link" href="#the-shift-away-from-technology-specific-solutions">The shift away from technology-specific solutions</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Kaskada&#8217;s client includes notebook customizations that allow us to write queries in the Fenl language but also receive and render the results of our queries in our notebooks.
-We need to enable these customizations first before we can use them.</p>
+<p>A big reason for the power and persistence of SQL is that it&#8217;s a declarative language - you write what you want, not how to compute it.
+This allows you to focus on understanding your data, whithout having to think about query implementation details.</p>
 </div>
 <div class="paragraph">
-<p>So in a new code cell input the following command and run this cell.</p>
-</div>
-<div class="listingblock">
-<div class="title">Listing 6. Enable fenlmagic in this notebook</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%load_ext fenlmagic</code></pre>
-</div>
+<p>Unfortunately, the rise of stream-based data processing has forced developers to spend a lot of time thinking about implementation details.
+SQL queries written against OLAP offline data stores often aren&#8217;t supported by streaming data processors.
+While some real-time systems support "streaming SQL", streams and tables are very different things and much of the power of stream processing is lost in translation.</p>
 </div>
 <div class="paragraph">
-<p>Now we can start a code cell in our notebook with the first line being the string <code>%%fenl</code> to indicate that this cell will contain code in the Fenl language.
-The special string <code>%%fenl</code> will also connect to the Kaskada components that we installed that will execute the query and report back any results to our notebook.</p>
+<p>How a computation is described shouldn&#8217;t depend on where events are stored - streaming vs batch is an implementation detail.
+By building Kaskada&#8217;s query language on timelines, it brings the abstractions of streaming to bulk storage, rather than the other way around.</p>
 </div>
 <div class="paragraph">
-<p>So let&#8217;s try to write a simple query that lists all the rows in our table.
-In a new code cell input the following commands and run this cell.</p>
+<p>Kaskada allows developers to focus on solving problems with event data by raising the abstraction level used to describe queries.</p>
 </div>
-<div class="listingblock">
-<div class="title">Listing 7. Display all the contents of our table</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">%%fenl
-
-transactions</code></pre>
 </div>
+</div>
+<div class="sect1">
+<h2 id="why-kaskada"><a class="anchor" href="#why-kaskada"></a><a class="link" href="#why-kaskada">Why Kaskada?</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kaskada was built to be performant and easy to use and operate.</p>
 </div>
 <div class="paragraph">
-<p>The result of the query should look similar to the following.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/query-output.png" alt="Sample output from querying the transactions table">
-</div>
-<div class="title">Figure 4. Sample output querying the transactions table.</div>
+<p>We chose to build Kaskada in Rust because of it&#8217;s performance, safety, lack of garbage collection and support for columnar data formats.
+The implementation leverages Apache Arrow for event processing and takes advantage of modern CPU optimizations like SIMD, branch prediction, and caching.</p>
 </div>
 <div class="paragraph">
-<p>Congratulations, you now have Kaskada locally installed and you can start loading and querying your data using Kaskada inside a Jupyter notebook.</p>
+<p>Computation is implemented as a single, chronological pass over the input events, so you can compute over datasets that are significantly larger than available memory.
+Internally, events are stored on disk as Parquet files.
+We find that most computations are bottlenecked on I/O, so using an efficient columnar file format lets us selectively read the columns and row ranges needed to produce a result.</p>
+</div>
+<div class="paragraph">
+<p>The result is a modern event processing engine that installs in seconds without any external dependencies and computes quickly and efficiently.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a><a class="link" href="#next-steps">Next Steps</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To get started, you can follow one of our "Hello World" examples.
+These examples will guide you through installing Kaskada and making your first query.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hello world <a href="../getting-started/hello-world-cli.html" class="xref page">using the command line</a></p>
+</li>
+<li>
+<p>Hello world <a href="../getting-started/hello-world-jupyter.html" class="xref page">using Python Jupyter</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="loading-data.html">Loading Data</a></span>
+  <span class="next"><a href="../getting-started/hello-world-jupyter.html">Hello World (Jupyter)</a></span>
 </nav>
 </article>
   </div>
