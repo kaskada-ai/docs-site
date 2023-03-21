@@ -64,32 +64,18 @@
   <g transform="translate(0, 50)">
     <line class="baseline lead" x1="50" x2="80" y1="0" y2="0"/>
     <line class="baseline" x1="80" x2="720" y1="0" y2="0"/>
-    <line class="baseline lead" x1="720" x2="750" y1="0" y2="0"/>
-    <g transform="translate(80, 0)">
-                <circle class="background" r="10"/>
-                <circle stroke="#ff323c" class="discrete" r="4"/>
-                <text class="data" y="-8">/index.html</text>
-              </g>
-              <g transform="translate(208, 0)">
-                <circle class="background" r="10"/>
-                <circle stroke="#ff323c" class="discrete" r="4"/>
-                <text class="data" y="-8">/products.html</text>
-              </g>
-              <g transform="translate(464, 0)">
-                <circle class="background" r="10"/>
-                <circle stroke="#ff323c" class="discrete" r="4"/>
-                <text class="data" y="-8">/product/1923.html</text>
-              </g>
-              <g transform="translate(592, 0)">
-                <circle class="background" r="10"/>
-                <circle stroke="#ff323c" class="discrete" r="4"/>
-                <text class="data" y="-8">/checkout</text>
-              </g>
-              <g transform="translate(720, 0)">
-                <circle class="background" r="10"/>
-                <circle stroke="#ff323c" class="discrete" r="4"/>
-                <text class="data" y="-8">/index.html</text>
-              </g>
-              <text class="label" x="50" y="22">Pageview.path</text>
+    <line class="continuous" stroke="#ff323c" x1="80" x2="720" y1="0" y2="0"/>
+                <line class="continuous lead" stroke="#ff323c" x1="720" x2="750" y1="0" y2="0"/>
+              <circle cx="80" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <circle cx="222.22222222222223" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="151.11111111111111" y="-8">Home</text>
+    <circle cx="293.33333333333337" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="257.77777777777777" y="-8">Car</text>
+    <circle cx="648.8888888888889" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="471.11111111111114" y="-8">Office</text>
+    <circle cx="720" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="684.4444444444445" y="-8">Lunch</text>
+    <text class="data" x="735" y="-8">Office</text>
+    <text class="label" x="50" y="22">My Location</text>
   </g>
 </svg>

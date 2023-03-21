@@ -170,16 +170,13 @@
     <a class="nav-link" href="queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="example-queries.html">Example Queries</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="slices.html">Slices</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="materializations.html">Materializations</a>
   </li>
 </ul>
   </li>
@@ -331,133 +328,6 @@ Views may reference other views.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="managing-views-with-the-cli"><a class="anchor" href="#managing-views-with-the-cli"></a><a class="link" href="#managing-views-with-the-cli">Managing views with the CLI</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The CLI manages Kaskada resources declaratively by managing spec files.
-A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
-</div>
-<div class="sect2">
-<h3 id="the-format-of-views-in-a-spec-file"><a class="anchor" href="#the-format-of-views-in-a-spec-file"></a><a class="link" href="#the-format-of-views-in-a-spec-file">The format of views in a spec file.</a></h3>
-<div class="paragraph">
-<p>Views are described in a spec file as a list of view objects under the <code>views</code> key:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">views:
-    - view_id: 14c4...ba56 <i class="conum" data-value="1"></i><b>(1)</b>
-      view_name: PurchaseStats <i class="conum" data-value="2"></i><b>(2)</b>
-      expression: | <i class="conum" data-value="3"></i><b>(3)</b>
-        {
-            time: Purchase.purchase_time,
-            entity: Purchase.customer_id,
-            max_amount: Purchase.amount | max(),
-            min_amount: Purchase.amount | min(),
-            count: CountPurchase,
-        }
-    - view_id: dd61...70e9
-      view_name: CountPurchase
-      expression: count(Purchase)</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A unique identifier for the view. This value is assigned by the manager and is read-only.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>A name used to refer to the view in queries.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The expression to substitute anywhere the view&#8217;s name is used.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exporting-the-current-views-as-a-spec-file"><a class="anchor" href="#exporting-the-current-views-as-a-spec-file"></a><a class="link" href="#exporting-the-current-views-as-a-spec-file">Exporting the current views as a spec file.</a></h3>
-<div class="paragraph">
-<p>You can export all the views currently defined using the CLI.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --all</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The export result is shown below</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
-    # ...
-views:
-    - view_id: dd61...70e9
-      view_name: CountPurchase
-      expression: count(Purchase)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternately, if you know a specific view you&#8217;d like to export you can specify it explicitly.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --view PurchaseStats</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="updating-kaskada-to-reflect-the-contents-of-a-spec-file"><a class="anchor" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file"></a><a class="link" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file">Updating Kaskada to reflect the contents of a spec file</a></h3>
-<div class="paragraph">
-<p>To change a view with the CLI, you first modify the view in a spec file, then "apply" the spec file with the CLI.
-When a spec file is applied, the CLI inspects all of the server&#8217;s resources and all of the resources
-defined in your spec file, then takes whatever actions are necessary to reconcile the server&#8217;s state.
-Applying a spec can create new views, change a view&#8217;s mutable fields, or delete views.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="title">View updates are destructive</div>
-<div class="paragraph">
-<p>Vies are current immutable.
-When the CLI updates a view, it does so by deleting the view and re-creating it.
-When this happens, the view may be temporarily unavailable to queries.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Before applying a spec file, it&#8217;s a good idea to see what changes will be made.
-You can see these changes by creating an apply plan.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync plan --file spec.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Running this command will not make any changes to the server, but will print out the changes that will be made if you apply the given spec file.</p>
-</div>
-<div class="paragraph">
-<p>You can apply a spec file using the CLI.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync apply --file spec.yaml</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="managing-views-with-python"><a class="anchor" href="#managing-views-with-python"></a><a class="link" href="#managing-views-with-python">Managing views with Python</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -590,9 +460,136 @@ view and then re-creating it.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="managing-views-with-the-cli"><a class="anchor" href="#managing-views-with-the-cli"></a><a class="link" href="#managing-views-with-the-cli">Managing views with the CLI</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CLI manages Kaskada resources declaratively by managing spec files.
+A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
+</div>
+<div class="sect2">
+<h3 id="the-format-of-views-in-a-spec-file"><a class="anchor" href="#the-format-of-views-in-a-spec-file"></a><a class="link" href="#the-format-of-views-in-a-spec-file">The format of views in a spec file.</a></h3>
+<div class="paragraph">
+<p>Views are described in a spec file as a list of view objects under the <code>views</code> key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">views:
+    - view_id: 14c4...ba56 <i class="conum" data-value="1"></i><b>(1)</b>
+      view_name: PurchaseStats <i class="conum" data-value="2"></i><b>(2)</b>
+      expression: | <i class="conum" data-value="3"></i><b>(3)</b>
+        {
+            time: Purchase.purchase_time,
+            entity: Purchase.customer_id,
+            max_amount: Purchase.amount | max(),
+            min_amount: Purchase.amount | min(),
+            count: CountPurchase,
+        }
+    - view_id: dd61...70e9
+      view_name: CountPurchase
+      expression: count(Purchase)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A unique identifier for the view. This value is assigned by the manager and is read-only.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A name used to refer to the view in queries.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The expression to substitute anywhere the view&#8217;s name is used.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-the-current-views-as-a-spec-file"><a class="anchor" href="#exporting-the-current-views-as-a-spec-file"></a><a class="link" href="#exporting-the-current-views-as-a-spec-file">Exporting the current views as a spec file.</a></h3>
+<div class="paragraph">
+<p>You can export all the views currently defined using the CLI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --all</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The export result is shown below</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+    # ...
+views:
+    - view_id: dd61...70e9
+      view_name: CountPurchase
+      expression: count(Purchase)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternately, if you know a specific view you&#8217;d like to export you can specify it explicitly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --view PurchaseStats</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-kaskada-to-reflect-the-contents-of-a-spec-file"><a class="anchor" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file"></a><a class="link" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file">Updating Kaskada to reflect the contents of a spec file</a></h3>
+<div class="paragraph">
+<p>To change a view with the CLI, you first modify the view in a spec file, then "apply" the spec file with the CLI.
+When a spec file is applied, the CLI inspects all of the server&#8217;s resources and all of the resources
+defined in your spec file, then takes whatever actions are necessary to reconcile the server&#8217;s state.
+Applying a spec can create new views, change a view&#8217;s mutable fields, or delete views.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">View updates are destructive</div>
+<div class="paragraph">
+<p>Vies are currently immutable.
+When the CLI updates a view, it does so by deleting the view and re-creating it.
+When this happens, the view may be temporarily unavailable to queries.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Before applying a spec file, it&#8217;s a good idea to see what changes will be made.
+You can see these changes by creating an apply plan.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync plan --file spec.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this command will not make any changes to the server, but will print out the changes that will be made if you apply the given spec file.</p>
+</div>
+<div class="paragraph">
+<p>You can apply a spec file using the CLI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync apply --file spec.yaml</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="slices.html">Slices</a></span>
-  <span class="next"><a href="materializations.html">Working with Materializations</a></span>
+  <span class="next"><a href="materializations.html">Materializations</a></span>
 </nav>
 </article>
   </div>

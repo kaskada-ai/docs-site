@@ -170,16 +170,13 @@
     <a class="nav-link" href="developing/queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="developing/example-queries.html">Example Queries</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="developing/slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="developing/views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="developing/materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="developing/materializations.html">Materializations</a>
   </li>
 </ul>
   </li>
@@ -336,6 +333,100 @@ should be a type that can be <a href="fenl/data-model.html#type-coercion" class=
 </div>
 </div>
 <div class="sect1">
+<h2 id="file-location"><a class="anchor" href="#file-location"></a><a class="link" href="#file-location">File Location</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kaskada supports loading files from different kinds of file storage.
+The file storage system is specified with the file path protocol prefix, for example <code>file:</code> or <code>s3:</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="local-storage"><a class="anchor" href="#local-storage"></a><a class="link" href="#local-storage">Local Storage</a></h3>
+<div class="paragraph">
+<p>Data can be loaded from the local disk using the <code>file:</code> protocol.
+When loading from disk, the file path must identify a file accessible to the Kaskada service.
+Local storage is not reccommended when using a remote Kaskada service.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aws-s3-storage"><a class="anchor" href="#aws-s3-storage"></a><a class="link" href="#aws-s3-storage">AWS S3 Storage</a></h3>
+<div class="paragraph">
+<p>Data can be loaded from AWS S3 (or compatible stores such as Minio) using the <code>s3:</code> protocol.
+When loading non-public objects from S3, the Kaskada service must be configured with credentials.
+Credentials are configured using environment variables.</p>
+</div>
+<div class="paragraph">
+<p>The following environment variables are used to configure credentials:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AWS_ACCESS_KEY_ID</code>: AWS credential key.</p>
+</li>
+<li>
+<p><code>AWS_SECRET_ACCESS_KEY</code>: AWS credential secret.</p>
+</li>
+<li>
+<p><code>AWS_DEFAULT_REGION</code>: The AWS S3 region to use if not specified.</p>
+</li>
+<li>
+<p><code>AWS_ENDPOINT</code>: The S3 endpoint to connect to.</p>
+</li>
+<li>
+<p><code>AWS_SESSION_TOKEN</code>: The session token. Session tokens are required for credentials created by assuming an IAM role.</p>
+</li>
+<li>
+<p><code>AWS_CONTAINER_CREDENTIALS_RELATIVE_URI</code>: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html" class="bare">https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html</a></p>
+</li>
+<li>
+<p><code>AWS_ALLOW_HTTP</code>: Set to “true” to permit HTTP connections without TLS</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-data-with-python"><a class="anchor" href="#loading-data-with-python"></a><a class="link" href="#loading-data-with-python">Loading data with Python</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data can be loaded into a table using the <code>table.load()</code> function</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+
+fullPathToFile = "file://content/drive/place/thing/purchases.parquet"
+table.load("Purchases", fullPathToFile)</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Required format</div>
+The files must be in a specific format.
+See <a href="#reference:expected-file-format">Expected File Format</a> for details.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This loads the contents of the file to the Purchases table.</p>
+</div>
+<div class="paragraph">
+<p>The result of running <code>load()</code> is a <code>data_token_id`</code>. The data token ID is a unique reference to the data currently stored in the system.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">data_token_id: "aa2***a6b9"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="loading-data-with-the-cli"><a class="anchor" href="#loading-data-with-the-cli"></a><a class="link" href="#loading-data-with-the-cli">Loading data with the CLI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -353,62 +444,12 @@ When loading files with the CLI, the given path must be local to the Kaskada ser
   --file-path file://path/to/purchases.csv</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="loading-data-with-python"><a class="anchor" href="#loading-data-with-python"></a><a class="link" href="#loading-data-with-python">Loading data with Python</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Data can be loaded into a table in multiple ways, depending on where it is located.</p>
-</div>
-<div class="sect2">
-<h3 id="from-a-local-file"><a class="anchor" href="#from-a-local-file"></a><a class="link" href="#from-a-local-file">From a Local File</a></h3>
-<div class="paragraph">
-<p>Local files can be uploaded directly to Kaskada without converting them
-to a dataframe. However, the files must be in a specific format. See
-<a href="#reference:expected-file-format">Expected File Format</a> for details.</p>
+<p>The result of running <code>cli load</code> is a <code>data_token_id`</code>. The data token ID is a unique reference to the data currently stored in the system.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
-
-fullPathToFile = "/content/drive/place/thing/purchases.parquet"
-table.upload_file("Purchases", fullPathToFile)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This uploads the contents of the file to the Purchases table.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="from-a-pandas-dataframe"><a class="anchor" href="#from-a-pandas-dataframe"></a><a class="link" href="#from-a-pandas-dataframe">From a Pandas dataframe</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
-import pandas
-
-# A sample Parquet file provided by Kaskada for testing
-purchases_url = "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk"
-
-# Read the file into a Pandas Dataframe
-purchases = pandas.read_parquet(purchases_url)
-
-# Upload the dataframe's contents to the Purchase table
-table.load_dataframe("Purchase", purchases)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The result of running <code>load_dataframe</code> returns a <code>data_token_id</code>. The
-data token ID is a unique reference to the data currently stored in the
-system.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">data_token_id: "aa2***a6b9"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The file is added to the table.</p>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">data_token_id: "aa2***a6b9"</code></pre>
 </div>
 </div>
 </div>

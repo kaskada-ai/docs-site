@@ -169,16 +169,13 @@
     <a class="nav-link" href="../developing/queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/example-queries.html">Example Queries</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../developing/slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../developing/views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="../developing/materializations.html">Materializations</a>
   </li>
 </ul>
   </li>
@@ -302,15 +299,14 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Understanding and reacting to the world in real-time is increasingly important, but doing so requires understanding what is happening <em>now</em> in the context of what happened in the past.
-It&#8217;s not enough to know that something just happened - we need the ability to understand if what just happened is unusual, how it relates to what happened previously, and how it relates to other things that are happening at the same time.</p>
+<p>Understanding and reacting to the world in real-time requires understanding what is happening <em>now</em> in the context of what happened in the past.
+You need the ability to understand if what just happened is unusual, how it relates to what happened previously, and how it relates to other things that are happening at the same time.</p>
 </div>
 <div class="paragraph">
-<p>Getting to this type of contextual real-time insight has historically been difficult, as it required bringing together hard-to-integrate tools and methodologies.</p>
+<p>Getting to this type of contextual real-time insight has historically been difficult, as it required bringing together incompatible tools designed for either bulk or streaming applications. Recent stream-processing frameworks make it easier to work across streams and bulk data sources, but force you to pick one: either you get the power of a low-level API or the convenience of a high-level query languge.</p>
 </div>
 <div class="paragraph">
-<p>Kaskada was designed to bridge the gap between historical/analytic workloads and real-time stream processing by building on a new abstraction: the timeline. With Kaskada, you can efficiently analyze historical trends in your events or react as they happen in real-time.
-Kaskada&#8217;s timeline-based query languge lets you use the same query, unchanged, in either batch or streaming mode.</p>
+<p>Kaskada provides a single, high-level, declarative query language. The power and convenience of Kaskada&#8217;s query language come from the fact that it&#8217;s built from a new abstraction: the timeline. Timelines give you the declarative transformations and aggregations of SQL without losing the ability to reason about temporal context, time travel, sequencing, timeseries, etc. Any query can be used, unchanged, in either batch or streaming mode.</p>
 </div>
 </div>
 </div>
@@ -320,11 +316,17 @@ Kaskada&#8217;s timeline-based query languge lets you use the same query, unchan
 <div class="paragraph">
 <p>Having the right tool makes every job easier: different data-processing jobs benefit from different ways of thinking. Tables are useful for inter-related records, graphs are useful for thinking about networks - Kaskada was designed for thinking about real-time streaming behavior, and is built on the idea of a timeline</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/my-location.svg" alt="my location">
+</div>
+<div class="title">Figure 1. Where I was at various times</div>
+</div>
 <div class="paragraph">
 <p>A timeline describes how a value changes over time. In the same way that SQL queries transform tables and graph queries transform nodes and edges, Kaskada queries transforms timelines. In comparison to a timeseries which is defined at fixed, periodic times (i.e., every minute), a timeline is defined at arbitrary times.</p>
 </div>
 <div class="paragraph">
-<p>Timelines simplify reasoning about time, change, and behavior. Timelines support SQL’s aggregations but extend them with sequential operations provided by complex event processing (CEP) systems.</p>
+<p>Timelines simplify reasoning about time, change, and behavior. Timelines support SQL’s aggregations but extend them with sequential operations typically provided by complex event processing (CEP) systems.</p>
 </div>
 </div>
 </div>
@@ -332,14 +334,12 @@ Kaskada&#8217;s timeline-based query languge lets you use the same query, unchan
 <h2 id="current-challenges"><a class="anchor" href="#current-challenges"></a><a class="link" href="#current-challenges">Current Challenges</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s imagine you have two tables containing different kinds of events.</p>
-</div>
-<div class="paragraph">
-<p>One table contains an event for each time a user visits your web page:</p>
+<p>Let&#8217;s imagine you have two tables containing different kinds of events. One table contains an event for each time a user visits your web page:</p>
 </div>
 <table class="tableblock frame-all grid-all stripes-even fit-content">
 <caption class="title">Table 1. Pageview table</caption>
 <colgroup>
+<col>
 <col>
 <col>
 </colgroup>
@@ -347,28 +347,34 @@ Kaskada&#8217;s timeline-based query languge lets you use the same query, unchan
 <tr>
 <th class="tableblock halign-left valign-top">time</th>
 <th class="tableblock halign-left valign-top">user</th>
+<th class="tableblock halign-left valign-top">path</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8:20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/index.html</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9:45</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/products.html</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2:10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/product/1923.html</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8:52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/checkout.html</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">11:03</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bob</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">index.html</p></td>
 </tr>
 </tbody>
 </table>
@@ -403,7 +409,7 @@ Kaskada&#8217;s timeline-based query languge lets you use the same query, unchan
 </tbody>
 </table>
 <div class="paragraph">
-<p>We can do a lot with these tables! SQL provides many ways to transform, filter, and aggregate these events.
+<p>We can do a lot with these tables with SQL - we can transform, filter, and aggregate them.
 But what if we want to answer questions that depend on time and order? We might want to know how a result changes over time, or aggregate over time-based groups, or detect when a condition is first met.</p>
 </div>
 <div class="paragraph">
@@ -592,10 +598,10 @@ These examples will guide you through installing Kaskada and making your first q
 <div class="ulist">
 <ul>
 <li>
-<p>Hello world <a href="../getting-started/hello-world-cli.html" class="xref page">using the command line</a></p>
+<p>Hello world <a href="../getting-started/hello-world-jupyter.html" class="xref page">using Python Jupyter</a></p>
 </li>
 <li>
-<p>Hello world <a href="../getting-started/hello-world-jupyter.html" class="xref page">using Python Jupyter</a></p>
+<p>Hello world <a href="../getting-started/hello-world-cli.html" class="xref page">using the command line</a></p>
 </li>
 </ul>
 </div>

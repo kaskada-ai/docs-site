@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Working with Materializations :: Kaskada Docs</title>
+    <title>Materializations :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/developing/materializations.html">
     <link rel="prev" href="views.html">
     <link rel="next" href="../integrating/integrating-with-feature-stores.html">
@@ -170,16 +170,13 @@
     <a class="nav-link" href="queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="example-queries.html">Example Queries</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="views.html">Views</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="materializations.html">Materializations</a>
   </li>
 </ul>
   </li>
@@ -290,7 +287,7 @@
   <ul>
     <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Reference</li>
-    <li><a href="materializations.html">Working with Materializations</a></li>
+    <li><a href="materializations.html">Materializations</a></li>
   </ul>
 </nav>
 </div>
@@ -299,7 +296,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Working with Materializations</h1>
+<h1 class="page">Materializations</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -311,6 +308,53 @@ query. Materializations can be used to populate feature vectors in a
 variety of feature stores to be used in production for low-latency
 inference.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="supported-destinations"><a class="anchor" href="#supported-destinations"></a><a class="link" href="#supported-destinations">Supported Destinations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kaskada supports materializing into different external data stores.</p>
+</div>
+<div class="sect2">
+<h3 id="pulsar"><a class="anchor" href="#pulsar"></a><a class="link" href="#pulsar">Pulsar</a></h3>
+<div class="paragraph">
+<p>Example configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">materializations:
+- materialization_name: PulsarExample
+  expression: PurchaseStats
+  pulsar:
+    broker_service_url: pulsar://127.0.0.1:6650
+    tenant: public
+    namespace: default
+    topic_name: pulsar-example</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="object-store"><a class="anchor" href="#object-store"></a><a class="link" href="#object-store">Object Store</a></h3>
+<div class="paragraph">
+<p>Example configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">materializations:
+- materialization_name: PulsarExample
+  expression: PurchaseStats
+  object_store:
+    file_type: parquet
+    output_prefix_location: s3://my-bucket/path/to/results/</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-materializations-with-python"><a class="anchor" href="#managing-materializations-with-python"></a><a class="link" href="#managing-materializations-with-python">Managing Materializations with Python</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>All methods on this page use from the <code>materialization</code> object. Be sure
 to import it before running any method:</p>
@@ -320,11 +364,6 @@ to import it before running any method:</p>
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="materialization-methods"><a class="anchor" href="#materialization-methods"></a><a class="link" href="#materialization-methods">Materialization Methods</a></h2>
-<div class="sectionbody">
 <div class="sect2">
 <h3 id="creating-a-materialization"><a class="anchor" href="#creating-a-materialization"></a><a class="link" href="#creating-a-materialization">Creating a Materialization</a></h3>
 <div class="paragraph">
@@ -333,61 +372,28 @@ we&#8217;d like to materialize. In this case, we&#8217;re interested in some
 purchase statistics for each user. This definition depends on business
 logic and might require some iteration to get just right.</p>
 </div>
-<div class="sect3">
-<h4 id="using-fenlmagic"><a class="anchor" href="#using-fenlmagic"></a><a class="link" href="#using-fenlmagic">Using fenlmagic</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var purchase_stats
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">purchase_stats = """
 {
     time: Purchase.purchase_time,
     entity: Purchase.customer_id,
     max_amount: Purchase.amount | max(),
     min_amount: Purchase.amount | min(),
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice that we added <code>--var purchase_stats</code> to the beginning of the
-magic block; this causes the extension to assign the query string to the
-variable <code>purchase_stats</code> when the block is run.</p>
-</div>
-<div class="paragraph">
-<p>We can use this variable to create a materialization using the Python
-client without re-typing the expression:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">redis_db = 1
-redis_host = "redisai"
-redis_port = 6379
-destination = materialization.RedisAIDestination(redis_db, redis_host, redis_port)
+}
+"""
+
+tenant = "public"
+namespace = "default"
+topic_name = "model_features"
+broker_service_url = "pulsar://127.0.0.1:6650"
+destination = materialization.PulsarDestination(tenant, namespace, topic_name, broker_service_url)
 
 materialization.create_materialization(
     name = "PurchaseStats",
     destination = destination,
     query = purchase_stats,
 )</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="using-python"><a class="anchor" href="#using-python"></a><a class="link" href="#using-python">Using python</a></h4>
-<div class="paragraph">
-<p>Materializations can also be created without using fenlmagic:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">materialization.create_materialization(
-    name = "PurchaseStats",
-    destination = destination,
-    query = "{
-        time: Purchase.purchase_time,
-        entity: Purchase.customer_id,
-        max_amount: Purchase.amount | max(),
-        min_amount: Purchase.amount | min(),
-    }"
-)</code></pre>
-</div>
 </div>
 </div>
 </div>

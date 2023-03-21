@@ -170,16 +170,13 @@
     <a class="nav-link" href="developing/queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="developing/example-queries.html">Example Queries</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="developing/slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="developing/views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="developing/materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="developing/materializations.html">Materializations</a>
   </li>
 </ul>
   </li>
@@ -394,6 +391,110 @@ optional arguments:
                         only the final values for each entity.
   --var VAR             Assigns the QueryResponse to a local variable with the given
                         name. The QueryResponse contains result_url, query and dataframe.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-kaskada-with-the-command-line-cli"><a class="anchor" href="#using-kaskada-with-the-command-line-cli"></a><a class="link" href="#using-kaskada-with-the-command-line-cli">Using Kaskada with the command line (CLI)</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use Kaskada on the command line, you&#8217;ll need to install three components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Kaskada command-line executable</p>
+</li>
+<li>
+<p>The Kaskada manager, which serves the Kaskada API</p>
+</li>
+<li>
+<p>The Kaskada engine, which executes queries</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of these are available as pre-compiled binaries in the <a href="#url:https://github.com/kaskada-ai/kaskada/releases">Releases</a> section of Kaskada&#8217;s Github repository.
+This example assumes you have installed <code>curl</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">VERSION=0.4.1
+ARCH=$(uname -m | awk '{print tolower($0)}')
+OS=$(uname -s | awk '{print tolower($0)}')
+
+curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-cli-$OS-$ARCH" -o kaskada-cli
+curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-engine-$OS-$ARCH" -o kaskada-engine
+curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-manager-$OS-$ARCH" -o kaskada-manager
+
+chmod +x kaskada-*</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Authorizing applications on OSX</div>
+<div class="paragraph">
+<p>If you&#8217;re using OSX, you may need to unblock the applications.
+OSX prevents applications you download from running as a security feature.
+You can remove the block placed on the file when it was downloaded with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should now be able to run all three components.
+To verify they&#8217;re installed correctly and executable, try running the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli -h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">A CLI tool for interacting with the Kaskada API
+
+Usage:
+  cli [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  load        A set of commands for loading data into kaskada
+  query       A set of commands for running queries on kaskada
+  sync        A set of commands for interacting with kaskada resources as code
+
+Flags:
+      --config string               config file (default is $HOME/.cli.yaml)
+  -d, --debug                       get debug log output
+  -h, --help                        help for cli
+      --kaskada-api-server string   Kaskada API Server
+      --kaskada-client-id string    Kaskada Client ID
+      --use-tls                     Use TLS when connecting to the Kaskada API (default true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can start a local instance of the Kaskada service by running the manager and engine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
+./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
 </div>
 </div>
 </div>

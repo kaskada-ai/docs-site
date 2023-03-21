@@ -170,16 +170,13 @@
     <a class="nav-link" href="queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="example-queries.html">Example Queries</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="materializations.html">Working with Materializations</a>
+    <a class="nav-link" href="materializations.html">Materializations</a>
   </li>
 </ul>
   </li>
@@ -305,6 +302,161 @@
 <div class="paragraph">
 <p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
 each row is a value of the same type.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-tables-with-python"><a class="anchor" href="#managing-tables-with-python"></a><a class="link" href="#managing-tables-with-python">Managing tables with Python</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All methods on this page use the <code>table</code> module. Be sure to import it
+before running any method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
+<div class="paragraph">
+<p>When creating a table, you must provide information about how each row
+should be interpreted. You must describe:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A field containing the time associated with each row. The time should
+refer to when the event occurred.</p>
+</li>
+<li>
+<p>An initial <a href="#fenl:entities">entity</a> key associated with each row. The
+entity should identify a <em>thing</em> in the world related to each event.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optionally:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A subsort column associated with each row. This value is used to order
+rows associated with the same time value. If no subsort column is
+provided, Kaskada will generate one.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about these fields, see:
+<a href="#reference:expected-file-format">Expected File Format</a></p>
+</div>
+<div class="paragraph">
+<p>Here is an example of creating a table:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.create_table(
+  table_name = "Purchase",
+  time_column_name = "purchase_time",
+  entity_key_column_name = "customer_id",
+  subsort_column_name = "subsort_id",
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
+must have a timestamp field named <code>purchase_time</code>, <code>customer_id</code>, and a
+field called <code>subsort_id</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Idiomatic Kaskada</div>
+<div class="paragraph">
+<p>We like to use CamelCase to name tables because it
+helps distinguish data sources from transformed values and function
+names.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-tables"><a class="anchor" href="#list-tables"></a><a class="link" href="#list-tables">List Tables</a></h3>
+<div class="paragraph">
+<p>The list table method returns all tables defined for your user. An
+optional search string can filter the results.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of listing tables:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.list_tables(search = "chase")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="get-table"><a class="anchor" href="#get-table"></a><a class="link" href="#get-table">Get Table</a></h3>
+<div class="paragraph">
+<p>You can get a table using its name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.get_table("Purchase")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-a-table"><a class="anchor" href="#updating-a-table"></a><a class="link" href="#updating-a-table">Updating a Table</a></h3>
+<div class="paragraph">
+<p>Tables are currently immutable. Updating a table requires deleting it
+and then re-creating it with a new expression.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-table"><a class="anchor" href="#deleting-a-table"></a><a class="link" href="#deleting-a-table">Deleting a table</a></h3>
+<div class="paragraph">
+<p>You can delete a table using its name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase")</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note that deleting a table also deletes any events uploaded to it.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A failed precondition error is returned if another view and/or
+materialization references the table. To continue with the deletion of
+the table, delete the dependent resources or supply the <code>force</code> flag to
+delete the table forcefully. Forcefully deleting a table without
+deleting the dependent resources may result in the dependent resources
+functioning incorrectly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase", force=True)</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -446,161 +598,6 @@ You can see these changes by creating an apply plan.</p>
 # &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=GamePlay
 # &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=Purchase
 # &gt; 2:25PM INF Success!</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="managing-tables-with-python"><a class="anchor" href="#managing-tables-with-python"></a><a class="link" href="#managing-tables-with-python">Managing tables with Python</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>All methods on this page use the <code>table</code> module. Be sure to import it
-before running any method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table</code></pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
-<div class="paragraph">
-<p>When creating a table, you must provide information about how each row
-should be interpreted. You must describe:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A field containing the time associated with each row. The time should
-refer to when the event occurred.</p>
-</li>
-<li>
-<p>An initial <a href="#fenl:entities">entity</a> key associated with each row. The
-entity should identify a <em>thing</em> in the world related to each event.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Optionally:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A subsort column associated with each row. This value is used to order
-rows associated with the same time value. If no subsort column is
-provided, Kaskada will generate one.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For more information about these fields, see:
-<a href="#reference:expected-file-format">Expected File Format</a></p>
-</div>
-<div class="paragraph">
-<p>Here is an example of creating a table:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.create_table(
-  table_name = "Purchase",
-  time_column_name = "purchase_time",
-  entity_key_column_name = "customer_id",
-  subsort_column_name = "subsort_id",
-)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
-must have a timestamp field named <code>purchase_time</code>, <code>customer_id</code>, and a
-field called <code>subsort_id</code>.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">Idiomatic Kaskada</div>
-<div class="paragraph">
-<p>We like to use CamelCase to name tables because it
-helps distinguish data sources from transformed values and function
-names.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="list-tables"><a class="anchor" href="#list-tables"></a><a class="link" href="#list-tables">List Tables</a></h3>
-<div class="paragraph">
-<p>The list table method returns all tables defined for your user. An
-optional search string can filter the response set.</p>
-</div>
-<div class="paragraph">
-<p>Here is an example of listing tables:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.list_tables(search = "chase")</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="get-table"><a class="anchor" href="#get-table"></a><a class="link" href="#get-table">Get Table</a></h3>
-<div class="paragraph">
-<p>You can get a table using its name:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.get_table("Purchase")</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="updating-a-table"><a class="anchor" href="#updating-a-table"></a><a class="link" href="#updating-a-table">Updating a Table</a></h3>
-<div class="paragraph">
-<p>Tables are currently immutable. Updating a table requires deleting it
-and then re-creating it with a new expression.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-table"><a class="anchor" href="#deleting-a-table"></a><a class="link" href="#deleting-a-table">Deleting a table</a></h3>
-<div class="paragraph">
-<p>You can delete a table using its name:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase")</code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Note that deleting a table also deletes any events uploaded to it.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>A failed precondition error is returned if another view and/or
-materialization references the table. To continue with the deletion of
-the table, delete the dependent resources or supply the <code>force</code> flag to
-delete the table forcefully. Forcefully deleting a table without
-deleting the dependent resources may result in the dependent resources
-functioning incorrectly.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase", force=True)</code></pre>
 </div>
 </div>
 </div>
