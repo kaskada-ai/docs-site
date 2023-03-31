@@ -323,18 +323,19 @@
 </div>
 <div class="paragraph">
 <p>Each Kaskada release has pre-compiled binaries for each component.
-You can visit the <a href="https://github.com/kaskada-ai/kaskada/releases">Releases</a> page on Github to obtain the latest Kaskada release version.
-This example assumes you have installed <code>curl</code> and uses Kaskada version <code>v0.5.4</code>.</p>
+You can visit the <a href="https://github.com/kaskada-ai/kaskada/releases">Releases</a> page on Github to obtain the latest Kaskada release version binaries for your platform.
+The example commands below will download the latest Kaskada binaries and applies to Linux and OSX.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">VERSION=0.5.4
-ARCH=$(uname -m | awk '{print tolower($0)}')
-OS=$(uname -s | awk '{print tolower($0)}')
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -s https://api.github.com/repos/kaskada-ai/kaskada/releases/latest |\
+grep "browser_download_url.*" |\
+grep $(uname -m | sed 's/x86_64/amd64/') |\
+grep $(uname -s | tr '[:upper:]' '[:lower:]') |\
+cut -d ':' -f2,3 |\
+tr -d \" |\
+xargs -I {} sh -c 'curl -L {} -o $(basename {}| cut -d '-' -f1,2)'
 
-curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-cli-$OS-$ARCH" -o kaskada-cli
-curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-engine-$OS-$ARCH" -o kaskada-engine
-curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-manager-$OS-$ARCH" -o kaskada-manager
 
 chmod +x kaskada-*</code></pre>
 </div>
