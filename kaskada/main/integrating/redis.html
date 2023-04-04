@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Integrating with ML feature stores :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/integrating/integrating-with-feature-stores.html">
-    <link rel="prev" href="../developing/materializations.html">
-    <link rel="next" href="../tools-and-resources/training-realtime-ml-models.html">
+    <title>Integrating with Redis :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/integrating/redis.html">
+    <link rel="prev" href="apache-cassandra.html">
+    <link rel="next" href="aws-redshift.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="shortcut icon" type="image/svg" href="/assets/images/favicon.svg">
@@ -159,6 +159,24 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../loading-data.html">Loading Data</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Examples</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Kaskada%20Demo%20for%20Event%20Processing%20and%20Time-centric%20Calculations.ipynb">Overview Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/ML_example.ipynb">Real-time ML Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Customer_Retention_(OSS).ipynb">Customer Retention Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/pulsar/notebooks/Materialize_to_Pulsar.ipynb">Materializing to Pulsar Notebook</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -192,8 +210,20 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Integrating</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="apache-pulsar.html">Apache Pulsar</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="apache-cassandra.html">Apache Cassandra</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="integrating-with-feature-stores.html">Integrating with ML feature stores</a>
+    <a class="nav-link" href="redis.html">Redis</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="aws-redshift.html">AWS Redshift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="snowflake.html">Snowflake</a>
   </li>
 </ul>
   </li>
@@ -291,176 +321,37 @@
   <ul>
     <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Integrating</li>
-    <li><a href="integrating-with-feature-stores.html">Integrating with ML feature stores</a></li>
+    <li><a href="redis.html">Redis</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/integrating/pages/integrating-with-feature-stores.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/integrating/pages/redis.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Integrating with ML feature stores</h1>
-<div class="sect1">
-<h2 id="online-feature-stores"><a class="anchor" href="#online-feature-stores"></a><a class="link" href="#online-feature-stores">Online Feature Stores</a></h2>
+<h1 class="page">Integrating with Redis</h1>
+<div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Models being used in production often have strict latency and freshness
-requirements — real-time models in particular. Feature engines address
-the freshness, while feature stores address latency. Kaskada&#8217;s feature
-engine keeps real-time features fresh and integrates with several
-existing data stores for low-latency key retrieval.</p>
-</div>
-<div class="sect2">
-<h3 id="apache-pulsar"><a class="anchor" href="#apache-pulsar"></a><a class="link" href="#apache-pulsar">Apache Pulsar</a></h3>
-<div class="paragraph">
-<p>Apache Pulsar is an open-source distributed streaming platform.
-Feature values can be written to Pulsar in real-time by creating a materialization.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">tenant = "public"
-namespace = "default"
-topic_name = "model_features"
-broker_service_url = "pulsar://127.0.0.1:6650"
-destination = materialization.PulsarDestination(tenant, namespace, topic_name, broker_service_url)
-
-materialization.create_materialization(
-    name = "MaterializedFeatures",
-    destination = destination,
-    query = "{
-      key: Purchase.customer_id,
-      max_amount: Purchase.amount | max(),
-      min_amount: Purchase.amount | min(),
-    }"
-)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="apache-cassandra"><a class="anchor" href="#apache-cassandra"></a><a class="link" href="#apache-cassandra">Apache Cassandra</a></h3>
-<div class="paragraph">
-<p>Cassandra is a open source NoSQL distributed database that provides
-linear scalability and low-latency query results.</p>
-</div>
-<div class="paragraph">
-<p>Feature values can be written to Cassandra in real-time via Pulsar.
-First, <a href="#apache-pulsar">materialize features into Pulsar</a>.
-Next use the <a href="https://pulsar.apache.org/docs/2.11.x/io-cassandra-sink/">Cassandra sink connector</a> to pull messages from Pulsar into Cassandra.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="redis"><a class="anchor" href="#redis"></a><a class="link" href="#redis">Redis</a></h3>
 <div class="paragraph">
 <p>Redis is an OpenSource in-memory data-structure store.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-to-redis"><a class="anchor" href="#writing-to-redis"></a><a class="link" href="#writing-to-redis">Writing to Redis</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Feature values can be written to Redis in real-time via Pulsar.
-First, <a href="Apache%20Pulsar">materialize features into Pulsar</a>.
+<p>Query results can be written to Redis in real-time via Pulsar.
+First, <a href="apache-pulsar.html" class="xref page">materialize features into Pulsar</a>.
 Next use the <a href="https://pulsar.apache.org/docs/2.11.x/io-redis-sink/">Redis sink connector</a> to pull messages from Pulsar into Redis.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="offline-feature-stores"><a class="anchor" href="#offline-feature-stores"></a><a class="link" href="#offline-feature-stores">Offline Feature Stores</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Models used for batch inference benefit from having access to feature
-vectors in a data store optimized for throughput rather than latency.
-Kaskada supports serving high-throughput feature vectors by integrating
-with a number of existing data stores designed for bulk-data management.</p>
-</div>
-<div class="sect2">
-<h3 id="snowflake"><a class="anchor" href="#snowflake"></a><a class="link" href="#snowflake">Snowflake</a></h3>
-<div class="paragraph">
-<p>Snowflake is a hosted data warehouse that provides scalable SQL queries
-over large data sets.</p>
-</div>
-<div class="paragraph">
-<p>Features can be loaded into Snowflake by exporting features as Parquet
-and using the <code>COPY</code> instruction to load the Parquet file into a Parquet
-table. To load features into Snowflake, first construct a query
-describing the feature vectors. Query results can be returned as a URL
-identifying the output Parquet file by supplying the output config
-<code>--output parquet</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">%%fenl --output parquet
-{
-  key: Purchase.customer_id,
-  max_amount: Purchase.amount | max(),
-  min_amount: Purchase.amount | min(),
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The resulting Parquet file can be loaded into a temporary Snowflake
-table.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create or replace temporary table feature_vectors (
-  key varchar default null,
-  max_amount number,
-  min_amount number
-);
-
-create or replace file format feature_vector_parquet_format
-  type = 'parquet';
-
-create or replace temporary stage feature_vector_stage
-  file_format = feature_vector_parquet_format;
-
-put &lt;file url&gt; @sf_tut_stage;
-
-copy into cities
-  from (select * from @sf_tut_stage/&lt;filename&gt;.parquet);</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="redshift"><a class="anchor" href="#redshift"></a><a class="link" href="#redshift">Redshift</a></h3>
-<div class="paragraph">
-<p>Redshift is a hosted data warehouse that provides scalable SQL queries
-over large data sets.</p>
-</div>
-<div class="paragraph">
-<p>Features can be loaded into Redshift by exporting features as Parquet
-and using the <code>COPY</code> instruction to load the Parquet file into a Parquet
-table. To load features into Redshift, first construct a query
-describing the feature vectors. Query results can be returned as a URL
-identifying the output Parquet file by supplying the output config
-<code>--output parquet</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">%%fenl --output parquet
-{
-  key: Purchase.customer_id,
-  max_amount: Purchase.amount | max(),
-  min_amount: Purchase.amount | min(),
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The resulting Parquet file can be loaded into a Redshift table.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">COPY feature_vectors
-FROM '&lt;file url&gt;'
-FORMAT AS PARQUET;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <nav class="pagination">
-  <span class="prev"><a href="../developing/materializations.html">Materializations</a></span>
-  <span class="next"><a href="../tools-and-resources/training-realtime-ml-models.html">Training real-time ML models</a></span>
+  <span class="prev"><a href="apache-cassandra.html">Apache Cassandra</a></span>
+  <span class="next"><a href="aws-redshift.html">AWS Redshift</a></span>
 </nav>
 </article>
   </div>
