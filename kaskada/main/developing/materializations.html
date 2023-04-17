@@ -359,8 +359,11 @@ inference.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">materializations:
+  # The name of the materialization
 - materialization_name: PulsarExample
+  # The epxression to materializa
   expression: PurchaseStats
+  # Where the expression's final results will be written
   pulsar:
     broker_service_url: pulsar://127.0.0.1:6650
     tenant: public

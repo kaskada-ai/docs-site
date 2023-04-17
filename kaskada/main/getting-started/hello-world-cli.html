@@ -393,12 +393,27 @@ You can remove the block placed on the file when it was downloaded with the foll
 </table>
 </div>
 <div class="paragraph">
-<p>You should now be able to run all three components.
-To verify they&#8217;re installed correctly and executable, try running the following command:</p>
+<p>You can start a local instance of the Kaskada service by running the manager and engine:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli -h</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
+./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1. Allowing services to listen on OSX</div>
+<div class="content">
+<pre>When using OSX, you may need to allow these services to create an API listener the first time you run these commands.
+This is normal, and indicates the services are working as expected - the API allows services to communicate between themselves.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To verify they&#8217;re installed correctly and executable, try running the following command (which lists any resources you&#8217;ve created):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli sync export --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -406,34 +421,9 @@ To verify they&#8217;re installed correctly and executable, try running the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">A CLI tool for interacting with the Kaskada API
-
-Usage:
-  cli [command]
-
-Available Commands:
-  completion  Generate the autocompletion script for the specified shell
-  help        Help about any command
-  load        A set of commands for loading data into kaskada
-  query       A set of commands for running queries on kaskada
-  sync        A set of commands for interacting with kaskada resources as code
-
-Flags:
-      --config string               config file (default is $HOME/.cli.yaml)
-  -d, --debug                       get debug log output
-  -h, --help                        help for cli
-      --kaskada-api-server string   Kaskada API Server
-      --kaskada-client-id string    Kaskada Client ID
-      --use-tls                     Use TLS when connecting to the Kaskada API (default true)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can start a local instance of the Kaskada service by running the manager and engine:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
-./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">10:18AM INF starting export
+{}
+10:18AM INF Success!</code></pre>
 </div>
 </div>
 </div>
@@ -456,33 +446,41 @@ row should be interpreted. You must describe:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A field containing the time associated with each row
+<p>A field containing the time associated with each event
 (<code>time_column_name</code>). The time should refer to when the event occurred.</p>
 </li>
 <li>
-<p>An initial <a href="#fenl:entities">entity</a> key associated with each row
+<p>An initial <a href="../fenl/entities.html" class="xref page">entity</a> key associated with each row
 (<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
 world that each event is associated with. Don&#8217;t worry too much about
 picking the "right" value here - it&#8217;s easy to change the entity key in
 Fenl.</p>
 </li>
 <li>
-<p>A subsort column associated with each row (<code>subsort_column_name</code>).
+<p>An (optional) subsort column associated with each event (<code>subsort_column_name</code>).
 This value is used to order rows associated with the same time value.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>For more information about these fields, see:
-<a href="#how-to-guides:expected-file-format">Expected File Format</a></p>
+<a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 1. spec.yaml</div>
+<div class="title">Listing 2. spec.yaml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+  # The name of the table
 - tableName: Purchase
+
+  # A field containing the time associated with each event
   timeColumnName: purchase_time
+
+  # An initial entity key associated with each event
   entityKeyColumnName: customer_id
+
+  # Where the table's data will be stored
+  # The default storage location is 'kaskada', and uses local files to store events.
   source:
     kaskada: {}</code></pre>
 </div>
@@ -554,7 +552,7 @@ section of the "Tables"</a> page.</p>
 </div>
 <div class="paragraph">
 <p>For more help with tables and loading data, see <a href="../developing/tables.html" class="xref page">Reference -
-Working with Tables</a></p>
+Tables</a></p>
 </div>
 </div>
 </div>
@@ -565,7 +563,7 @@ Working with Tables</a></p>
 <p>You can write queries in a number of ways with Kaskada. As you are
 iterating it can be helpful to build up your queries as components
 as you go.  Once you&#8217;d like to persist a query, check out our
-article on <a href="../developing/views.html" class="xref page">Sharing Queries</a>.</p>
+article on sharing queries with <a href="../developing/views.html" class="xref page">Views</a>.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s start by looking at the Purchase table without any filters, this
@@ -578,14 +576,37 @@ Purchase
 EOS</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Note: this table is intentionally small so that you can get to know
-queries with Kaskada. When you upload your own data, you may want to
-write the results to a file rather than <code>stdout</code>:</p>
+<p>This table is intentionally small so that you can get to know queries with Kaskada.
+When working with larger data sets, you may want to write the results to a file rather than <code>stdout</code> (by omitting the <code>--stdout</code> flag).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s walk through this command.
+We begin by using the CLI to run a query: <code>kaskada-cli query run</code>.
+CLI commands are organized into groups like <code>query</code>, <code>load</code>, and <code>sync</code> - each group contains a set of related sub-commands.
+In order to see the results of our query, we used the command flag <code>--stdout</code>; the default behavior is to write results to a file and return a JSON object describing the result of the query.
+Finally, we specified how to encode the results with the flag <code>--response-as csv</code>.
+CSV is a good format for writing results to STDOUT, but the default is to encode results in Parquet, which is a much more efficient encoding for larger datasets.
+The query is enclosed between <code>&lt;&lt;EOS</code> and <code>EOS</code> - this is Bash syntax for "heredocs", which allow you to easily write multi-line strings and pass them into the CLI on STDIN.</p>
+</div>
+<div class="paragraph">
+<p>It can be helpful to limit your results to a single entity.
+This makes it easier to see how a single entity changes over time.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --response-as csv &gt; results.csv &lt;&lt;EOS
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 Purchase | when(Purchase.customer_id == "patrick")
 EOS</code></pre>
 </div>
@@ -599,10 +620,17 @@ aggregations over your data such as the <code>max()</code> function:</p>
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 {
    max_purchase: Purchase.amount | max(),
-}
+} | when(Purchase.customer_id == "patrick")
 EOS</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
 <p>These results may be surprising if you were expecting a single value,
 this is a feature, not a bug!</p>
@@ -623,6 +651,10 @@ information about the future from "leaking" into the past.</p>
 <p>Read more in the <a href="../fenl/language-guide.html" class="xref page">Fenl
 Language Guide</a></p>
 </div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Now we can start building up more complex queries. To reduce the set of columns
 output in your query, you can define a record with the curly braces
@@ -639,7 +671,7 @@ results in time:</p>
     entity: Purchase.customer_id,
     max_amount: Purchase.amount | max(),
     min_amount: Purchase.amount | min(),
-}
+} | when(Purchase.customer_id == "patrick")
 EOS</code></pre>
 </div>
 </div>

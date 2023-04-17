@@ -340,6 +340,56 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="final-vs-historical-results"><a class="anchor" href="#final-vs-historical-results"></a><a class="link" href="#final-vs-historical-results">Final vs Historical Results</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every query can be computed in two different ways: final and historical.
+Historical queries return the full history of how an expression changes over time for every entity.
+Final queries return the result of the query expression for every entity after processing all events.</p>
+</div>
+<div class="paragraph">
+<p>You determine which type of query to execute using the "result behavior" configuration at query time.
+By default, historical results are returned.
+To return final results, you must configure the <code>final-results</code> behavior:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1. Final queries with fenlmagic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --result_behavior final-results
+{
+    time: Purchase.purchase_time,
+    entity: Purchase.customer_id,
+    max_amount: Purchase.amount | max(),
+    min_amount: Purchase.amount | min(),
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 2. Final queries with Python</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import compute
+
+query = """{
+  time: Purchase.purchase_time,
+  entity: Purchase.customer_id,
+  max_amount: last(Purchase.amount) | max(),
+  min_amount: Purchase.amount | min()
+}"""
+
+resp = query.create_query(expression=query, result_behavior="final-results")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 3. Final queries in the CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli query run --result-behavior final-results &lt;&lt;EOS
+Purchase
+EOS</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="records"><a class="anchor" href="#records"></a><a class="link" href="#records">Records</a></h2>
 <div class="sectionbody">
 <div class="paragraph">

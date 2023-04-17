@@ -510,9 +510,10 @@ A spec file is a YAML file describing a set of Kaskada resources, for examples t
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">views:
-    - view_id: 14c4...ba56 <i class="conum" data-value="1"></i><b>(1)</b>
-      view_name: PurchaseStats <i class="conum" data-value="2"></i><b>(2)</b>
-      expression: | <i class="conum" data-value="3"></i><b>(3)</b>
+      # A name used to refer to the view in queries
+    - view_name: PurchaseStats
+      # The expression to substitute anywhere the view's name is used
+      expression: |
         {
             time: Purchase.purchase_time,
             entity: Purchase.customer_id,
@@ -520,26 +521,11 @@ A spec file is a YAML file describing a set of Kaskada resources, for examples t
             min_amount: Purchase.amount | min(),
             count: CountPurchase,
         }
-    - view_id: dd61...70e9
-      view_name: CountPurchase
+      # A name used to refer to the view in queries
+    - view_name: CountPurchase
+      # The expression to substitute anywhere the view's name is used
       expression: count(Purchase)</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A unique identifier for the view. This value is assigned by the manager and is read-only.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>A name used to refer to the view in queries.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The expression to substitute anywhere the view&#8217;s name is used.</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -549,7 +535,7 @@ A spec file is a YAML file describing a set of Kaskada resources, for examples t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --all</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync export --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -570,7 +556,7 @@ views:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync export --view PurchaseStats</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync export --view PurchaseStats</code></pre>
 </div>
 </div>
 </div>
@@ -605,7 +591,7 @@ You can see these changes by creating an apply plan.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync plan --file spec.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync plan --file spec.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -616,7 +602,7 @@ You can see these changes by creating an apply plan.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cli sync apply --file spec.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync apply --file spec.yaml</code></pre>
 </div>
 </div>
 </div>
