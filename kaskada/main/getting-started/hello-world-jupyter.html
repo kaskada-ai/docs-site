@@ -400,6 +400,9 @@ Open a terminal in your OS and using <code>pip</code> install the Kaskada Python
 <p>Depending on you Python installation and configuration you may have <code>pip3</code> instead of <code>pip</code> available in your terminal.
 If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code> in your command, i.e., <code>pip3 install kaskada</code></p>
 </div>
+<div class="paragraph">
+<p>You can see what version of Python <code>pip</code> uses by running <code>pip -V</code></p>
+</div>
 </td>
 </tr>
 </table>
@@ -487,7 +490,7 @@ The special string <code>%%fenl</code> will also connect to the Kaskada componen
 </div>
 </div>
 <div class="sect1">
-<h2 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h2>
+<h2 id="loading-data-into-a-table"><a class="anchor" href="#loading-data-into-a-table"></a><a class="link" href="#loading-data-into-a-table">Loading Data into a Table</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
@@ -502,19 +505,15 @@ row should be interpreted. You must describe:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A field containing the time associated with each row
+<p>The name of a column in your data that contains the time of each row
 (<code>time_column_name</code>). The time should refer to when the event occurred.</p>
 </li>
 <li>
-<p>An initial <a href="../fenl/entities.html" class="xref page">entity</a> key associated with each row
+<p>The name of a column in your data that contains the <a href="../fenl/entities.html" class="xref page">entity</a> key of each row
 (<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
 world that each event is associated with. Don&#8217;t worry too much about
 picking the "right" value here - it&#8217;s easy to change the entity key in
 Fenl.</p>
-</li>
-<li>
-<p>An (optional) subsort column associated with each row (<code>subsort_column_name</code>).
-This value is used to order rows associated with the same time value.</p>
 </li>
 </ul>
 </div>
@@ -525,12 +524,17 @@ This value is used to order rows associated with the same time value.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
 
 table.create_table(
+  # The table's name
   table_name = "Purchase",
+  # The name of a column in your data that contains the time associated with each row
   time_column_name = "purchase_time",
+  # The name of a column in your data that contains the entity key associated with each row
   entity_key_column_name = "customer_id",
-  subsort_column_name = "subsort_id",
 )</code></pre>
 </div>
 </div>
@@ -584,33 +588,34 @@ request_details {
 </div>
 </div>
 <div class="sect2">
-<h3 id="loading-data-2"><a class="anchor" href="#loading-data-2"></a><a class="link" href="#loading-data-2">Loading Data</a></h3>
+<h3 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h3>
 <div class="paragraph">
 <p>Now that we&#8217;ve created a table, we&#8217;re ready to load some data into it.</p>
 </div>
 <div class="paragraph">
 <p>Data can be loaded into a table in multiple ways. In this example we&#8217;ll
-load the contents of a Pandas dataframe into the table. To learn about
+load the contents of a Parquet file into the table. To learn about
 the different ways data can be loaded into a table, see the
 <a href="../loading-data.html" class="xref page">"Loading Data"</a>
 section of the docs.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import pandas
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
 
 # A sample Parquet file provided by Kaskada for testing
-purchases_url = "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk"
+# Available at https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk
+purchases_path = "file:///absolute/path/to/purchases.parquet"
 
-# Read the file into a Pandas Dataframe
-purchases = pandas.read_parquet(purchases_url)
-
-# Upload the dataframe's contents to the Purchase table
-table.load_dataframe("Purchase", purchases)</code></pre>
+# Upload the files's contents to the Purchase table (which was created in the previous step)
+table.load(table_name = "Purchase", file = purchases_path)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result of running <code>load_dataframe</code> is a <code>data_token_id</code>. The
+<p>The result of running <code>load</code> is a <code>data_token_id</code>. The
 data token ID is a unique reference to the data currently stored in the
 system.</p>
 </div>
@@ -635,7 +640,12 @@ loaded into each:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.list_tables()</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.list_tables()</code></pre>
 </div>
 </div>
 <div class="paragraph">

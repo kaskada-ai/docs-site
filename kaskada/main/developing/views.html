@@ -365,15 +365,6 @@ Views may reference other views.</p>
 <div class="sect1">
 <h2 id="managing-views-with-python"><a class="anchor" href="#managing-views-with-python"></a><a class="link" href="#managing-views-with-python">Managing views with Python</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>All methods in this section are from the <code>view</code> object. Be sure to import
-it before running any method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view</code></pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="creating-a-view"><a class="anchor" href="#creating-a-view"></a><a class="link" href="#creating-a-view">Creating a View</a></h3>
 <div class="paragraph">
@@ -384,7 +375,12 @@ some iteration to get just right.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.create_view(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+view.create_view(
     view_name = "PurchaseStats",
     expression = "{
         time: Purchase.purchase_time,
@@ -442,7 +438,12 @@ without re-typing the expression:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.create_view(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+view.create_view(
     view_name = "PurchaseStats",
     expression = purchase_stats.expression,
 )</code></pre>
@@ -460,7 +461,12 @@ optional search string can filter the response set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.list_views("Purchase")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+view.list_views("Purchase")</code></pre>
 </div>
 </div>
 </div>
@@ -471,7 +477,12 @@ optional search string can filter the response set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.get_view("PurchaseStats")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+view.get_view("PurchaseStats")</code></pre>
 </div>
 </div>
 </div>
@@ -489,7 +500,12 @@ view and then re-creating it.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">view.delete_view("PurchaseStats")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+view.delete_view("PurchaseStats")</code></pre>
 </div>
 </div>
 </div>
@@ -501,6 +517,15 @@ view and then re-creating it.</p>
 <div class="paragraph">
 <p>The CLI manages Kaskada resources declaratively by managing spec files.
 A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
+</div>
+<div class="sect2">
+<h3 id="creating-updating-and-deleting-tables-with-the-cli"><a class="anchor" href="#creating-updating-and-deleting-tables-with-the-cli"></a><a class="link" href="#creating-updating-and-deleting-tables-with-the-cli">Creating, updating and deleting tables with the CLI</a></h3>
+<div class="paragraph">
+<p>The CLI uses a "declarative" API - rather than modifying resources directly you describe the desired state of Kaskada, and the <code>kaskada-cli sync</code> command makes whatever changes are needed to achieve this state.
+To create a table, add the table&#8217;s description to your spec file and run <code>kaskada-cli sync apply</code>.
+To update a table, change the table&#8217;s description in your spec file and run <code>kaskada-cli sync apply</code>.
+It is not currently possible to delete a table using the CLI.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="the-format-of-views-in-a-spec-file"><a class="anchor" href="#the-format-of-views-in-a-spec-file"></a><a class="link" href="#the-format-of-views-in-a-spec-file">The format of views in a spec file.</a></h3>

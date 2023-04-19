@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Loading Data :: Kaskada Docs</title>
+    <title>Loading Data into a Table :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/loading-data.html">
     <link rel="prev" href="installing.html">
     <link rel="next" href="developing/tables.html">
@@ -330,7 +330,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Loading Data</h1>
+<h1 class="page">Loading Data into a Table</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -345,7 +345,6 @@ The <a href="developing/tables.html" class="xref page">Tables</a> section of the
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="title">Data must be loaded into a table</div>
 <div class="paragraph">
 <p>A table must be created before data can be loaded into it.</p>
 </div>
@@ -373,12 +372,12 @@ At the moment, all data loaded into a table must have the same schema.</p>
 should be a type that can be <a href="fenl/data-model.html#type-coercion" class="xref page">cast</a> to a <a href="fenl/data-model.html#scalars" class="xref page">timestamp</a>, for example an integer or RFC3330-formatted string.</p>
 </li>
 <li>
-<p>If <code>subsort_id</code> is defined, the combination of the <code>group_column</code> (entity id), <code>time_column</code> and <code>subsort_column</code> should guarantee that each row is unique.</p>
+<p>If a subsort column is defined, the combination of the entity key column, time column and subsort column should guarantee that each row is unique.</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="loading-data-from-parquet-files"><a class="anchor" href="#loading-data-from-parquet-files"></a><a class="link" href="#loading-data-from-parquet-files">Loading data from Parquet files</a></h3>
+<h3 id="loading-data-from-parquet-files-into-a-table"><a class="anchor" href="#loading-data-from-parquet-files-into-a-table"></a><a class="link" href="#loading-data-from-parquet-files-into-a-table">Loading data from Parquet files into a table</a></h3>
 <div class="paragraph">
 <p>Events stored as a Parquet file can be loaded into a table by providing the file&#8217;s <a href="#File Location">location</a>.
 The given location must be accessible to the Kaskada instance you wish to load the file into.</p>
@@ -386,8 +385,12 @@ The given location must be accessible to the Kaskada instance you wish to load t
 <div class="listingblock">
 <div class="title">Listing 1. Loading a Parquet file using Python</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Python hljs" data-lang="Python">from kaskada import table
-table.load_file(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.load(
   table_name = "Purchase",
   file = "file:///path/to/file.parquet",
 )</code></pre>
@@ -402,24 +405,9 @@ table.load_file(
     --file-type parquet</code></pre>
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">Parquet version requirements</div>
-<div class="paragraph">
-<p>The Kaskada compute engine expects uploaded file data to be either CSV or parquet version 2.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
-<h3 id="loading-data-from-csv-files"><a class="anchor" href="#loading-data-from-csv-files"></a><a class="link" href="#loading-data-from-csv-files">Loading data from CSV files</a></h3>
+<h3 id="loading-data-from-csv-files-into-a-table"><a class="anchor" href="#loading-data-from-csv-files-into-a-table"></a><a class="link" href="#loading-data-from-csv-files-into-a-table">Loading data from CSV files into a table</a></h3>
 <div class="paragraph">
 <p>Events stored as a CSV file can be loaded into a table by providing the file&#8217;s <a href="#File Location">location</a>.
 The given location must be accessible to the Kaskada instance you wish to load the file into.
@@ -432,8 +420,12 @@ The schema is inferred by reading the first 1000 rows.</p>
 <div class="listingblock">
 <div class="title">Listing 3. Loading a CSV file using Python</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Python hljs" data-lang="Python">from kaskada import table
-table.load_file(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.load(
   table_name = "Purchase",
   file = "file:///path/to/file.csv",
 )</code></pre>
@@ -505,7 +497,7 @@ Credentials are configured using environment variables.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="loading-data-with-python"><a class="anchor" href="#loading-data-with-python"></a><a class="link" href="#loading-data-with-python">Loading data with Python</a></h2>
+<h2 id="loading-data-into-a-table-with-python"><a class="anchor" href="#loading-data-into-a-table-with-python"></a><a class="link" href="#loading-data-into-a-table-with-python">Loading data into a table with Python</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Data can be loaded into a table using the <code>table.load()</code> function</p>
@@ -513,9 +505,12 @@ Credentials are configured using environment variables.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
 
 fullPathToFile = "file://content/drive/place/thing/purchases.parquet"
-table.load("Purchases", fullPathToFile)</code></pre>
+table.load(table_name = "Purchases", file = fullPathToFile)</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -546,14 +541,14 @@ See <a href="#reference:expected-file-format">Expected File Format</a> for detai
 </div>
 </div>
 <div class="sect1">
-<h2 id="loading-data-with-the-cli"><a class="anchor" href="#loading-data-with-the-cli"></a><a class="link" href="#loading-data-with-the-cli">Loading data with the CLI</a></h2>
+<h2 id="loading-data-into-a-table-with-the-cli"><a class="anchor" href="#loading-data-into-a-table-with-the-cli"></a><a class="link" href="#loading-data-into-a-table-with-the-cli">Loading data into a table with the CLI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Files can be loaded into a table using the CLI.
 When loading files with the CLI, the given path must be local to the Kaskada service.</p>
 </div>
 <div class="paragraph">
-<p>The file must be encoded as either CSV or Parquet version 2.</p>
+<p>The file must be encoded as either CSV or Parquet.</p>
 </div>
 <div class="listingblock">
 <div class="content">

@@ -401,12 +401,21 @@ You can remove the block placed on the file when it was downloaded with the foll
 ./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">Listing 1. Allowing services to listen on OSX</div>
-<div class="content">
-<pre>When using OSX, you may need to allow these services to create an API listener the first time you run these commands.
-This is normal, and indicates the services are working as expected - the API allows services to communicate between themselves.</pre>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Allowing services to listen on OSX</div>
+<div class="paragraph">
+<p>When using OSX, you may need to allow these services to create an API listener the first time you run these commands.
+This is normal, and indicates the services are working as expected - the API allows services to communicate between themselves.</p>
 </div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To verify they&#8217;re installed correctly and executable, try running the following command (which lists any resources you&#8217;ve created):</p>
@@ -467,7 +476,7 @@ This value is used to order rows associated with the same time value.</p>
 <a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. spec.yaml</div>
+<div class="title">Listing 1. spec.yaml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
   # The name of the table
@@ -526,7 +535,7 @@ names.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h2>
+<h2 id="loading-data-into-a-table"><a class="anchor" href="#loading-data-into-a-table"></a><a class="link" href="#loading-data-into-a-table">Loading data into a table</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Now that we&#8217;ve created a table, we&#8217;re ready to load some data into it.</p>
@@ -540,8 +549,10 @@ section of the "Tables"</a> page.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk" -o purchase.parquet
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Download a file to load and save it to path 'purchase.parquet'
+curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk" -o purchase.parquet
 
+# Load the file into the Purchase table (which was created in the previous step)
 ./kaskada-cli load \
     --table Purchase \
     --file-path file://${PWD}/purchase.parquet</code></pre>
@@ -557,7 +568,7 @@ Tables</a></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="querying-data"><a class="anchor" href="#querying-data"></a><a class="link" href="#querying-data">Querying Data</a></h2>
+<h2 id="querying-data"><a class="anchor" href="#querying-data"></a><a class="link" href="#querying-data">Querying data</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can write queries in a number of ways with Kaskada. As you are
@@ -592,13 +603,25 @@ When working with larger data sets, you may want to write the results to a file 
 </table>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s walk through this command.
-We begin by using the CLI to run a query: <code>kaskada-cli query run</code>.
-CLI commands are organized into groups like <code>query</code>, <code>load</code>, and <code>sync</code> - each group contains a set of related sub-commands.
-In order to see the results of our query, we used the command flag <code>--stdout</code>; the default behavior is to write results to a file and return a JSON object describing the result of the query.
-Finally, we specified how to encode the results with the flag <code>--response-as csv</code>.
-CSV is a good format for writing results to STDOUT, but the default is to encode results in Parquet, which is a much more efficient encoding for larger datasets.
-The query is enclosed between <code>&lt;&lt;EOS</code> and <code>EOS</code> - this is Bash syntax for "heredocs", which allow you to easily write multi-line strings and pass them into the CLI on STDIN.</p>
+<p>Let&#8217;s walk through this command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We begin by using the CLI to run a query: <code>kaskada-cli query run</code>.
+CLI commands are organized into groups like <code>query</code>, <code>load</code>, and <code>sync</code> - each group contains a set of related sub-commands.</p>
+</li>
+<li>
+<p>In order to see the results of our query, we used the command flag <code>--stdout</code>; the default behavior is to write results to a file and return a JSON object describing the result of the query.</p>
+</li>
+<li>
+<p>Finally, we specified how to encode the results with the flag <code>--response-as csv</code>.
+CSV is a good format for writing results to STDOUT because it&#8217;s relatively human-readible. The default is to encode results in Parquet, which is a much more efficient encoding for larger datasets.</p>
+</li>
+<li>
+<p>The query is enclosed between <code>&lt;&lt;EOS</code> and <code>EOS</code> - this is Bash syntax for "heredocs", which allow you to easily write multi-line strings and pass them into the CLI on STDIN.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>It can be helpful to limit your results to a single entity.

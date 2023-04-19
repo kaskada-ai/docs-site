@@ -343,15 +343,6 @@ each row is a value of the same type.</p>
 <div class="sect1">
 <h2 id="managing-tables-with-python"><a class="anchor" href="#managing-tables-with-python"></a><a class="link" href="#managing-tables-with-python">Managing tables with Python</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>All methods on this page use the <code>table</code> module. Be sure to import it
-before running any method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table</code></pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
 <div class="paragraph">
@@ -361,12 +352,15 @@ should be interpreted. You must describe:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A field containing the time associated with each row. The time should
-refer to when the event occurred.</p>
+<p>The name of a column in your data that contains the time of each row
+(<code>time_column_name</code>). The time should refer to when the event occurred.</p>
 </li>
 <li>
-<p>An initial <a href="#fenl:entities">entity</a> key associated with each row. The
-entity should identify a <em>thing</em> in the world related to each event.</p>
+<p>The name of a column in your data that contains the <a href="../fenl/entities.html" class="xref page">entity</a> key of each row
+(<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
+world that each event is associated with. Don&#8217;t worry too much about
+picking the "right" value here - it&#8217;s easy to change the entity key in
+Fenl.</p>
 </li>
 </ul>
 </div>
@@ -376,9 +370,12 @@ entity should identify a <em>thing</em> in the world related to each event.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A subsort column associated with each row. This value is used to order
-rows associated with the same time value. If no subsort column is
-provided, Kaskada will generate one.</p>
+<p>An subsort column associated with each row (<code>subsort_column_name</code>).
+This value is used to order rows associated with the same time value.
+If no subsort column is provided, Kaskada will generate one.</p>
+</li>
+<li>
+<p>A name describing the type of entity, for example "User" or "Purchase".</p>
 </li>
 </ul>
 </div>
@@ -391,11 +388,18 @@ provided, Kaskada will generate one.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.create_table(
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.create_table(
+  # The table's name
   table_name = "Purchase",
+  # The name of a column in your data that contains the time associated with each row
   time_column_name = "purchase_time",
+  # The name of a column in your data that contains the entity key associated with each row
   entity_key_column_name = "customer_id",
-  subsort_column_name = "subsort_id",
 )</code></pre>
 </div>
 </div>
@@ -433,7 +437,12 @@ optional search string can filter the results.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.list_tables(search = "chase")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.list_tables()</code></pre>
 </div>
 </div>
 </div>
@@ -444,7 +453,12 @@ optional search string can filter the results.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.get_table("Purchase")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.get_table(table = "Purchase")</code></pre>
 </div>
 </div>
 </div>
@@ -462,7 +476,12 @@ and then re-creating it with a new expression.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.delete_table(table = "Purchase")</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -489,7 +508,12 @@ functioning incorrectly.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">table.delete_table("Purchase", force=True)</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.delete_table(table = "Purchase", force = True)</code></pre>
 </div>
 </div>
 </div>
@@ -501,6 +525,15 @@ functioning incorrectly.</p>
 <div class="paragraph">
 <p>The CLI manages Kaskada resources declaratively by managing spec files.
 A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
+</div>
+<div class="sect2">
+<h3 id="creating-updating-and-deleting-tables-with-the-cli"><a class="anchor" href="#creating-updating-and-deleting-tables-with-the-cli"></a><a class="link" href="#creating-updating-and-deleting-tables-with-the-cli">Creating, updating and deleting tables with the CLI</a></h3>
+<div class="paragraph">
+<p>The CLI uses a "declarative" API - rather than modifying resources directly you describe the desired state of Kaskada, and the <code>kaskada-cli sync</code> command makes whatever changes are needed to achieve this state.
+To create a table, add the table&#8217;s description to your spec file and run <code>kaskada-cli sync apply</code>.
+To update a table, change the table&#8217;s description in your spec file and run <code>kaskada-cli sync apply</code>.
+It is not currently possible to delete a table using the CLI.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="the-format-of-tables-in-a-spec-file"><a class="anchor" href="#the-format-of-tables-in-a-spec-file"></a><a class="link" href="#the-format-of-tables-in-a-spec-file">The format of tables in a spec file.</a></h3>

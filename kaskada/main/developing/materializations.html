@@ -393,15 +393,6 @@ inference.</p>
 <div class="sect1">
 <h2 id="managing-materializations-with-python"><a class="anchor" href="#managing-materializations-with-python"></a><a class="link" href="#managing-materializations-with-python">Managing Materializations with Python</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>All methods on this page use from the <code>materialization</code> object. Be sure
-to import it before running any method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization</code></pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="creating-a-materialization"><a class="anchor" href="#creating-a-materialization"></a><a class="link" href="#creating-a-materialization">Creating a Materialization</a></h3>
 <div class="paragraph">
@@ -412,7 +403,12 @@ logic and might require some iteration to get just right.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">purchase_stats = """
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+purchase_stats = """
 {
     time: Purchase.purchase_time,
     entity: Purchase.customer_id,
@@ -446,7 +442,12 @@ for your user. An optional search string can filter the response set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">materialization.list_materializations("Purchase")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+materialization.list_materializations("Purchase")</code></pre>
 </div>
 </div>
 </div>
@@ -457,7 +458,12 @@ for your user. An optional search string can filter the response set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">materialization.get_materialization("PurchaseStats")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+materialization.get_materialization("PurchaseStats")</code></pre>
 </div>
 </div>
 </div>
@@ -476,7 +482,12 @@ new expression.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">materialization.delete_materialization("PurchaseStats")</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+materialization.delete_materialization("PurchaseStats")</code></pre>
 </div>
 </div>
 <div class="paragraph">

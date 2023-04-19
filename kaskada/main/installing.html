@@ -359,11 +359,11 @@ If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code>
 <div class="paragraph">
 <p>Kaskada is now installed. Kaskada can be used locally by creating a local session.</p>
 </div>
-<div class="listingblock python">
+<div class="listingblock">
 <div class="title">Listing 2. Creating a local Kaskada session in Python</div>
 <div class="content">
-<pre>from kaskada.api.session import LocalBuilder
-session = LocalBuilder().build()</pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.session import LocalBuilder
+session = LocalBuilder().build()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -387,7 +387,7 @@ We need to enable these customizations first before we can use them.</p>
 <div class="listingblock">
 <div class="title">Listing 3. Enable fenlmagic in this notebook</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">%load_ext fenlmagic</code></pre>
+<pre class="highlightjs highlight"><code class="language-ipython hljs" data-lang="ipython">%load_ext fenlmagic</code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -438,20 +438,20 @@ filter can be applied per query. To apply a filter to a query, use the
 Kaskada module method: <code>set_default_slice</code>.</p>
 </div>
 <div class="paragraph">
-<p>Here is an example of setting the slice filter:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># entity_filter is created in the example above
-kda.set_default_slice(entity_filter)</code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p>After setting the slice, all subsequent queries will utilize the slice
 filter on the same session.</p>
 </div>
 <div class="sect2">
 <h3 id="ipython-jupyter-extension"><a class="anchor" href="#ipython-jupyter-extension"></a><a class="link" href="#ipython-jupyter-extension">IPython (Jupyter) Extension</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.slice_filters import EntityPercentFilter
+
+filter_percentage = 12.34
+entity_filter = EntityPercentFilter(filter_percentage)
+kda.set_default_slice(entity_filter)</code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ipython hljs" data-lang="ipython">%%fenl
@@ -469,6 +469,14 @@ filter on the same session.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import compute
+from kaskada.api.session import LocalBuilder
+from kaskada.slice_filters import EntityPercentFilter
+
+session = LocalBuilder().build()
+
+filter_percentage = 12.34
+entity_filter = EntityPercentFilter(filter_percentage)
+kda.set_default_slice(entity_filter)
 
 query = '''
 {
