@@ -355,7 +355,7 @@ Open a terminal in your OS (command line prompt on Windows) and check the output
 <div class="listingblock">
 <div class="title">Listing 1. Verifying Kaskada prerequisites. The output shown here is from an Ubuntu system&#8212;&#8203;the output on your machine may vary.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ python --version
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ python --version
 Python 3.10.6
 
 
@@ -385,7 +385,7 @@ Open a terminal in your OS and using <code>pip</code> install the Kaskada Python
 <div class="listingblock">
 <div class="title">Listing 2. Installing Kaskada using pip</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pip install kaskada</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install kaskada</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -431,7 +431,7 @@ Subsequent installs and upgrades are generally faster.</p>
 <div class="listingblock">
 <div class="title">Listing 3. Start a Jupyter notebook.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">jupyter notebook</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">jupyter notebook</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -608,7 +608,7 @@ session = LocalBuilder().build()
 
 # A sample Parquet file provided by Kaskada for testing
 # Available at https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk
-purchases_path = "file:///absolute/path/to/purchases.parquet"
+purchases_path = "/absolute/path/to/purchases.parquet"
 
 # Upload the files's contents to the Purchase table (which was created in the previous step)
 table.load(table_name = "Purchase", file = purchases_path)</code></pre>

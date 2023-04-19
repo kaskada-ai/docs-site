@@ -358,7 +358,7 @@ The example commands below will download the latest Kaskada binaries and applies
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -s https://api.github.com/repos/kaskada-ai/kaskada/releases/latest |\
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s https://api.github.com/repos/kaskada-ai/kaskada/releases/latest |\
 grep "browser_download_url.*" |\
 grep $(uname -m | sed 's/x86_64/amd64/') |\
 grep $(uname -s | tr '[:upper:]' '[:lower:]') |\
@@ -385,7 +385,7 @@ You can remove the block placed on the file when it was downloaded with the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
 </div>
 </div>
 </td>
@@ -397,7 +397,7 @@ You can remove the block placed on the file when it was downloaded with the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
 ./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
 </div>
 </div>
@@ -422,7 +422,7 @@ This is normal, and indicates the services are working as expected - the API all
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli sync export --all</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli sync export --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -430,7 +430,7 @@ This is normal, and indicates the services are working as expected - the API all
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">10:18AM INF starting export
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">10:18AM INF starting export
 {}
 10:18AM INF Success!</code></pre>
 </div>
@@ -499,7 +499,7 @@ This value is used to order rows associated with the same time value.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli sync apply -f spec.yaml
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli sync apply -f spec.yaml
 
 # &gt; 2:18PM INF starting plan
 # &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
@@ -549,7 +549,7 @@ section of the "Tables"</a> page.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Download a file to load and save it to path 'purchase.parquet'
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Download a file to load and save it to path 'purchase.parquet'
 curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk" -o purchase.parquet
 
 # Load the file into the Purchase table (which was created in the previous step)
@@ -582,7 +582,7 @@ query will return all of the columns and rows contained in a table:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 Purchase
 EOS</code></pre>
 </div>
@@ -629,7 +629,7 @@ This makes it easier to see how a single entity changes over time.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 Purchase | when(Purchase.customer_id == "patrick")
 EOS</code></pre>
 </div>
@@ -640,7 +640,7 @@ aggregations over your data such as the <code>max()</code> function:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 {
    max_purchase: Purchase.amount | max(),
 } | when(Purchase.customer_id == "patrick")
@@ -688,7 +688,7 @@ results in time:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli query run --stdout --response-as csv &lt;&lt;EOS
 {
     time: Purchase.purchase_time,
     entity: Purchase.customer_id,

@@ -337,7 +337,7 @@
 <div class="listingblock">
 <div class="title">Listing 1. Installing Kaskada using pip</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">pip install kaskada</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install kaskada</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -455,7 +455,7 @@ This example assumes you have installed <code>curl</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">VERSION=0.4.1
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">VERSION=0.4.1
 ARCH=$(uname -m | awk '{print tolower($0)}')
 OS=$(uname -s | awk '{print tolower($0)}')
 
@@ -481,7 +481,7 @@ You can remove the block placed on the file when it was downloaded with the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
 </div>
 </div>
 </td>
@@ -494,7 +494,7 @@ To verify they&#8217;re installed correctly and executable, try running the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-cli -h</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli -h</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -502,7 +502,7 @@ To verify they&#8217;re installed correctly and executable, try running the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">A CLI tool for interacting with the Kaskada API
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">A CLI tool for interacting with the Kaskada API
 
 Usage:
   cli [command]
@@ -528,7 +528,7 @@ Flags:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
 ./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
 </div>
 </div>
