@@ -104,6 +104,13 @@
             </svg>
           </a>
         </div>
+        
+       <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+       </div>
+
       </div>
     </div>
   </nav>
@@ -157,5 +164,8 @@ If you typed the URL of this page manually, please double check that you entered
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 <script src="/docs-site/_/js/vendor/fenl.min.js"></script>
 <script>hljs.highlightAll();</script>
+<script src="/docs-site/_/js/vendor/lunr.js"></script>
+<script src="/docs-site/_/js/search-ui.js" id="search-ui-script" data-site-root-path="/docs-site" data-snippet-length="250" data-stylesheet="/docs-site/_/css/search.css"></script>
+<script async src="/docs-site/search-index.js"></script>
   </body>
 </html>
