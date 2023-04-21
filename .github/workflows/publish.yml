@@ -34,7 +34,7 @@ jobs:
       - name: Generate Site
         env:
           GIT_CREDENTIALS: ${{ secrets.GIT_CREDENTIALS }}
-        run: npx antora antora-playbook.yml
+        run: npx antora --log-failure-level=warn antora-playbook.yml --stacktrace
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
