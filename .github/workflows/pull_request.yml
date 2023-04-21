@@ -2,6 +2,10 @@ name: PR
 on:
   pull_request:
     branches: [main]
+    
+  # Allow manual triggering of this workflow
+  workflow_dispatch:
+
 
 # In cases of concurrent workflows running (consecutive pushes to PR)
 # leave the latest workflow and cancel the other (older) workflows
