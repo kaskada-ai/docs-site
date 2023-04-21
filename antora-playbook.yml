@@ -28,6 +28,11 @@ asciidoc:
 
 ui:
   bundle:
-    url:  https://github.com/kaskada-ai/docs-ui/releases/latest/download/ui-bundle.zip
+    url: https://github.com/kaskada-ai/docs-ui/releases/latest/download/ui-bundle.zip
     snapshot: true
   supplemental_files: ./supplemental-ui
+
+antora:
+  extensions:
+    - require: "@antora/lunr-extension"
+      snippet_length: 250
