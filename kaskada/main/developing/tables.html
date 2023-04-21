@@ -9,6 +9,7 @@
     <link rel="next" href="queries.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
+    <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
 <link rel="shortcut icon" type="image/svg" href="/assets/images/favicon.svg">
     <script>var uiRootPath = '../../../_'</script>
   </head>
@@ -348,7 +349,7 @@ each row is a value of the same type.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="managing-tables-with-python"><a class="anchor" href="#managing-tables-with-python"></a><a class="link" href="#managing-tables-with-python">Managing tables with Python</a></h2>
+<h2 id="managing-tables"><a class="anchor" href="#managing-tables"></a><a class="link" href="#managing-tables">Managing tables</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
@@ -394,6 +395,7 @@ If no subsort column is provided, Kaskada will generate one.</p>
 <p>Here is an example of creating a table:</p>
 </div>
 <div class="listingblock">
+<div class="title">Listing 1. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -443,6 +445,7 @@ optional search string can filter the results.</p>
 <p>Here is an example of listing tables:</p>
 </div>
 <div class="listingblock">
+<div class="title">Listing 2. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -459,6 +462,7 @@ table.list_tables()</code></pre>
 <p>You can get a table using its name:</p>
 </div>
 <div class="listingblock">
+<div class="title">Listing 3. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -482,6 +486,7 @@ and then re-creating it with a new expression.</p>
 <p>You can delete a table using its name:</p>
 </div>
 <div class="listingblock">
+<div class="title">Listing 4. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -489,6 +494,12 @@ from kaskada.api.session import LocalBuilder
 session = LocalBuilder().build()
 
 table.delete_table(table = "Purchase")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 5. with the CLI:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli table delete -t Purchase</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -527,7 +538,7 @@ table.delete_table(table = "Purchase", force = True)</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="managing-tables-with-the-cli"><a class="anchor" href="#managing-tables-with-the-cli"></a><a class="link" href="#managing-tables-with-the-cli">Managing tables with the CLI</a></h2>
+<h2 id="managing-tables-with-the-cli-and-spec-files"><a class="anchor" href="#managing-tables-with-the-cli-and-spec-files"></a><a class="link" href="#managing-tables-with-the-cli-and-spec-files">Managing tables with the CLI and Spec files</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The CLI manages Kaskada resources declaratively by managing spec files.
@@ -539,7 +550,7 @@ A spec file is a YAML file describing a set of Kaskada resources, for examples t
 <p>The CLI uses a "declarative" API - rather than modifying resources directly you describe the desired state of Kaskada, and the <code>kaskada-cli sync</code> command makes whatever changes are needed to achieve this state.
 To create a table, add the table&#8217;s description to your spec file and run <code>kaskada-cli sync apply</code>.
 To update a table, change the table&#8217;s description in your spec file and run <code>kaskada-cli sync apply</code>.
-It is not currently possible to delete a table using the CLI.</p>
+To delete a table, see <a href="#reference:cli.adoc#deleting-a-table" class="xref unresolved">Deleting a table</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -704,7 +715,9 @@ You can see these changes by creating an apply plan.</p>
   © 2023 Kaskada Project Authors | Kaskada is an open source project and all
   source code is distributed under the Apache v2.0 license
 </footer>
-<script src="../../../_/js/site.js"></script>
+
+<!-- could not get this to work in the footer-scripts.hbs partial -->
+<script async src="../../../_/js/vendor/tabs.js"></script><script src="../../../_/js/site.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 <script src="../../../_/js/vendor/fenl.min.js"></script>
