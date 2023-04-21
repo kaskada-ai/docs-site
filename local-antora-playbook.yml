@@ -15,6 +15,7 @@ asciidoc:
   extensions:
     - ./lib/generate_stream_viz.js
     - asciidoctor-kroki
+    - '@asciidoctor/tabs'
   attributes:
     kroki-fetch-diagram: true
     page-pagination: ""
