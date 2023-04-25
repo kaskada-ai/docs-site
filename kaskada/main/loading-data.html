@@ -539,7 +539,9 @@ See <a href="#reference:expected-file-format">Expected File Format</a> for detai
 <p>This loads the contents of the file to the Purchases table.</p>
 </div>
 <div class="paragraph">
-<p>The result of running <code>load()</code> is a <code>data_token_id`</code>. The data token ID is a unique reference to the data currently stored in the system.</p>
+<p>The result of running <code>load</code> is a <code>data_token_id</code>.
+The data token ID is a unique reference to the data currently stored in the system.
+Data tokens enable repeatable queries: queries performed against the same data token always run on the same input data.</p>
 </div>
 <div class="listingblock">
 <div class="content">

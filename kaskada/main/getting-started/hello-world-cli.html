@@ -457,31 +457,31 @@ A spec file is a YAML file describing a set of Kaskada resources, for examples t
 The first step is to create a spec file containing the table&#8217;s definition.</p>
 </div>
 <div class="paragraph">
-<p>When creating a table, you must provide some information about how each
-row should be interpreted. You must describe:</p>
+<p>Every table is associated with a schema which defines the structure of each event in the table.
+Schemas are inferred from the data you load into a table, however, some columns are required by Kaskada&#8217;s data model.
+Every table must include a column identifying the <a href="../fenl/temporal-aggregation.html" class="xref page">time</a> and <a href="../fenl/entities.html" class="xref page">entity</a> associated with each row.</p>
+</div>
+<div class="paragraph">
+<p>When creating a table, you must tell Kaskada which columns contain the time and entity of each row:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A field containing the time associated with each event
-(<code>time_column_name</code>). The time should refer to when the event occurred.</p>
+<p>The <a href="../fenl/temporal-aggregation.html" class="xref page">time</a> column is specified using the <code>time_column_name</code> parameter.
+This parameter must identify a column name in the table&#8217;s data which contains time values.
+The time should refer to when the event occurred.</p>
 </li>
 <li>
-<p>An initial <a href="../fenl/entities.html" class="xref page">entity</a> key associated with each row
-(<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
-world that each event is associated with. Don&#8217;t worry too much about
-picking the "right" value here - it&#8217;s easy to change the entity key in
-Fenl.</p>
-</li>
-<li>
-<p>An (optional) subsort column associated with each event (<code>subsort_column_name</code>).
-This value is used to order rows associated with the same time value.</p>
+<p>The <a href="../fenl/entities.html" class="xref page">entity</a> key is specified using the <code>entity_key_column_name</code> parameter.
+This parameter must identify a column name in the table&#8217;s data which contains the entity key value.
+The entity key should identify a <em>thing</em> in the world that each event is associated with.
+Don&#8217;t worry too much about picking the "right" value - it&#8217;s easy to change the entity using the <a href="../fenl/catalog.html#with-key" class="xref page"><code>with_key()</code></a> function.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For more information about these fields, see:
-<a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
+<p>For more information about configuring tables, see <a href="../developing/tables.html#creating-a-table" class="xref page">developing:tables.adoc#creating-a-table</a>.
+For more information about the expected structure of input files, see <a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 1. spec.yaml</div>

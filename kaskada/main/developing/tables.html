@@ -354,42 +354,47 @@ each row is a value of the same type.</p>
 <div class="sect2">
 <h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
 <div class="paragraph">
-<p>When creating a table, you must provide information about how each row
-should be interpreted. You must describe:</p>
+<p>Every table is associated with a schema which defines the structure of each event in the table.
+Schemas are inferred from the data you load into a table, however, some columns are required by Kaskada&#8217;s data model.
+Every table must include a column identifying the <a href="../fenl/temporal-aggregation.html" class="xref page">time</a> and <a href="../fenl/entities.html" class="xref page">entity</a> associated with each row.</p>
+</div>
+<div class="paragraph">
+<p>When creating a table, you must tell Kaskada which columns contain the time and entity of each row:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The name of a column in your data that contains the time of each row
-(<code>time_column_name</code>). The time should refer to when the event occurred.</p>
+<p>The <a href="../fenl/temporal-aggregation.html" class="xref page">time</a> column is specified using the <code>time_column_name</code> parameter.
+This parameter must identify a column name in the table&#8217;s data which contains time values.
+The time should refer to when the event occurred.</p>
 </li>
 <li>
-<p>The name of a column in your data that contains the <a href="../fenl/entities.html" class="xref page">entity</a> key of each row
-(<code>entity_key_column_name</code>). The entity should identify a <em>thing</em> in the
-world that each event is associated with. Don&#8217;t worry too much about
-picking the "right" value here - it&#8217;s easy to change the entity key in
-Fenl.</p>
+<p>The <a href="../fenl/entities.html" class="xref page">entity</a> key is specified using the <code>entity_key_column_name</code> parameter.
+This parameter must identify a column name in the table&#8217;s data which contains the entity key value.
+The entity key should identify a <em>thing</em> in the world that each event is associated with.
+Don&#8217;t worry too much about picking the "right" value - it&#8217;s easy to change the entity using the <a href="../fenl/catalog.html#with-key" class="xref page"><code>with_key()</code></a> function.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Optionally:</p>
+<p>You may additionally configure the table&#8217;s behavior by specifying the following parameters:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>An subsort column associated with each row (<code>subsort_column_name</code>).
+<p>An subsort column associated with each row is specified using the <code>subsort_column_name</code> parameter.
 This value is used to order rows associated with the same time value.
 If no subsort column is provided, Kaskada will generate one.</p>
 </li>
 <li>
-<p>A name describing the type of entity, for example "User" or "Purchase".</p>
+<p>The type of entity is specified using the <code>grouping_id</code> parameter.
+The grouping ID specifies what kind of entity each event is associated with, for example "User" or "Purchase".
+When combining events from different tables, events with the same entity key and grouping ID are treated as being part of the same entity.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For more information about these fields, see:
-<a href="#reference:expected-file-format">Expected File Format</a></p>
+<p>For more information about the expected structure of input files, see <a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
 </div>
 <div class="paragraph">
 <p>Here is an example of creating a table:</p>
