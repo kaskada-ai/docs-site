@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>What Is Kaskada? :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/overview/what-is-kaskada.html">
-    <link rel="next" href="faq.html">
+    <title>Engine and manager logs :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/troubleshooting/logs.html">
+    <link rel="prev" href="../fenl/working-with-records.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
@@ -110,7 +110,7 @@
         
        <div class="navbar-item navbar-item-lower-case search hide-for-print">
         <div id="search-field" class="field">
-          <input id="search-input" type="text" placeholder="Search the docs" autofocus>
+          <input id="search-input" type="text" placeholder="Search the docs">
         </div>
        </div>
 
@@ -124,7 +124,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="what-is-kaskada.html">Kaskada Documentation</a></h3>
+    <h3 class="title"><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -132,11 +132,11 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Overview</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="what-is-kaskada.html">What Is Kaskada?</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../overview/what-is-kaskada.html">What Is Kaskada?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="faq.html">Frequently Asked Questions</a>
+    <a class="nav-link" href="../overview/faq.html">Frequently Asked Questions</a>
   </li>
 </ul>
   </li>
@@ -304,8 +304,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Troubleshooting</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../troubleshooting/logs.html">Engine and manager logs</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="logs.html">Engine and manager logs</a>
   </li>
 </ul>
   </li>
@@ -321,10 +321,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="what-is-kaskada.html">Kaskada Documentation</a>
+      <a class="title" href="../overview/what-is-kaskada.html">Kaskada Documentation</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="what-is-kaskada.html">main</a>
+          <a href="../overview/what-is-kaskada.html">main</a>
         </li>
       </ul>
     </li>
@@ -336,335 +336,71 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="what-is-kaskada.html" class="home-link is-current"></a>
+  <a href="../overview/what-is-kaskada.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="what-is-kaskada.html">Kaskada Documentation</a></li>
-    <li>Overview</li>
-    <li><a href="what-is-kaskada.html">What Is Kaskada?</a></li>
+    <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
+    <li>Troubleshooting</li>
+    <li><a href="logs.html">Engine and manager logs</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/overview/pages/what-is-kaskada.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/troubleshooting/pages/logs.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">What Is Kaskada?</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Engine and manager logs</h1>
 <div class="paragraph">
-<p>Understanding and reacting to the world in real-time requires understanding what is happening <em>now</em> in the context of what happened in the past.
-You need the ability to understand if what just happened is unusual, how it relates to what happened previously, and how it relates to other things that are happening at the same time.</p>
-</div>
-<div class="paragraph">
-<p>Getting to this type of contextual real-time insight has historically been difficult, as it required bringing together incompatible tools designed for either bulk or streaming applications. Recent stream-processing frameworks make it easier to work across streams and bulk data sources, but force you to pick one: either you get the power of a low-level API or the convenience of a high-level query language.</p>
+<p>The Kaskada engine and manager generate logs that can be used to troubleshoot issues with the Kaskada system.
+These logs contain valuable information about the state of the system and can be used to diagnose issues.
+Including relevant segments from the logs when you open an issue can greatly help others troubleshoot your problem.</p>
 </div>
 <div class="paragraph">
-<p>Kaskada provides a single, high-level, declarative query language. The power and convenience of Kaskada&#8217;s query language come from the fact that it&#8217;s built from a new abstraction: the timeline. Timelines give you the declarative transformations and aggregations of SQL without losing the ability to reason about temporal context, time travel, sequencing, timeseries, etc. Any query can be used, unchanged, in either batch or streaming mode.</p>
+<p>Log files are located in the user&#8217;s home folder <code>~/.cache/kaskada/logs</code>.
+Each time the engine and/or manager is started, a new folder is created with a UUID as the folder name.
+Inside this folder you should be able to find 2 logs per application the standard output log and the standard error log.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="what-are-timelines"><a class="anchor" href="#what-are-timelines"></a><a class="link" href="#what-are-timelines">What are Timelines?</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Having the right tool makes every job easier: different data-processing jobs benefit from different ways of thinking. Tables are useful for inter-related records, graphs are useful for thinking about networks - Kaskada was designed for thinking about changes over time, and is built on the idea of a timeline.</p>
+<p>Here is an example with 2 folders from two separate runs of the engine and manager.</p>
 </div>
-<div class="imageblock">
+<div class="literalblock">
 <div class="content">
-<img src="_images/my-location.svg" alt="my location">
+<pre>/home/therapon/.cache/kaskada/logs
+├── 1ed25c9e-8914-4527-92a9-9ee716a59847
+│   ├── engine_stderr.txt
+│   ├── engine_stdout.txt
+│   ├── manager_stderr.txt
+│   └── manager_stdout.txt
+└── ff16bd01-5d19-4da2-b645-a959868ac681
+    ├── engine_stderr.txt
+    ├── engine_stdout.txt
+    ├── manager_stderr.txt
+    └── manager_stdout.txt</pre>
 </div>
-<div class="title">Figure 1. Where I was at various times</div>
 </div>
 <div class="paragraph">
-<p>A timeline describes how a value changes over time. In the same way that SQL queries transform tables and graph queries transform nodes and edges, Kaskada queries transforms timelines. In comparison to a timeseries which is defined at fixed, periodic times (i.e., every minute), a timeline is defined at arbitrary times.</p>
+<p>The standard output log contains the output of the application (info, warn etc.) and the standard error log contains any errors that occurred during the run.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Timelines simplify reasoning about time, change, and behavior. Timelines support SQL’s aggregations but extend them with sequential operations typically provided by complex event processing (CEP) systems.</p>
+<p>On Unix systems the <code>tail</code> command is very convenient for viewing the last few lines of multiple files at a time.
+For example, to view new lines of the standard output logs for the engine and manager you can run the following command from the logs folder:
+<code>tail -f engine_stdout.txt manager_stdout.txt</code></p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="current-challenges"><a class="anchor" href="#current-challenges"></a><a class="link" href="#current-challenges">Current Challenges</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s imagine you have two tables containing different kinds of events. One table contains an event for each time a user visits your web page:</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-even fit-content">
-<caption class="title">Table 1. Pageview table</caption>
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">user</th>
-<th class="tableblock halign-left valign-top">path</th>
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8:20</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/index.html</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9:45</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/products.html</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2:10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/product/1923.html</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8:52</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/checkout.html</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11:03</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bob</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">index.html</p></td>
-</tr>
-</tbody>
 </table>
-<div class="paragraph">
-<p>Another table contains an event for each time a user makes a purchase:</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-even fit-content">
-<caption class="title">Table 2. Purchase table</caption>
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">user</th>
-<th class="tableblock halign-left valign-top">amount</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7:02</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$3.99</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10:47</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$5.00</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>We can do a lot with these tables with SQL - we can transform, filter, and aggregate them.
-But what if we want to answer questions that depend on time and order? We might want to know how a result changes over time, or aggregate over time-based groups, or detect when a condition is first met.</p>
-</div>
-<div class="paragraph">
-<p>Many of these things are <em>possible</em> with SQL, but they&#8217;re not always simple and/or easy. Reasoning about time using abstractions designed for tables forces you to carefully reflect temporal logic in your query code, for example to see how a simple sum changes over time you might write:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">SELECT sum(amount) OVER (PARTITION BY customer_id ORDER BY timestamp)
-FROM Purchase</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This uses a slightly arcane (and inconsistently supported) feature of SQL, windowed aggregations.
-Queries like this can get complex and unreadable quickly, because the abstractions do not easily facilitate these types of queries.</p>
-</div>
-<div class="paragraph">
-<p>For example, if you wanted to know how many times each user had visited your website since the last time they purchased something, you&#8217;d need to write something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">WITH last_purchase AS(
-    SELECT user_id, max(timestamp) FROM purchase GROUP BY user_id
-)
-
-SELECT user_id, count(*)
-FROM pageview
-JOIN last_purchase ON pageview.user_id = last_purchase.user_id
-WHERE pageview.timestamp &gt; last_purchase.timestamp
-GROUP BY user_id</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you wanted to know how that value has changed over time you&#8217;d need to re-write the query from scratch, and the result would be too long to show in this quick introduction.</p>
-</div>
-<div class="paragraph">
-<p>Many time and sequence related questions end up being surprisingly hard to answer with SQL. This is where the notion of timelines can make your life much easier.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="the-solution-offered-by-timelines"><a class="anchor" href="#the-solution-offered-by-timelines"></a><a class="link" href="#the-solution-offered-by-timelines">The solution offered by timelines</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Rather than thinking of each event as a row in a table, we can think of it as a point along a timeline.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/purchase.svg" alt="purchase">
-</div>
-</div>
-<div class="paragraph">
-<p>Kaskada provides many ways of transforming timelines, for example we can compute the simple sum we saw earlier:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Purchase.amount | sum()</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/purchase-sum.svg" alt="purchase sum">
-</div>
-</div>
-<div class="paragraph">
-<p>Aggregating a timeline produces a <em>new</em> timeline - rather than computing a single answer, the timeline describes how the result of the aggregation changes over time.</p>
-</div>
-<div class="paragraph">
-<p>Since the value of a timeline is specific to a point in time, we can easily describe aggregations in a temporal context.
-See how easy it is to describe the earlier example of counting page views since the last purchase:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Pageview
-| count(since(Purchase))</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/pageview-since-purchase.svg" alt="pageview since purchase">
-</div>
-</div>
-<div class="paragraph">
-<p>This timeline describes the result of a query at every point in time, so we can easily observe its value at specific points in time without making any changes to the query:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Pageview
-| count(since(Purchase))
-| when(daily())</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/daily-pageview-since-purchase.svg" alt="daily pageview since purchase">
-</div>
-</div>
-<div class="paragraph">
-<p>Taking this a step further, we can re-aggregate the previous result. Here we compute the average of each day&#8217;s pageview-since-purchase count:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Pageview
-| count(since(Purchase))
-| when(daily())
-| mean()</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/mean-daily-pageview-since-purchase.svg" alt="mean daily pageview since purchase">
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, we&#8217;re not limited to only thinking about a single point in time.
-By shifting timelines relative to each other we can easily describe how values change over time, for example how the previous result has changed hour-over-hour:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let daily_average = Pageview
-| count(since(Purchase))
-| when(daily())
-| mean()
-
-in daily_average - (daily_average | shift_by(hours(1)))</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/wow.svg" alt="wow">
-</div>
-</div>
-<div class="paragraph">
-<p>Writing these simple-seeming queries over timelines with SQL queries over tables would have been <em>much</em> harder, more verbose, and less maintainable due to the lack of alignment between the problem and the abstractions used to solve the problem.
-Aligning our mental model with the problem being solved makes reasoning about time and behavior much easier.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="the-shift-away-from-technology-specific-solutions"><a class="anchor" href="#the-shift-away-from-technology-specific-solutions"></a><a class="link" href="#the-shift-away-from-technology-specific-solutions">The shift away from technology-specific solutions</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A big reason for the power and persistence of SQL is that it&#8217;s a declarative language - you write what you want, not how to compute it.
-This allows you to focus on understanding your data, without having to think about query implementation details.</p>
-</div>
-<div class="paragraph">
-<p>Unfortunately, the rise of stream-based data processing has forced developers to spend a lot of time thinking about implementation details.
-SQL queries written against OLAP offline data stores often aren&#8217;t supported by streaming data processors.
-While some real-time systems support "streaming SQL", streams and tables are very different things and much of the power of stream processing is lost in translation.</p>
-</div>
-<div class="paragraph">
-<p>How a computation is described shouldn&#8217;t depend on where events are stored - streaming vs batch is an implementation detail.
-By building Kaskada&#8217;s query language on timelines, it brings the abstractions of streaming to bulk storage, rather than the other way around.</p>
-</div>
-<div class="paragraph">
-<p>Kaskada allows developers to focus on solving problems with event data by raising the abstraction level used to describe queries.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="why-kaskada"><a class="anchor" href="#why-kaskada"></a><a class="link" href="#why-kaskada">Why Kaskada?</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Kaskada was built to be performant and easy to use and operate.</p>
-</div>
-<div class="paragraph">
-<p>We chose to build Kaskada in Rust because of it&#8217;s performance, safety, lack of garbage collection and support for columnar data formats.
-The implementation leverages Apache Arrow for event processing and takes advantage of modern CPU optimizations like SIMD, branch prediction, and caching.</p>
-</div>
-<div class="paragraph">
-<p>Computation is implemented as a single, chronological pass over the input events, so you can compute over datasets that are significantly larger than available memory.
-Internally, events are stored on disk as Parquet files.
-We find that most computations are bottlenecked on I/O, so using an efficient columnar file format lets us selectively read the columns and row ranges needed to produce a result.</p>
-</div>
-<div class="paragraph">
-<p>The result is a modern event processing engine that installs in seconds without any external dependencies and computes quickly and efficiently.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a><a class="link" href="#next-steps">Next Steps</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To get started, you can follow one of our "Hello World" examples.
-These examples will guide you through installing Kaskada and making your first query.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Hello world <a href="../getting-started/hello-world-jupyter.html" class="xref page">using Python Jupyter</a></p>
-</li>
-<li>
-<p>Hello world <a href="../getting-started/hello-world-cli.html" class="xref page">using the command line</a></p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="faq.html">Frequently Asked Questions</a></span>
+  <span class="prev"><a href="../fenl/working-with-records.html">Working with Records</a></span>
 </nav>
 </article>
   </div>
