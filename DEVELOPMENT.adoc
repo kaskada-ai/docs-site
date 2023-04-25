@@ -27,7 +27,7 @@ For local setup this repository provides the file `local-antora-playbook.yml` th
 [,shell]
 ----
 > cd docs-workspace
-> git clone git@github.com:kaskada-ai/kaskada.git
+> git clone git@github.com:kaskada-ai/docs-site.git
 > git clone git@github.com:kaskada-ai/kaskada.git
 > git clone git@github.com:kaskada-ai/docs-ui.git
 ----
