@@ -583,8 +583,23 @@ Queries for final results return the latest result for each entity at the specif
 By default, historical results are returned.
 To return final results, you must configure the <code>final-results</code> behavior:</p>
 </div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-jupyter" class="tab">
+<p>Jupyter</p>
+</li>
+<li id="tabs-1-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-1-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-jupyter--panel" class="tabpanel" aria-labelledby="tabs-1-jupyter">
 <div class="listingblock">
-<div class="title">Listing 1. Final queries with fenlmagic</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --result-behavior final-results
 {
@@ -595,8 +610,9 @@ To return final results, you must configure the <code>final-results</code> behav
 }</code></pre>
 </div>
 </div>
+</div>
+<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
 <div class="listingblock">
-<div class="title">Listing 2. Final queries with Python</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import compute
 
@@ -610,10 +626,25 @@ query = """{
 resp = query.create_query(expression=query, result_behavior="final-results")</code></pre>
 </div>
 </div>
+</div>
+<div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
 <div class="listingblock">
-<div class="title">Listing 3. Final queries in the CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl"># query.txt
+{
+  time: Purchase.purchase_time,
+  entity: Purchase.customer_id,
+  max_amount: last(Purchase.amount) | max(),
+  min_amount: Purchase.amount | min()
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.txt | kaskada-cli query run --result-behavior final-results</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

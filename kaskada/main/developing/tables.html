@@ -408,8 +408,17 @@ When combining events from different tables, events with the same entity key and
 <div class="paragraph">
 <p>Here is an example of creating a table:</p>
 </div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-python" class="tab">
+<p>Python</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
 <div class="listingblock">
-<div class="title">Listing 1. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -424,6 +433,9 @@ table.create_table(
   # The name of a column in your data that contains the entity key associated with each row
   entity_key_column_name = "customer_id",
 )</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -458,8 +470,18 @@ optional search string can filter the results.</p>
 <div class="paragraph">
 <p>Here is an example of listing tables:</p>
 </div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-2-python" class="tab">
+<p>Python</p>
+</li>
+</ul>
+</div>
+<div id="tabs-2-python--panel" class="tabpanel" aria-labelledby="tabs-2-python">
 <div class="listingblock">
-<div class="title">Listing 2. with Python:</div>
+<div class="title">Listing 1. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -470,13 +492,26 @@ table.list_tables()</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="get-table"><a class="anchor" href="#get-table"></a><a class="link" href="#get-table">Get Table</a></h3>
 <div class="paragraph">
 <p>You can get a table using its name:</p>
 </div>
+<div id="tabs-3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-3-python" class="tab">
+<p>Python</p>
+</li>
+</ul>
+</div>
+<div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
 <div class="listingblock">
-<div class="title">Listing 3. with Python:</div>
+<div class="title">Listing 2. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -484,6 +519,9 @@ from kaskada.api.session import LocalBuilder
 session = LocalBuilder().build()
 
 table.get_table(table = "Purchase")</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -499,8 +537,21 @@ and then re-creating it with a new expression.</p>
 <div class="paragraph">
 <p>You can delete a table using its name:</p>
 </div>
+<div id="tabs-4" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-4-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-4-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-4-python--panel" class="tabpanel" aria-labelledby="tabs-4-python">
 <div class="listingblock">
-<div class="title">Listing 4. with Python:</div>
+<div class="title">Listing 3. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -510,10 +561,15 @@ session = LocalBuilder().build()
 table.delete_table(table = "Purchase")</code></pre>
 </div>
 </div>
+</div>
+<div id="tabs-4-cli--panel" class="tabpanel" aria-labelledby="tabs-4-cli">
 <div class="listingblock">
-<div class="title">Listing 5. with the CLI:</div>
+<div class="title">Listing 4. with the CLI:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli table delete -t Purchase</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table delete -t Purchase</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -538,6 +594,19 @@ delete the table forcefully. Forcefully deleting a table without
 deleting the dependent resources may result in the dependent resources
 functioning incorrectly.</p>
 </div>
+<div id="tabs-5" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-5-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-5-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-5-python--panel" class="tabpanel" aria-labelledby="tabs-5-python">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
@@ -549,10 +618,21 @@ table.delete_table(table = "Purchase", force = True)</code></pre>
 </div>
 </div>
 </div>
+<div id="tabs-5-cli--panel" class="tabpanel" aria-labelledby="tabs-5-cli">
+<div class="listingblock">
+<div class="title">Listing 5. with the CLI:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table delete -t Purchase --force</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="managing-tables-with-the-cli-and-spec-files"><a class="anchor" href="#managing-tables-with-the-cli-and-spec-files"></a><a class="link" href="#managing-tables-with-the-cli-and-spec-files">Managing tables with the CLI and Spec files</a></h2>
+<h2 id="managing-tables-declaratively-with-spec-files"><a class="anchor" href="#managing-tables-declaratively-with-spec-files"></a><a class="link" href="#managing-tables-declaratively-with-spec-files">Managing tables declaratively with Spec files</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The CLI manages Kaskada resources declaratively by managing spec files.

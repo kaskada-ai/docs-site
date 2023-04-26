@@ -369,11 +369,6 @@ The <a href="developing/tables.html" class="xref page">Tables</a> section of the
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="file-format"><a class="anchor" href="#file-format"></a><a class="link" href="#file-format">File Format</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Any data loaded into a table must include all columns used in the table definition.
 The full schema of a table is inferred from the data loaded into it.
@@ -385,7 +380,7 @@ At the moment, all data loaded into a table must have the same schema.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>time_column</code> (and all other date-time columns in your dataset)
+<p>The time column (and all other date-time columns in your dataset)
 should be a type that can be <a href="fenl/data-model.html#type-coercion" class="xref page">cast</a> to a <a href="fenl/data-model.html#scalars" class="xref page">timestamp</a>, for example an integer or RFC3330-formatted string.</p>
 </li>
 <li>
@@ -393,14 +388,20 @@ should be a type that can be <a href="fenl/data-model.html#type-coercion" class=
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="loading-data-from-parquet-files-into-a-table"><a class="anchor" href="#loading-data-from-parquet-files-into-a-table"></a><a class="link" href="#loading-data-from-parquet-files-into-a-table">Loading data from Parquet files into a table</a></h3>
-<div class="paragraph">
-<p>Events stored as a Parquet file can be loaded into a table by providing the file&#8217;s <a href="#File Location">location</a>.
-The given location must be accessible to the Kaskada instance you wish to load the file into.</p>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-1-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
 </div>
+<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
 <div class="listingblock">
-<div class="title">Listing 1. Loading a Parquet file using Python</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -413,8 +414,9 @@ table.load(
 )</code></pre>
 </div>
 </div>
+</div>
+<div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
 <div class="listingblock">
-<div class="title">Listing 2. Loading a Parquet file using the CLI</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
     --table Purchase \
@@ -423,19 +425,109 @@ table.load(
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="loading-data-from-csv-files-into-a-table"><a class="anchor" href="#loading-data-from-csv-files-into-a-table"></a><a class="link" href="#loading-data-from-csv-files-into-a-table">Loading data from CSV files into a table</a></h3>
-<div class="paragraph">
-<p>Events stored as a CSV file can be loaded into a table by providing the file&#8217;s <a href="#File Location">location</a>.
-The given location must be accessible to the Kaskada instance you wish to load the file into.
-CSV files must include a header row, which is used to infer the file&#8217;s schema.</p>
+</div>
 </div>
 <div class="paragraph">
-<p>CSV type inference occurs when data is loaded.
-The schema is inferred by reading the first 1000 rows.</p>
+<p>The result of loading data is a <code>data_token_id</code>.
+The data token ID is a unique reference to the data currently stored in Kaskada.
+Data tokens enable repeatable queries: queries performed against the same data token always run on the same input data.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. Loading a CSV file using Python</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">data_token_id: "aa2***a6b9"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="supported-formats"><a class="anchor" href="#supported-formats"></a><a class="link" href="#supported-formats">Supported Formats</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="parquet"><a class="anchor" href="#parquet"></a><a class="link" href="#parquet">Parquet</a></h3>
+<div class="paragraph">
+<p>Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval.
+Parquet is a good choice for large numbers of events.</p>
+</div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-2-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-2-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-2-python--panel" class="tabpanel" aria-labelledby="tabs-2-python">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.load(
+  table_name = "Purchase",
+  file = "/path/to/file.parquet",
+)</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Python library infers a file&#8217;s format from the extension of the file&#8217;s path.
+Parquet file names must end in <code>.parquet</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="tabs-2-cli--panel" class="tabpanel" aria-labelledby="tabs-2-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
+    --table Purchase \
+    --file-path file:///path/to/file.parquet \
+    --file-type parquet</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="csv"><a class="anchor" href="#csv"></a><a class="link" href="#csv">CSV</a></h3>
+<div class="paragraph">
+<p>A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.
+Each line of the file is a data record.</p>
+</div>
+<div class="paragraph">
+<p>CSV files must include a header row, which is used to infer the file&#8217;s schema.
+CSV type inference occurs when data is loaded.
+The schema is inferred by reading the first 1000 rows.</p>
+</div>
+<div id="tabs-3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-3-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-3-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -448,13 +540,32 @@ table.load(
 )</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Python library infers a file&#8217;s format from the extension of the file&#8217;s path.
+CSV file names must end in <code>.csv</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="tabs-3-cli--panel" class="tabpanel" aria-labelledby="tabs-3-cli">
 <div class="listingblock">
-<div class="title">Listing 4. Loading a CSV file using the CLI</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
     --table Purchase \
     --file-path file:///path/to/file.csv \
     --file-type csv</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -509,80 +620,6 @@ Credentials are configured using environment variables.</p>
 <p><code>AWS_ALLOW_HTTP</code>: Set to “true” to permit HTTP connections without TLS</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="loading-data-into-a-table-with-python"><a class="anchor" href="#loading-data-into-a-table-with-python"></a><a class="link" href="#loading-data-into-a-table-with-python">Loading data into a table with Python</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Data can be loaded into a table using the <code>table.load()</code> function</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-fullPathToFile = "/content/drive/place/thing/purchases.parquet"
-table.load(table_name = "Purchases", file = fullPathToFile)</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">Required format</div>
-The files must be in a specific format.
-See <a href="#reference:expected-file-format">Expected File Format</a> for details.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>This loads the contents of the file to the Purchases table.</p>
-</div>
-<div class="paragraph">
-<p>The result of running <code>load</code> is a <code>data_token_id</code>.
-The data token ID is a unique reference to the data currently stored in the system.
-Data tokens enable repeatable queries: queries performed against the same data token always run on the same input data.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">data_token_id: "aa2***a6b9"</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="loading-data-into-a-table-with-the-cli"><a class="anchor" href="#loading-data-into-a-table-with-the-cli"></a><a class="link" href="#loading-data-into-a-table-with-the-cli">Loading data into a table with the CLI</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Files can be loaded into a table using the CLI.
-When loading files with the CLI, the given path must be local to the Kaskada service.</p>
-</div>
-<div class="paragraph">
-<p>The file must be encoded as either CSV or Parquet.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
-  --table Purchase \
-  --file-type csv \
-  --file-path file://path/to/purchases.csv</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The result of running <code>cli load</code> is a <code>data_token_id`</code>. The data token ID is a unique reference to the data currently stored in the system.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">data_token_id: "aa2***a6b9"</code></pre>
 </div>
 </div>
 </div>
