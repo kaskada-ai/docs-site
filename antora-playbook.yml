@@ -3,6 +3,8 @@ site:
   start_page: kaskada::index.adoc
   robots: allow
   url: https://kaskada-ai.github.io/docs-site/
+  keys:
+    google_analytics: "G-HR9E2E6TG4"
 content:
   sources:
     - url: https://github.com/kaskada-ai/kaskada.git
