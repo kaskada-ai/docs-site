@@ -1,0 +1,109 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" height="292" width="800">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata&amp;display=swap');
+
+    circle.continuous {
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    circle.discrete {
+      fill: white;
+      stroke-width: 4;
+    }
+
+    circle.background {
+      fill: white;
+    }
+
+    line.baseline {
+      stroke: #b6b9be;
+      stroke-width: 1;
+    }
+
+    line.lead {
+      stroke-width: 1;
+      stroke-dasharray: 3,3;
+    }
+    line.continuous.lead {
+      stroke-dasharray: 6,3;
+    }
+
+    line.continuous {
+      stroke-width: 4;
+    }
+
+    polyline.window {
+      stroke: #FF323C;
+      stroke-width: 2;
+    }
+
+    text.label {
+      font: 1em Inconsolata;
+      text-anchor: start;
+      dominant-baseline: hanging;
+    }
+
+    text.data {
+      fill: black;
+      font: 1em Inconsolata;
+      text-anchor: middle;
+    }
+  </style>
+
+  <defs>
+    <marker id="closed" markerWidth="6" markerHeight="6" refX="3" refY="3">
+      <circle cx="3" cy="3" r="2" fill="#FF323C" stroke="none"/>
+    </marker>
+    <marker id="open" markerWidth="6" markerHeight="6" refX="3" refY="3">
+      <circle cx="3" cy="3" r="2" stroke="#FF323C" stroke-width="1" fill="white" />
+    </marker>
+  </defs>
+  <text class="axis" x="400" y="242">time →</text>
+  <g transform="translate(0, 50)">
+    <line class="baseline lead" x1="50" x2="80" y1="0" y2="0"/>
+    <line class="baseline" x1="80" x2="720" y1="0" y2="0"/>
+    <line class="continuous" stroke="#ff323c" x1="80" x2="720" y1="0" y2="0"/>
+                <line class="continuous lead" stroke="#ff323c" x1="720" x2="750" y1="0" y2="0"/>
+              <circle cx="80" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <circle cx="160" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="120" y="-8">5</text>
+    <circle cx="520" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="340" y="-8">7</text>
+    <circle cx="720" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="620" y="-8">20</text>
+    <text class="data" x="735" y="-8">24</text>
+    <text class="label" x="50" y="22">Purchase.amount | sum()</text>
+  </g>
+  <g transform="translate(0, 114)">
+    <line class="baseline lead" x1="50" x2="80" y1="0" y2="0"/>
+    <line class="baseline" x1="80" x2="720" y1="0" y2="0"/>
+    <line class="continuous" stroke="#ff323c" x1="160" x2="720" y1="0" y2="0"/>
+                <line class="continuous lead" stroke="#ff323c" x1="720" x2="750" y1="0" y2="0"/>
+              <circle cx="160" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <circle cx="600" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="380" y="-8">5</text>
+    <circle cx="720" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="660" y="-8">3</text>
+    <text class="data" x="735" y="-8">3</text>
+    <text class="label" x="50" y="22">Review.stars | mean()</text>
+  </g>
+  <g transform="translate(0, 178)">
+    <line class="baseline lead" x1="50" x2="80" y1="0" y2="0"/>
+    <line class="baseline" x1="80" x2="720" y1="0" y2="0"/>
+    <line class="continuous" stroke="#ff323c" x1="80" x2="720" y1="0" y2="0"/>
+                <line class="continuous lead" stroke="#ff323c" x1="720" x2="750" y1="0" y2="0"/>
+              <circle cx="80" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <circle cx="160" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="120" y="-8">null</text>
+    <circle cx="520" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="340" y="-8">12</text>
+    <circle cx="600" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="560" y="-8">25</text>
+    <circle cx="720" cy="0" fill="#ff323c" class="continuous" r="6"/>
+    <text class="data" x="660" y="-8">23</text>
+    <text class="data" x="735" y="-8">27</text>
+    <text class="label" x="50" y="22">sum(Purchase.amount) + mean(Review.stars)</text>
+  </g>
+</svg>
