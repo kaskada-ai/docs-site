@@ -260,34 +260,28 @@
     <span class="nav-text">Query Syntax (Fenl)</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fenl/fenl-quick-start.html">Fenl Quick Start</a>
+    <a class="nav-link" href="fenl/fenl-quick-start.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="fenl/language-guide.html">Fenl Language Guide</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="fenl/data-model.html">Data model</a>
+    <a class="nav-link" href="fenl/data-model.html">Data Model</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="fenl/syntax.html">Syntax</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="fenl/entities.html">Entities</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="fenl/temporal-aggregation.html">Temporal Computation</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="fenl/continuity.html">Continuity</a>
-  </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl/entities.html">Enities</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fenl/catalog.html">Fenl Catalog</a>
+    <a class="nav-link" href="fenl/temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl/continuity.html">Continuity</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fenl/catalog.html">Function Catalog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="fenl/fenl-faq.html">Fenl FAQ</a>
@@ -352,11 +346,40 @@
 </aside>
 <article class="doc">
 <h1 class="page">Installing Kaskada</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kaskada is an event-processing engine comprised of two main components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>kaskada-engine</code> component is a stateful compute engine for transforming event data.</p>
+</li>
+<li>
+<p>The <code>kaskada-manager</code> is an (optionally) stateful API for communicating with clients</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="using-kaskada-with-python"><a class="anchor" href="#using-kaskada-with-python"></a><a class="link" href="#using-kaskada-with-python">Using Kaskada with Python</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>To use Kaskada with Python you&#8217;ll need to have Python version 3.6 or above installed.
+Once you have Python installed ensure that you can run it.
+Open a terminal in your OS (command line prompt on Windows) and check the output of the following commands</p>
+</div>
 <div class="listingblock">
-<div class="title">Listing 1. Installing Kaskada using pip</div>
+<div class="title">Listing 1. Verifying Kaskada prerequisites. The output on your machine may vary.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python --version
+# Python 3.10.6</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 2. Installing Kaskada using pip</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install kaskada</code></pre>
 </div>
@@ -381,14 +404,31 @@ If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code>
 <p>Kaskada is now installed. Kaskada can be used locally by creating a local session.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. Creating a local Kaskada session in Python</div>
+<div class="title">Listing 3. Creating a local Kaskada session in Python</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.session import LocalBuilder
 session = LocalBuilder().build()</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Creating a local session will download and run the Kaskada service, and configure the client to use the local endpoint.</p>
+<p>Creating a local session will download and run the Kaskada service as a non-persistent Python subprocess.
+To connect to an existing Kaskada process, initialize the client with the appropriate endpoint.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 4. Creating a remote Kaskada session in Python</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import client
+client.init(
+  # The host and port of the Kaskada manager API.
+  endpoint = "localhost:50051",
+
+  # If true, TLS encryption will be required for the API connection.
+  is_secure = False,
+
+  # An (optional) string identifying the client.
+  client_id = "python-client"
+)</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -402,11 +442,52 @@ extensions" for customizing how code blocks are interpreted. Kaskada
 provides a magic extension that simplifies querying Kaskada.</p>
 </div>
 <div class="paragraph">
+<p>To use Kaskada within a Jupyter notebook you&#8217;ll need to have the following pieces of software installed</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://realpython.com/installing-python/">Python</a> (version 3.6 and above)</p>
+</li>
+<li>
+<p><a href="https://docs.jupyter.org/en/latest/install/notebook-classic.html">Jupyter</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once you have both prerequisites installed ensure that you can run them.
+Open a terminal in your OS (command line prompt on Windows) and check the output of the following commands</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 5. Verifying Kaskada prerequisites. The output shown here is from an Ubuntu system&#8212;&#8203;the output on your machine may vary.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python --version
+# Python 3.10.6
+
+
+jupyter --version
+# Selected Jupyter core packages...
+# IPython          : 7.34.0
+# ipykernel        : 6.17.0
+# bipywidgets       : 8.0.2
+# jupyter_client   : 7.4.4
+# jupyter_core     : 4.11.2
+# jupyter_server   : 1.21.0
+# jupyterlab       : 3.6.1
+# nbclient         : 0.7.0
+# nbconvert        : 7.2.3
+# nbformat         : 5.7.0
+# notebook         : 6.5.2
+# qtconsole        : 5.3.2
+# traitlets        : 5.5.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>Kaskada&#8217;s python library includes notebook customizations that allow us to write queries in the Fenl language but also receive and render the results of our queries in our notebooks.
 We need to enable these customizations first before we can use them.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. Enable fenlmagic in this notebook</div>
+<div class="title">Listing 6. Enable fenlmagic in this notebook</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ipython hljs" data-lang="ipython">%load_ext fenlmagic</code></pre>
 </div>
@@ -476,16 +557,37 @@ This example assumes you have installed <code>curl</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">VERSION=0.4.1
-ARCH=$(uname -m | awk '{print tolower($0)}')
-OS=$(uname -s | awk '{print tolower($0)}')
-
-curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-cli-$OS-$ARCH" -o kaskada-cli
-curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-engine-$OS-$ARCH" -o kaskada-engine
-curl -L "https://github.com/kaskada-ai/kaskada/releases/download/engine%40v$VERSION/kaskada-manager-$OS-$ARCH" -o kaskada-manager
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s https://api.github.com/repos/kaskada-ai/kaskada/releases/latest |\
+grep "browser_download_url.*" |\
+grep $(uname -m | sed 's/x86_64/amd64/') |\
+grep $(uname -s | tr '[:upper:]' '[:lower:]') |\
+cut -d ':' -f2,3 |\
+tr -d \" |\
+xargs -I {} sh -c 'curl -L {} -o $(basename {}| cut -d '-' -f1,2)'
 
 chmod +x kaskada-*</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>To simplify running the Kaskada components you can move them to a directory in your path.
+First, print a colon-separated list of the directories in your <code>PATH</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo PATH</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Move the Kaskada binaries to one of the listed locations.
+This command assumes that the binaries are currently in your working directory and that your <code>PATH`</code> includes <code>/usr/local/bin</code>, but you can customize it if your locations are different.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mv kaskada-* /usr/local/bin/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information about adding binaries to your path, see <a href="https://stackoverflow.com/questions/14637979/how-to-permanently-set-path-on-linux-unix">this StackOverflow article</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -515,7 +617,7 @@ To verify they&#8217;re installed correctly and executable, try running the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli -h</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli -h</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -523,7 +625,7 @@ To verify they&#8217;re installed correctly and executable, try running the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">A CLI tool for interacting with the Kaskada API
+<pre class="highlightjs highlight"><code class="language-none hljs">A CLI tool for interacting with the Kaskada API
 
 Usage:
   cli [command]
@@ -549,8 +651,8 @@ Flags:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
-./kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-manager 2&gt;&amp;1 &gt; manager.log 2&gt;&amp;1 &amp;
+kaskada-engine serve &gt; engine.log 2&gt;&amp;1 &amp;</code></pre>
 </div>
 </div>
 </div>

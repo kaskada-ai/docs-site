@@ -260,34 +260,28 @@
     <span class="nav-text">Query Syntax (Fenl)</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../fenl/fenl-quick-start.html">Fenl Quick Start</a>
+    <a class="nav-link" href="../fenl/fenl-quick-start.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../fenl/language-guide.html">Fenl Language Guide</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/data-model.html">Data model</a>
+    <a class="nav-link" href="../fenl/data-model.html">Data Model</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../fenl/syntax.html">Syntax</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/entities.html">Entities</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
-  </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/entities.html">Enities</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../fenl/catalog.html">Fenl Catalog</a>
+    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/catalog.html">Function Catalog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../fenl/fenl-faq.html">Fenl FAQ</a>
@@ -367,9 +361,6 @@ To learn more about Fenl:</p>
 <ul>
 <li>
 <p>The <a href="../fenl/fenl-quick-start.html" class="xref page">Quick Start</a> is an overview of the query language.</p>
-</li>
-<li>
-<p>The <a href="../fenl/language-guide.html" class="xref page">Language Guide</a> explains the design and theory behind the languge.</p>
 </li>
 <li>
 <p>The <a href="../fenl/catalog.html" class="xref page">Function Catalog</a> documents the operations and functions provided by Fenl.</p>
@@ -620,9 +611,7 @@ resp = query.create_query(expression=query, result_behavior="final-results")</co
 <div class="listingblock">
 <div class="title">Listing 3. Final queries in the CLI</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli query run --result-behavior final-results &lt;&lt;EOS
-Purchase
-EOS</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.txt | kaskada-cli query run --result-behavior final-results</code></pre>
 </div>
 </div>
 </div>

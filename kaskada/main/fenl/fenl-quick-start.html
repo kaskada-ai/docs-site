@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fenl Quick Start :: Kaskada Docs</title>
+    <title>Introduction :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/fenl/fenl-quick-start.html">
     <link rel="prev" href="../tools-and-resources/exporting-for-training.html">
-    <link rel="next" href="language-guide.html">
+    <link rel="next" href="data-model.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
@@ -260,34 +260,28 @@
     <span class="nav-text">Query Syntax (Fenl)</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="fenl-quick-start.html">Fenl Quick Start</a>
+    <a class="nav-link" href="fenl-quick-start.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="language-guide.html">Fenl Language Guide</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-model.html">Data model</a>
+    <a class="nav-link" href="data-model.html">Data Model</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="syntax.html">Syntax</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="entities.html">Entities</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="temporal-aggregation.html">Temporal Computation</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="aggregation-and-windowing.html">Aggregation and Windowing</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="continuity.html">Continuity</a>
-  </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="entities.html">Enities</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="catalog.html">Fenl Catalog</a>
+    <a class="nav-link" href="temporal-aggregation.html">Temporal Computation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="aggregation-and-windowing.html">Aggregation and Windowing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="continuity.html">Continuity</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="catalog.html">Function Catalog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="fenl-faq.html">Fenl FAQ</a>
@@ -342,7 +336,7 @@
   <ul>
     <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Query Syntax (Fenl)</li>
-    <li><a href="fenl-quick-start.html">Fenl Quick Start</a></li>
+    <li><a href="fenl-quick-start.html">Introduction</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/fenl/pages/fenl-quick-start.adoc">Edit this Page</a></div>
@@ -352,12 +346,53 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Fenl Quick Start</h1>
-<div id="preamble">
+<h1 class="page">Introduction</h1>
+<div class="sect1">
+<h2 id="what-is-fenl"><a class="anchor" href="#what-is-fenl"></a><a class="link" href="#what-is-fenl">What is Fenl?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s walk through an example of using Fenl to build features for a
-simple fraud detection model.</p>
+<p>Fenl is a declarative query language for feature engineering. It allows
+you to focus on declaring <em>what</em> you want computed, rather than <em>how</em> it
+should be computed. Because Fenl is focused on the <em>what</em>, expressions
+are easy to combine and re-use.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-is-fenl-different"><a class="anchor" href="#how-is-fenl-different"></a><a class="link" href="#how-is-fenl-different">How is Fenl Different?</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Computations in Fenl are <em>temporal</em>: they produce a time-series of
+values describing the full history of a computation&#8217;s results. Temporal
+computation allows Fenl to capture what an expression&#8217;s value would have
+been at arbitrary times in the past.</p>
+</div>
+<div class="paragraph">
+<p>Fenl values can <em>time-travel</em> forward through time. Time travel allows
+combining the result of different computations at different points in
+time. Because values can only travel forward in time, Fenl prevents
+information about the future from "leaking" into the past.</p>
+</div>
+<div class="paragraph">
+<p>As a query language, Fenl is focused on <em>succinctly</em> expressing the most
+common operations used in feature engineering. Fenl makes it easy to
+read and write feature definitions by providing intuitive syntax for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Temporal lookups</p>
+</li>
+<li>
+<p>Chained operations</p>
+</li>
+<li>
+<p>Named expressions</p>
+</li>
+<li>
+<p>Reading &amp; constructing structured values</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1316,7 +1351,7 @@ information to the model.</p>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="../tools-and-resources/exporting-for-training.html">Example Modeling Problem</a></span>
-  <span class="next"><a href="language-guide.html">Fenl Language Guide</a></span>
+  <span class="next"><a href="data-model.html">Data Model</a></span>
 </nav>
 </article>
   </div>
