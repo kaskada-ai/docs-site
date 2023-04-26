@@ -2,8 +2,6 @@ site:
   title: LOCAL Kaskada Docs
   start_page: kaskada::index.adoc
   robots: allow
-  keys:
-    google_analytics: "G-HR9E2E6TG4"
   # url: <TBD>
 content:
   sources:
