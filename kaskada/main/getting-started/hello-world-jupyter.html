@@ -445,6 +445,13 @@ Subsequent installs and upgrades are generally faster.</p>
 </tr>
 </table>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Read more about installing Kaskada in <a href="../installing.html" class="xref page">Installing</a></p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Now that we have everything installed let&#8217;s fire up a notebook and get the remaining components of Kaskada installed.</p>
 </div>
@@ -483,6 +490,13 @@ This is the first time we are running the builder on this machine.
 The builder will download (if needed) the latest release of Kaskada&#8217;s components from GitHub and then run these components on your local machine.
 The command will generate some output during the download, install and run process.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Read more about connecting to Kaskada in <a href="../installing.html#using-kaskada-with-python" class="xref page">Installing</a></p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Let&#8217;s now create a small table and write a simple query to see that everything is working correctly with our setup.</p>
 </div>
@@ -517,7 +531,8 @@ The special string <code>%%fenl</code> will also connect to the Kaskada componen
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kaskada stores data in <em>tables</em>. Tables consist of multiple rows, and
-each row is a value of the same type.</p>
+each row is a value of the same type.
+When querying Kaskada, the contents of a table are interpreted as a <a href="../fenl/continuity.html" class="xref page">discrete timeline</a>: the value associated with each event corresponds to a value in the timeline.</p>
 </div>
 <div class="sect2">
 <h3 id="creating-a-table"><a class="anchor" href="#creating-a-table"></a><a class="link" href="#creating-a-table">Creating a Table</a></h3>
@@ -544,9 +559,15 @@ Don&#8217;t worry too much about picking the "right" value - it&#8217;s easy to 
 </li>
 </ul>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
-<p>For more information about configuring tables, see <a href="../developing/tables.html#creating-a-table" class="xref page">developing:tables.adoc#creating-a-table</a>.
-For more information about the expected structure of input files, see <a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
+<p>⭢ Read more about configuring tables in <a href="../developing/tables.html" class="xref page">Tables</a></p>
+</div>
+<div class="paragraph">
+<p>⭢ Read more about the expected structure of input files in <a href="../loading-data.html#file-format" class="xref page">Expected File Format</a></p>
+</div>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -565,28 +586,9 @@ table.create_table(
 )</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
-must have a timestamp field named <code>purchase_time</code>, a field named
-<code>customer_id</code>, and a field named <code>subsort_id</code>.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">Idiomatic Kaskada</div>
-<div class="paragraph">
-<p>We like to use CamelCase to name tables because it
-helps distinguish data sources from transformed values and function
-names.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<details>
+<summary class="title">Show result</summary>
+<div class="content">
 <div class="paragraph">
 <p>The response from the <code>create_table</code> is a <code>table</code> object with contents
 similar to:</p>
@@ -614,6 +616,30 @@ request_details {
 </div>
 </div>
 </div>
+</details>
+<div class="paragraph">
+<p>This creates a table named <code>Purchase</code>. Any data loaded into this table
+must have a timestamp field named <code>purchase_time</code>, a field named
+<code>customer_id</code>, and a field named <code>subsort_id</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Idiomatic Kaskada</div>
+<div class="paragraph">
+<p>We like to use CamelCase to name tables because it
+helps distinguish data sources from transformed values and function
+names.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect2">
 <h3 id="loading-data"><a class="anchor" href="#loading-data"></a><a class="link" href="#loading-data">Loading Data</a></h3>
 <div class="paragraph">
@@ -635,10 +661,14 @@ request_details {
 </div>
 <div class="paragraph">
 <p>Data can be loaded into a table in multiple ways. In this example we&#8217;ll
-load the contents of a Parquet file into the table. To learn about
-the different ways data can be loaded into a table, see the
-<a href="../loading-data.html" class="xref page">Loading Data</a>
-section of the docs.</p>
+load the contents of a Parquet file into the table.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢  Read more about the different ways to load data in <a href="../loading-data.html" class="xref page">Loading Data</a></p>
+</div>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -655,6 +685,9 @@ purchases_path = "/absolute/path/to/purchases.parquet"
 table.load(table_name = "Purchase", file = purchases_path)</code></pre>
 </div>
 </div>
+<details>
+<summary class="title">Show result</summary>
+<div class="content">
 <div class="paragraph">
 <p>The result of running <code>load</code> is a <code>data_token_id</code>.
 The data token ID is a unique reference to the data currently stored in the system.
@@ -668,6 +701,8 @@ request_details {
 }</code></pre>
 </div>
 </div>
+</div>
+</details>
 <div class="paragraph">
 <p>The file is transferred to Kaskada and it&#8217;s content added to the table.</p>
 </div>
@@ -678,14 +713,27 @@ request_details {
 <h2 id="querying-data"><a class="anchor" href="#querying-data"></a><a class="link" href="#querying-data">Querying Data</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="writing-queries"><a class="anchor" href="#writing-queries"></a><a class="link" href="#writing-queries">Writing Queries</a></h3>
+<h3 id="enabling-the-kaskada-magic-command"><a class="anchor" href="#enabling-the-kaskada-magic-command"></a><a class="link" href="#enabling-the-kaskada-magic-command">Enabling the Kaskada "magic" command</a></h3>
 <div class="paragraph">
-<p>You can write queries in a number of ways with Kaskada. Here we start
-with fenlmagic because these queries are not persistent. As you are
-iterating in Jupyter it can be helpful to build up your feature and time
-selection as you go, once you&#8217;d like to persist a query, check out our
-article on sharing queries with <a href="../developing/views.html" class="xref page">Views</a>.</p>
+<p>Kaskada’s client includes notebook customizations that allow us to write queries in the Fenl language but also receive and render the results of our queries in our notebooks.
+We need to enable these customizations first before we can use them.</p>
 </div>
+<div class="paragraph">
+<p>So in a new code cell input the following command and run this cell.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 5. Enable fenlmagic in this notebook</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-IPython hljs" data-lang="IPython">%load_ext fenlmagic</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can start a code cell in our notebook with the first line being the string <code>%%fenl</code> to indicate that this cell will contain code in the Fenl language.
+The special string <code>%%fenl</code> will also connect to the Kaskada components that we installed that will execute the query and report back any results to our notebook.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="writing-queries"><a class="anchor" href="#writing-queries"></a><a class="link" href="#writing-queries">Writing Queries</a></h3>
 <div class="paragraph">
 <p>You can make Fenl queries by prefixing a query block with <code>%%fenl</code>. The
 query results will be computed and returned as a Pandas dataframe. The
@@ -693,7 +741,7 @@ query content starts on the next line and includes the rest of the code
 block&#8217;s contents.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s start by looking at the Purchase table without any filters, this
+<p>Let&#8217;s start by looking at the <code>Purchase</code> table without any filters, this
 query will return all of the columns and rows contained in a table:</p>
 </div>
 <div class="listingblock">
@@ -750,25 +798,38 @@ in { hourly_big_purchases, purchases_in_last_day: purchases_now - purchases_yest
 })</code></pre>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
-<p>For more information about writing queries, see <a href="../developing/queries.html" class="xref page">Reference -
-Queries</a></p>
+<p>⭢  Read more about writing queries in <a href="../developing/queries.html" class="xref page">Queries</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring-queries"><a class="anchor" href="#configuring-queries"></a><a class="link" href="#configuring-queries">Configuring queries</a></h3>
+<h3 id="configuring-query-execution"><a class="anchor" href="#configuring-query-execution"></a><a class="link" href="#configuring-query-execution">Configuring query execution</a></h3>
 <div class="paragraph">
 <p>A given query can be computed in different ways.
 You can configure how a query is executed by providing flags to the <code>%%fenl</code> block.</p>
 </div>
 <div class="sect3">
-<h4 id="changing-how-the-result-timeline-is-converted-to-a-table"><a class="anchor" href="#changing-how-the-result-timeline-is-converted-to-a-table"></a><a class="link" href="#changing-how-the-result-timeline-is-converted-to-a-table">Changing how the result timeline is converted to a table</a></h4>
+<h4 id="changing-how-the-result-timeline-is-output"><a class="anchor" href="#changing-how-the-result-timeline-is-output"></a><a class="link" href="#changing-how-the-result-timeline-is-output">Changing how the result timeline is output</a></h4>
 <div class="paragraph">
-<p>You can either return a table describing each change in the timeline, or a table describing the "final" value of the timeline.
-By default, queries return each change in the timeline.</p>
+<p>When you make a query, the resulting timeline is interpreted in one of two ways: as a history or as a snapshot.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A timeline <strong>History</strong> generates a value each time the timeline changes, and each row is associated with a different entity and point in time.</p>
+</li>
+<li>
+<p>A timeline <strong>Snapshot</strong> generates a value for each entity at the same point in time; each row is associated with a different entity, but all rows are associated with the same time.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>You can change the results to only include the final values:</p>
+<p>By default, timelines are output as histories.
+You can output a timeline as a snapshot by setting the <code>--result-behavior</code> fenlmagic argument to <code>final-results</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -828,9 +889,40 @@ query_result.dataframe
 query_result.expression</code></pre>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
-<p>For more information about configuring queries, see <a href="../developing/queries.html#configuring-how-queries-are-computed" class="xref page">Reference -
-Configuring Queries</a></p>
+<p>⭢
+Read more about configuring queries in <a href="../developing/queries.html#configuring-how-queries-are-computed" class="xref page">Configuring Queries</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion"><a class="anchor" href="#conclusion"></a><a class="link" href="#conclusion">Conclusion</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congratulations, you&#8217;ve begun processing events with Kaskada!</p>
+</div>
+<div class="paragraph">
+<p>Where you go now is up to you</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢  Read about Kaskada&#8217;s query language in <a href="../fenl/fenl-quick-start.html" class="xref page">Query Syntax &gt; Introduction</a></p>
+</div>
+<div class="paragraph">
+<p>⭢  Read about real-time ML in <a href="../tools-and-resources/training-realtime-ml-models.html" class="xref page">Training real-time ML models</a></p>
+</div>
+<div class="paragraph">
+<p>⭢  Explore some code samples in <a href="https://github.com/kaskada-ai/kaskada/tree/main/examples">the examples directory (Github)</a></p>
+</div>
+<div class="paragraph">
+<p>⭢  Check out the source code on <a href="https://github.com/kaskada-ai/kaskada">Github</a></p>
 </div>
 </div>
 </div>
