@@ -174,16 +174,16 @@
     <span class="nav-text">Examples</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Kaskada%20Demo%20for%20Event%20Processing%20and%20Time-centric%20Calculations.ipynb">Overview Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Kaskada%20Demo%20for%20Event%20Processing%20and%20Time-centric%20Calculations.ipynb">Overview ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/ML_example.ipynb">Real-time ML Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/ML_example.ipynb">Real-time ML ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Customer_Retention_(OSS).ipynb">Customer Retention Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Customer_Retention_(OSS).ipynb">Customer Retention ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/pulsar-materialize/notebooks/Materialize_to_Pulsar.ipynb">Materializing to Pulsar Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/pulsar-materialize/notebooks/Materialize_to_Pulsar.ipynb">Materializing to Pulsar ↪</a>
   </li>
 </ul>
   </li>
@@ -209,6 +209,12 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../developing/materializations.html">Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://kaskada.readthedocs.io/en/latest/autoapi/kaskada/index.html">Python client ↪</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://buf.build/kaskada/kaskada">Protobuf API ↪</a>
   </li>
 </ul>
   </li>
@@ -628,7 +634,7 @@ article on sharing queries with <a href="../developing/views.html" class="xref p
 Begin by creating a text file with the following query:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. query.txt</div>
+<div class="title">Listing 2. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">Purchase</code></pre>
 </div>
@@ -639,7 +645,7 @@ Run it by sending the query to <code>kaskada-cli query run</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.txt | ./kaskada-cli query run --stdout --response-as csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | ./kaskada-cli query run --stdout --response-as csv</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -680,7 +686,7 @@ CSV is a good format for writing results to STDOUT because it&#8217;s relatively
 This makes it easier to see how a single entity changes over time.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. query.txt</div>
+<div class="title">Listing 3. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">Purchase | when(Purchase.customer_id == "patrick")</code></pre>
 </div>
@@ -692,7 +698,7 @@ Execute the query using the CLI as before.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.txt | kaskada-cli query run --stdout --response-as csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | kaskada-cli query run --stdout --response-as csv</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -700,7 +706,7 @@ Execute the query using the CLI as before.</p>
 aggregations over your data such as the <code>max()</code> function:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 4. query.txt</div>
+<div class="title">Listing 4. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">{ max_purchase: Purchase.amount | max() }
 | when(Purchase.customer_id == "patrick")</code></pre>
@@ -713,7 +719,7 @@ Execute the query using the CLI as before.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.txt | kaskada-cli query run --stdout --response-as csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | kaskada-cli query run --stdout --response-as csv</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -756,7 +762,7 @@ the time and the entity with each query so that you can walk through the
 results in time:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 5. query.txt</div>
+<div class="title">Listing 5. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">{
     time: Purchase.purchase_time,
@@ -772,7 +778,7 @@ Execute the query using the CLI as before.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.txt | kaskada-cli query run --stdout --response-as csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | kaskada-cli query run --stdout --response-as csv</code></pre>
 </div>
 </div>
 <div class="paragraph">

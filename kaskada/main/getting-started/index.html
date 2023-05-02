@@ -174,16 +174,16 @@
     <span class="nav-text">Examples</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Kaskada%20Demo%20for%20Event%20Processing%20and%20Time-centric%20Calculations.ipynb">Overview Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Kaskada%20Demo%20for%20Event%20Processing%20and%20Time-centric%20Calculations.ipynb">Overview ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/ML_example.ipynb">Real-time ML Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/ML_example.ipynb">Real-time ML ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Customer_Retention_(OSS).ipynb">Customer Retention Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/Customer_Retention_(OSS).ipynb">Customer Retention ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/pulsar-materialize/notebooks/Materialize_to_Pulsar.ipynb">Materializing to Pulsar Notebook</a>
+    <a class="nav-link" href="https://github.com/kaskada-ai/kaskada/blob/main/examples/pulsar-materialize/notebooks/Materialize_to_Pulsar.ipynb">Materializing to Pulsar ↪</a>
   </li>
 </ul>
   </li>
@@ -209,6 +209,12 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../developing/materializations.html">Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://kaskada.readthedocs.io/en/latest/autoapi/kaskada/index.html">Python client ↪</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://buf.build/kaskada/kaskada">Protobuf API ↪</a>
   </li>
 </ul>
   </li>
@@ -348,24 +354,203 @@
 </aside>
 <article class="doc">
 <h1 class="page">Getting Started</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Kaskada&#8217;s query language <a href="../overview/what-is-kaskada.html" class="xref page">focuses on event-based data processing</a> making it easier to reason about when things happen, the state at specific points in time, and how results change over time.
-Kaskada queries are simple, declarative and composable providing a more expressive way to query event-based data.</p>
+<p>Kaskada is a unified event processing engine that provides stateful stream processing in a high-level query language designed specifically for reasoning about events in bulk and in real time.</p>
 </div>
 <div class="paragraph">
-<p>There are several ways to quickly get started with Kaskada.</p>
+<p>This document will show you how to quickly get started using Kaskada.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before jumping in to writing queries in Kaskada, it&#8217;s a good idea to take a minute understanding "how to think with Kaskada".
+Kaskada is built on timelines - a simple, powerful abstraction that may be different than what you&#8217;re accustomed to.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;d prefer to jump right in, scroll down to the <a href="#quick-starts">Quick-starts</a> section</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thinking-with-kaskadas-timelines"><a class="anchor" href="#thinking-with-kaskadas-timelines"></a><a class="link" href="#thinking-with-kaskadas-timelines">Thinking with Kaskada&#8217;s timelines</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kaskada is built on the idea of a <em>timeline</em> - the history of how a value changes over time for a specific entity or group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/basic-sum.svg" alt="basic sum">
+</div>
+<div class="title">Figure 1. Aggregating events as a timeline</div>
+</div>
+<div class="paragraph">
+<p>Timelines allow you to reason about temporal context, time travel, sequencing, time-series, and more.
+They allow simple, composable, declarative queries over events.
+Transforming and combining timelines allows you to intuitively express computations over events.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Read more about timelines in <a href="../overview/what-is-kaskada.html" class="xref page">What Is Kaskada?</a></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>With Kaskada, it&#8217;s timelines all the way down - every operation&#8217;s inputs and outputs are timelines.
+The timeline is a flexible abstraction that can be used in different ways depending on your needs.
+In some cases, you may want to know what the timeline&#8217;s value is at a specific point in time, in other cases you may want to know how the timeline&#8217;s value changes over time.</p>
+</div>
+<div class="paragraph">
+<p>When making a query, you configure how to use the query&#8217;s output timeline: you can use the timeline as either a <em>history</em> or as a <em>snapshot</em>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="hello-world-jupyter.html" class="xref page">Hello World (Jupyter)</a>: How to get up and running with Kaskada inside a Jupyter notebook running locally.
-This quick tutorial will help you install and run Kaskada from within a Jupyter notebook, load some sample data into Kaskada, use Kaskada queries and Python within Jupyter to explore that data.</p>
+<p>A timeline <strong>History</strong> contains a value each time the timeline changes, and each row describes a different entity at a different point in time.</p>
 </li>
 <li>
-<p><a href="hello-world-cli.html" class="xref page">Hello World (CLI)</a>: How to execute queries from the command line using the Kaskada CLI.
-This quick tutorial will help you install and run Kaskada from the command line, load some sample data into Kaskada, and use Kaskada queries to explore that data all on the command line.</p>
+<p>A timeline <strong>Snapshot</strong> contains a value for each entity at the <em>same</em> point in time; each row is associated with a different entity, but all rows reflect the same point in time.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>This output may be written in different ways&#8201;&#8212;&#8201;for example, they may be written to a Parquet file or sent as events to a stream.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Read more about converting to tables in <a href="../developing/queries.html#configuring-how-queries-are-computed" class="xref page">Queries</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kaskadas-basic-architecture"><a class="anchor" href="#kaskadas-basic-architecture"></a><a class="link" href="#kaskadas-basic-architecture">Kaskada&#8217;s basic architecture</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kaskada is implemented as a standalone service with two main components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>engine</strong> is a stateless compute engine for transforming event data.</p>
+</li>
+<li>
+<p>The <strong>manager</strong> is an (optionally) stateful API for communicating with clients.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These components are distributed as standalone, precompiled binaries.
+The Kaskada service is accessed using a gRPC API, and multiple clients exist.
+You can access the API using the provided Python client or using the CLI binary.
+Kaskada can be configured to run as a remote service or as a local process.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Read more about installing Kaskada in <a href="../installing.html" class="xref page">Installing Kaskada</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kaskadas-data-model"><a class="anchor" href="#kaskadas-data-model"></a><a class="link" href="#kaskadas-data-model">Kaskada&#8217;s data model</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Timelines begin with <a href="../developing/tables.html" class="xref page">tables</a>.
+Tables are how Kaskada stores input events.
+Tables consist of multiple events, and each event is a value of the same <a href="../fenl/data-model.html" class="xref page">type</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<caption class="title">Table 1. Events in the <code>Purchase</code> table</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">time</th>
+<th class="tableblock halign-left valign-top">entity</th>
+<th class="tableblock halign-left valign-top">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8:20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{amount: 5}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9:45</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{amount: 2}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2:10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{amount: 13}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8:52</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{amount: 4}</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When querying Kaskada, the contents of a table are interpreted as a <a href="../fenl/continuity.html" class="xref page">discrete timeline</a>: the value associated with each event corresponds to a value in the timeline.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/purchase-timeline.svg" alt="purchase timeline">
+</div>
+<div class="title">Figure 2. Discrete timeline describing the <code>Purchase</code> table</div>
+</div>
+<div class="paragraph">
+<p>Events must be loaded into a table before they can be queried.
+You can load events into a table from various data sources, for example files formatted as Parquet or CSV, or by reading events from a stream.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Read more about connecting to data in <a href="../loading-data.html" class="xref page">Loading Data into a Table</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-starts"><a class="anchor" href="#quick-starts"></a><a class="link" href="#quick-starts">Quick-starts</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The next section of the docs shows how to quickly get started with Kaskada.
+You&#8217;ll see how to install Kaskada, create tables, load data, and make simple queries.
+You can pick the development environment that&#8217;s most familiar to you.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>⭢ Try out Kaskada using Jupyter in <a href="hello-world-jupyter.html" class="xref page">Hello World (Jupyter)</a></p>
+</div>
+<div class="paragraph">
+<p>⭢ Try out Kaskada using the CLI in <a href="hello-world-cli.html" class="xref page">Hello World (CLI)</a></p>
+</div>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -383,6 +568,8 @@ If you would like use both, you must install them independently.</p>
 </td>
 </tr>
 </table>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="../overview/faq.html">Frequently Asked Questions</a></span>
