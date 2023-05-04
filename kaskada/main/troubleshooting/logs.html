@@ -361,25 +361,22 @@ Including relevant segments from the logs when you open an issue can greatly hel
 </div>
 <div class="paragraph">
 <p>Log files are located in the user&#8217;s home folder <code>~/.cache/kaskada/logs</code>.
-Each time the engine and/or manager is started, a new folder is created with a UUID as the folder name.
-Inside this folder you should be able to find 2 logs per application the standard output log and the standard error log.</p>
+For each of the services (engine and manager), a standard output log and standard error log are created prefixed by the launch timestamp.</p>
 </div>
 <div class="paragraph">
-<p>Here is an example with 2 folders from two separate runs of the engine and manager.</p>
+<p>Here is an example with two separate runs of the engine and manager.</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>/home/therapon/.cache/kaskada/logs
-├── 1ed25c9e-8914-4527-92a9-9ee716a59847
-│   ├── engine_stderr.txt
-│   ├── engine_stdout.txt
-│   ├── manager_stderr.txt
-│   └── manager_stdout.txt
-└── ff16bd01-5d19-4da2-b645-a959868ac681
-    ├── engine_stderr.txt
-    ├── engine_stdout.txt
-    ├── manager_stderr.txt
-    └── manager_stdout.txt</pre>
+├── 2023-05-03T15-53-45-engine-stderr.log
+├── 2023-05-03T15-53-45-engine-stdout.log
+├── 2023-05-03T15-53-45-manager-stderr.log
+├── 2023-05-03T15-53-45-manager-stdout.log
+├── 2023-05-04T12-12-33-engine-stderr.log
+├── 2023-05-04T12-12-33-engine-stdout.log
+├── 2023-05-04T12-12-33-manager-stderr.log
+├── 2023-05-04T12-12-33-manager-stdout.log</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -395,7 +392,7 @@ Inside this folder you should be able to find 2 logs per application the standar
 <div class="paragraph">
 <p>On Unix systems the <code>tail</code> command is very convenient for viewing the last few lines of multiple files at a time.
 For example, to view new lines of the standard output logs for the engine and manager you can run the following command from the logs folder:
-<code>tail -f engine_stdout.txt manager_stdout.txt</code></p>
+<code>tail -f &lt;timestamp&gt;-engine-stdout.log &lt;timestamp&gt;-engine-stderr.log</code></p>
 </div>
 </td>
 </tr>
