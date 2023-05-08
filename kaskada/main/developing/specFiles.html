@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fenl FAQ :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/fenl/fenl-faq.html">
-    <link rel="prev" href="catalog.html">
-    <link rel="next" href="working-with-records.html">
+    <title>Spec Files :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/developing/specFiles.html">
+    <link rel="prev" href="materializations.html">
+    <link rel="next" href="../integrating/apache-pulsar.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
@@ -196,22 +196,22 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/tables.html">Tables</a>
+    <a class="nav-link" href="tables.html">Tables</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/queries.html">Queries</a>
+    <a class="nav-link" href="queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/slices.html">Slices</a>
+    <a class="nav-link" href="slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/views.html">Views</a>
+    <a class="nav-link" href="views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/materializations.html">Materializations</a>
+    <a class="nav-link" href="materializations.html">Materializations</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../developing/specFiles.html">Spec Files</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="specFiles.html">Spec Files</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="https://kaskada.readthedocs.io/en/latest/autoapi/kaskada/index.html">Python client ↪</a>
@@ -271,34 +271,34 @@
     <span class="nav-text">Query Syntax (Fenl)</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fenl-quick-start.html">Introduction</a>
+    <a class="nav-link" href="../fenl/fenl-quick-start.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="data-model.html">Data Model</a>
+    <a class="nav-link" href="../fenl/data-model.html">Data Model</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="syntax.html">Syntax</a>
+    <a class="nav-link" href="../fenl/syntax.html">Syntax</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="entities.html">Enities</a>
+    <a class="nav-link" href="../fenl/entities.html">Enities</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="temporal-aggregation.html">Temporal Computation</a>
+    <a class="nav-link" href="../fenl/temporal-aggregation.html">Temporal Computation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="aggregation-and-windowing.html">Aggregation and Windowing</a>
+    <a class="nav-link" href="../fenl/aggregation-and-windowing.html">Aggregation and Windowing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="continuity.html">Continuity</a>
+    <a class="nav-link" href="../fenl/continuity.html">Continuity</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="catalog.html">Function Catalog</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="fenl-faq.html">Fenl FAQ</a>
+    <a class="nav-link" href="../fenl/catalog.html">Function Catalog</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="working-with-records.html">Working with Records</a>
+    <a class="nav-link" href="../fenl/fenl-faq.html">Fenl FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/working-with-records.html">Working with Records</a>
   </li>
 </ul>
   </li>
@@ -346,140 +346,346 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
-    <li>Query Syntax (Fenl)</li>
-    <li><a href="fenl-faq.html">Fenl FAQ</a></li>
+    <li>Reference</li>
+    <li><a href="specFiles.html">Spec Files</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/fenl/pages/fenl-faq.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/developing/pages/specFiles.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Fenl FAQ</h1>
-<div class="sect1">
-<h2 id="choosing-between-when-and-if"><a class="anchor" href="#choosing-between-when-and-if"></a><a class="link" href="#choosing-between-when-and-if">Choosing between <code>when</code> and <code>if</code></a></h2>
+<h1 class="page">Spec Files</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Fenl provides two predication functions:</p>
+<p>In addition to modifiying resources directly, you can also use a <strong>spec file</strong> to describe the desired state of Kaskada.</p>
 </div>
-<div class="ulist">
+<div class="paragraph">
+<p>A spec file is a YAML file describing a set of Kaskada resources, inlcuding tables, views, and materializations.</p>
+</div>
+<div class="paragraph">
+<p>The <code>sync</code> command is used to update the state of your Kaskada system to match the resource descriptions in the spec file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Currently the <code>sync</code> command is only supported in the CLI client.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="spec-file-format"><a class="anchor" href="#spec-file-format"></a><a class="link" href="#spec-file-format">Spec File Format</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A spec file can contain any of the following keys: <code>tables</code>, <code>views</code>, <code>materializations</code>. Each key contains a list of objects describing the resources to be created or updated.</p>
+</div>
+<div class="sect2">
+<h3 id="tables"><a class="anchor" href="#tables"></a><a class="link" href="#tables">Tables</a></h3>
+<div class="paragraph">
+<p>Tables are described in a spec file as a list of table objects under the <code>tables</code> key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+  # The name of the table
+- tableName: GamePlay
+  # A field containing the time associated with each event
+  timeColumnName: event_at
+  # An initial entity key associated with each event
+  entityKeyColumnName: entity_key
+  # An (optional) subsort column associated with each event
+  subsortColumnName: offset
+  # A name describing the entity key
+  groupingId: User
+  # Where the table's data will be stored
+  # The default storage location is 'kaskada', and uses local files to store events.
+  source:
+    kaskada: {}
+
+  # The name of the table
+- tableName: Purchase
+  # A field containing the time associated with each event
+  timeColumnName: event_at
+  # An initial entity key associated with each event
+  entityKeyColumnName: entity_id
+  # A name describing the entity key
+  groupingId: User
+  # Where the table's data will be stored
+  # The default storage location is 'kaskada', and uses local files to store events.
+  source:
+    kaskada: {}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="views"><a class="anchor" href="#views"></a><a class="link" href="#views">Views</a></h3>
+<div class="paragraph">
+<p>Views are described in a spec file as a list of view objects under the <code>views</code> key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">views:
+  # A name used to refer to the view in queries
+- view_name: PurchaseStats
+  # The expression to substitute anywhere the view's name is used
+  expression: |
+    {
+        time: Purchase.purchase_time,
+        entity: Purchase.customer_id,
+        max_amount: Purchase.amount | max(),
+        min_amount: Purchase.amount | min(),
+        count: CountPurchase,
+    }
+
+  # A name used to refer to the view in queries
+- view_name: CountPurchase
+  # The expression to substitute anywhere the view's name is used
+  expression: count(Purchase)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="materializations"><a class="anchor" href="#materializations"></a><a class="link" href="#materializations">Materializations</a></h3>
+<div class="paragraph">
+<p>Materializations are described in a spec file as a list of materialization objects under the <code>materializations</code> key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">materializations:
+- materializationName: PurchaseStats
+  expression: |
+    {
+        time: Purchase.purchase_time,
+        entity: Purchase.customer_id,
+        max_amount: Purchase.amount | max(),
+        min_amount: Purchase.amount | min(),
+        count: CountPurchase,
+    }
+  destination:
+    objectStore:
+      fileType: FILE_TYPE_PARQUET
+      outputPrefixUri: s3://my-bucket/materialization-output-prefix/
+  slice: {}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exporting-the-current-resources-as-a-spec-file"><a class="anchor" href="#exporting-the-current-resources-as-a-spec-file"></a><a class="link" href="#exporting-the-current-resources-as-a-spec-file">Exporting the current resources as a spec file.</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can create a spec file from all the resources currently defined in the system using the <code>sync export</code> command with the <code>--all</code> flag.</p>
+</div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
 <ul>
-<li>
-<p><code>if(condition, value)</code> returns the <code>value</code> if the <code>condition</code> is true,
-and returns <code>null</code> in all other cases. The function&#8217;s result follows the
-standard continuity rules. For example, the result will be continuous if
-<code>value</code> and <code>condition</code> are both continuous, otherwise the result will
-be discrete.</p>
-</li>
-<li>
-<p><code>when(condition, value)</code> returns the value of <code>value</code> every time
-<code>condition</code> produces the value <code>true</code>. The result of <code>when</code> is <em>always</em>
-discrete, and produces values at the set of times <code>condition</code> produces
-the value <code>true</code>.</p>
+<li id="tabs-1-cli" class="tab">
+<p>CLI</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>These functions filter values in different ways: <code>if</code> filters by
-replacing values with <code>null</code>, whereas <code>when</code> filters values by limiting
-the set of times at which values are produced. Kaskada&#8217;s compute engine
-is tabular, so in some cases the performance of <code>if</code> will be better than
-that of <code>when</code> because <code>if</code> can be applied as a simple transformation
-while <code>when</code> requires building a new table. In other cases, <code>when</code> may
-be more performant if it allows subsequent operations to be computed
-over a table with significantly fewer rows.</p>
+<div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync export --all</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>A general guideline is to use <code>if</code> for replacing values, and <code>when</code> for
-filtering values.</p>
-</div>
-<div class="paragraph">
-<p>For example, use <code>if</code> and <code>else</code> to clean values:</p>
+<p>An example export result is shown below</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Event.duration | if($input &gt; 0) | else(0)</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+- tableName: GamePlay
+  timeColumnName: event_at
+  entityKeyColumnName: entity_key
+  subsortColumnName: offset
+  groupingId: User
+  source:
+    kaskada: {}
+- tableName: Purchase
+  timeColumnName: event_at
+  entityKeyColumnName: entity_id
+  groupingId: User
+  source:
+    kaskada: {}
+views:
+- view_name: CountPurchase
+  expression: count(Purchase)
+materializations:
+- materializationName: PurchaseStats
+  expression: |
+    {
+        time: Purchase.purchase_time,
+        entity: Purchase.customer_id,
+        max_amount: Purchase.amount | max(),
+        min_amount: Purchase.amount | min(),
+        count: CountPurchase,
+    }
+  destination:
+    objectStore:
+      fileType: FILE_TYPE_PARQUET
+      outputPrefixUri: s3://my-bucket/materialization-output-prefix/
+  slice: {}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternately, use <code>when</code> to filter rows returned by a query:</p>
+<p>Alternately, if you know a specific table, view, or materialization you&#8217;d like to export you can specify it explicitly.</p>
+</div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-2-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-2-cli--panel" class="tabpanel" aria-labelledby="tabs-2-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync export --table Purchase
+kaskada-cli sync export --view CountPurchase
+kaskada-cli sync export --materialization PurchaseStats</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">Event | when(Event.kind == "conversion")</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
+- tableName: Purchase
+  timeColumnName: event_at
+  entityKeyColumnName: entity_id
+  groupingId: User
+  source:
+    kaskada: {}
+
+views:
+- view_name: CountPurchase
+  expression: count(Purchase)
+
+materializations:
+- materializationName: PurchaseStats
+  expression: |
+    {
+        time: Purchase.purchase_time,
+        entity: Purchase.customer_id,
+        max_amount: Purchase.amount | max(),
+        min_amount: Purchase.amount | min(),
+        count: CountPurchase,
+    }
+  destination:
+    objectStore:
+      fileType: FILE_TYPE_PARQUET
+      outputPrefixUri: s3://my-bucket/materialization-output-prefix/
+  slice: {}</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="joining-expressions-with-different-entities"><a class="anchor" href="#joining-expressions-with-different-entities"></a><a class="link" href="#joining-expressions-with-different-entities">Joining expressions with different entities</a></h2>
+<h2 id="updating-kaskada-to-reflect-the-contents-of-a-spec-file"><a class="anchor" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file"></a><a class="link" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file">Updating Kaskada to reflect the contents of a spec file</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The values produced by all Fenl expressions are either constant or
-associated with an entity. For example, the expression <code>42</code> produces a
-constant integer value. By comparison the expression
-<code>ProductReview.stars</code> might produce integer values associated with each
-review&#8217;s entity, for example a particular product.</p>
+<p>To update a resource (table, view, or materialization), you first modify the resource in your spec file,
+then use the <code>spec plan</code> command to preview the changes that will be made to the system. To make the
+acutal changes, use the <code>spec apply</code> command.</p>
 </div>
 <div class="paragraph">
-<p>Aggregations (e.g. <code>sum</code>, <code>min</code>, <code>first</code>) are scoped to each value&#8217;s
-entity key. Simple functions that accept multiple arguments (ie <code>add</code> or
-<code>eq</code>) require that their non-constant arguments have compatible entity
-key types, and operate between values with the same entity key.</p>
+<p>When a spec file is updated, the CLI inspects all of the server&#8217;s resources and all of the resources
+defined in your spec file, then takes whatever actions are necessary to reconcile the server&#8217;s state.
+Applying a spec can create new resources, or update resources by deleting them &amp; then recreating them.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>This scoping behavior makes it easy to write common operations, but
-often times it&#8217;s necessary to combine values with different entity keys.
-The <code>lookup</code> function support supports these use cases. The lookup
-function takes two arguments: the first argument <code>key</code> (the key
-expression) describes the entity key being looked up, and the second
-argument <code>value</code> (the foreign expression) describes the value to be
-looked up:</p>
+<p>If you remove a resource from a spec file, it will <strong>not</strong> be deleted from the system. Instead you
+must delete those resources using the standard delete commands: <a href="tables.html#deleting-a-table" class="xref page">Delete Table</a> , <a href="views.html#deleting-a-view" class="xref page">Delete View</a>, or <a href="materializations.html#deleting-a-materialization" class="xref page">Delete Materialization</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Table updates are destructive</div>
+<div class="paragraph">
+<p>Tables are currently immutable.
+When the CLI updates a table, it does so by deleting the table and re-creating it.
+When this happens, all data previously loaded into the table is lost.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="previewing-the-changes"><a class="anchor" href="#previewing-the-changes"></a><a class="link" href="#previewing-the-changes">Previewing the changes</a></h3>
+<div class="paragraph">
+<p>Running this command will not make any changes to the server, but will print out the changes that will be made if you apply the given spec file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">lookup(key, value)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync plan --file spec.yaml
+
+# &gt; 2:18PM INF starting plan
+# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:18PM INF Success!</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="applying-the-changes"><a class="anchor" href="#applying-the-changes"></a><a class="link" href="#applying-the-changes">Applying the changes</a></h3>
 <div class="paragraph">
-<p>The key expression identifies the "other" entity key, and should be
-expressed as an operation on "this" entity&#8217;s values. For example, if we
-want to lookup some information about the reviewer associated with each
-individual product review, the key expression might be something like
-<code>ProductReview.reviewer_id</code>.</p>
-</div>
-<div class="paragraph">
-<p>The <code>value</code>, or foreign expression, describes the value to look up, and
-should be expressed as an operation on the "other" entity&#8217;s values.
-Continuing the prior example, if we wanted to know the average number of
-stars a reviewer gives products, the foreign expression might be
-something like <code>ProductReviewByReviewer.stars | mean()</code>.</p>
-</div>
-<div class="paragraph">
-<p>Using these two expressions it&#8217;s possible to describe some facts about
-each product review:</p>
+<p>Running this command will apply the changes to the server.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">{
-  product_id:     ProductReview.product_id,
-  reviewer:       ProductReview.reviewer_id,
-  reviewer_avg:   lookup(ProductReview.reviewer_id, ProductReviewByReviewer.stars | mean()),
-  reviewer_count: lookup(ProductReview.reviewer_id, ProductReviewByReviewer | count()),
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync apply --file spec.yaml
+
+# &gt; 2:25PM INF starting apply
+# &gt; 2:25PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:25PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=GamePlay
+# &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=Purchase
+# &gt; 2:25PM INF Success!</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>A lookup expression produces the value of the foreign expression at
-every time the key expression produces a non-null value.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="catalog.html">Function Catalog</a></span>
-  <span class="next"><a href="working-with-records.html">Working with Records</a></span>
+  <span class="prev"><a href="materializations.html">Materializations</a></span>
+  <span class="next"><a href="../integrating/apache-pulsar.html">Apache Pulsar</a></span>
 </nav>
 </article>
   </div>

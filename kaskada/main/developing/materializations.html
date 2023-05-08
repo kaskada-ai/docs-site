@@ -6,7 +6,7 @@
     <title>Materializations :: Kaskada Docs</title>
     <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/developing/materializations.html">
     <link rel="prev" href="views.html">
-    <link rel="next" href="../integrating/apache-pulsar.html">
+    <link rel="next" href="specFiles.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
@@ -209,6 +209,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="materializations.html">Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="specFiles.html">Spec Files</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="https://kaskada.readthedocs.io/en/latest/autoapi/kaskada/index.html">Python client ↪</a>
@@ -424,8 +427,20 @@ we&#8217;d like to materialize. In this case, we&#8217;re interested in some
 purchase statistics for each user. This definition depends on business
 logic and might require some iteration to get just right.</p>
 </div>
+<div id="tabs-1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-1-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-1-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
 <div class="listingblock">
-<div class="title">Listing 1. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
 from kaskada.api.session import LocalBuilder
@@ -455,6 +470,32 @@ materialization.create_materialization(
 </div>
 </div>
 </div>
+<div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli materialization create PurchaseStats \
+    "{time: Purchase.purchase_time,entity: Purchase.customer_id,max_amount: Purchase.amount | max(),min_amount: Purchase.amount | min()}" \
+    --path-uri "file:///path/on/your/machine/"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Currently the CLI can only create materializaitons that use the <strong>Object Store</strong> destination type.  This is done using the <code>--path-uri</code> option.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect2">
 <h3 id="list-materializations"><a class="anchor" href="#list-materializations"></a><a class="link" href="#list-materializations">List Materializations</a></h3>
 <div class="paragraph">
@@ -462,17 +503,39 @@ materialization.create_materialization(
 for your user. An optional search string can filter the response set.</p>
 </div>
 <div class="paragraph">
-<p>Here is an example of listing tables:</p>
+<p>Here is an example of listing materializations:</p>
 </div>
+<div id="tabs-2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-2-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-2-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-2-python--panel" class="tabpanel" aria-labelledby="tabs-2-python">
 <div class="listingblock">
-<div class="title">Listing 2. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
 from kaskada.api.session import LocalBuilder
 
 session = LocalBuilder().build()
 
-materialization.list_materializations("Purchase")</code></pre>
+materialization.list_materializations()</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-2-cli--panel" class="tabpanel" aria-labelledby="tabs-2-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli materialization list</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -481,8 +544,20 @@ materialization.list_materializations("Purchase")</code></pre>
 <div class="paragraph">
 <p>You can get a materialization using its name:</p>
 </div>
+<div id="tabs-3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-3-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-3-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
 <div class="listingblock">
-<div class="title">Listing 3. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
 from kaskada.api.session import LocalBuilder
@@ -490,6 +565,16 @@ from kaskada.api.session import LocalBuilder
 session = LocalBuilder().build()
 
 materialization.get_materialization("PurchaseStats")</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-3-cli--panel" class="tabpanel" aria-labelledby="tabs-3-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli materialization get PurchaseStats</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -506,8 +591,20 @@ new expression.</p>
 <div class="paragraph">
 <p>You can delete a materialization using its name:</p>
 </div>
+<div id="tabs-4" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="tabs-4-python" class="tab">
+<p>Python</p>
+</li>
+<li id="tabs-4-cli" class="tab">
+<p>CLI</p>
+</li>
+</ul>
+</div>
+<div id="tabs-4-python--panel" class="tabpanel" aria-labelledby="tabs-4-python">
 <div class="listingblock">
-<div class="title">Listing 4. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import materialization
 from kaskada.api.session import LocalBuilder
@@ -517,10 +614,14 @@ session = LocalBuilder().build()
 materialization.delete_materialization("PurchaseStats")</code></pre>
 </div>
 </div>
+</div>
+<div id="tabs-4-cli--panel" class="tabpanel" aria-labelledby="tabs-4-cli">
 <div class="listingblock">
-<div class="title">Listing 5. with the CLI:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli materialization delete -m PurchaseStats</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli materialization delete PurchaseStats</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -532,7 +633,7 @@ external data store.</p>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="views.html">Views</a></span>
-  <span class="next"><a href="../integrating/apache-pulsar.html">Apache Pulsar</a></span>
+  <span class="next"><a href="specFiles.html">Spec Files</a></span>
 </nav>
 </article>
   </div>

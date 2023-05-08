@@ -211,6 +211,9 @@
     <a class="nav-link" href="materializations.html">Materializations</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="specFiles.html">Spec Files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="https://kaskada.readthedocs.io/en/latest/autoapi/kaskada/index.html">Python client ↪</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -421,6 +424,9 @@ When combining events from different tables, events with the same entity key and
 <li id="tabs-1-python" class="tab">
 <p>Python</p>
 </li>
+<li id="tabs-1-cli" class="tab">
+<p>CLI</p>
+</li>
 </ul>
 </div>
 <div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
@@ -442,12 +448,18 @@ table.create_table(
 </div>
 </div>
 </div>
+<div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table create Purchase --timeColumn purchase_time --entityKeyColum customer_id</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>This creates a table named <code>Purchase</code>. Any data loaded into this table
-must have a timestamp field named <code>purchase_time</code>, <code>customer_id</code>, and a
-field called <code>subsort_id</code>.</p>
+must have a timestamp field named <code>purchase_time</code> and a <code>customer_id</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -483,11 +495,13 @@ optional search string can filter the results.</p>
 <li id="tabs-2-python" class="tab">
 <p>Python</p>
 </li>
+<li id="tabs-2-cli" class="tab">
+<p>CLI</p>
+</li>
 </ul>
 </div>
 <div id="tabs-2-python--panel" class="tabpanel" aria-labelledby="tabs-2-python">
 <div class="listingblock">
-<div class="title">Listing 1. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
@@ -495,6 +509,13 @@ from kaskada.api.session import LocalBuilder
 session = LocalBuilder().build()
 
 table.list_tables()</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-2-cli--panel" class="tabpanel" aria-labelledby="tabs-2-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table list</code></pre>
 </div>
 </div>
 </div>
@@ -513,18 +534,27 @@ table.list_tables()</code></pre>
 <li id="tabs-3-python" class="tab">
 <p>Python</p>
 </li>
+<li id="tabs-3-cli" class="tab">
+<p>CLI</p>
+</li>
 </ul>
 </div>
 <div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
 <div class="listingblock">
-<div class="title">Listing 2. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
 
 session = LocalBuilder().build()
 
-table.get_table(table = "Purchase")</code></pre>
+table.get_table("Purchase")</code></pre>
+</div>
+</div>
+</div>
+<div id="tabs-3-cli--panel" class="tabpanel" aria-labelledby="tabs-3-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table get Purchase</code></pre>
 </div>
 </div>
 </div>
@@ -557,22 +587,20 @@ and then re-creating it with a new expression.</p>
 </div>
 <div id="tabs-4-python--panel" class="tabpanel" aria-labelledby="tabs-4-python">
 <div class="listingblock">
-<div class="title">Listing 3. with Python:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
 from kaskada.api.session import LocalBuilder
 
 session = LocalBuilder().build()
 
-table.delete_table(table = "Purchase")</code></pre>
+table.delete_table("Purchase")</code></pre>
 </div>
 </div>
 </div>
 <div id="tabs-4-cli--panel" class="tabpanel" aria-labelledby="tabs-4-cli">
 <div class="listingblock">
-<div class="title">Listing 4. with the CLI:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table delete -t Purchase</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table delete Purchase</code></pre>
 </div>
 </div>
 </div>
@@ -620,184 +648,17 @@ from kaskada.api.session import LocalBuilder
 
 session = LocalBuilder().build()
 
-table.delete_table(table = "Purchase", force = True)</code></pre>
+table.delete_table("Purchase", force = True)</code></pre>
 </div>
 </div>
 </div>
 <div id="tabs-5-cli--panel" class="tabpanel" aria-labelledby="tabs-5-cli">
 <div class="listingblock">
-<div class="title">Listing 5. with the CLI:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table delete -t Purchase --force</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table delete Purchase --force</code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="managing-tables-declaratively-with-spec-files"><a class="anchor" href="#managing-tables-declaratively-with-spec-files"></a><a class="link" href="#managing-tables-declaratively-with-spec-files">Managing tables declaratively with Spec files</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The CLI manages Kaskada resources declaratively by managing spec files.
-A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
-</div>
-<div class="sect2">
-<h3 id="creating-updating-and-deleting-tables-with-the-cli"><a class="anchor" href="#creating-updating-and-deleting-tables-with-the-cli"></a><a class="link" href="#creating-updating-and-deleting-tables-with-the-cli">Creating, updating and deleting tables with the CLI</a></h3>
-<div class="paragraph">
-<p>The CLI uses a "declarative" API - rather than modifying resources directly you describe the desired state of Kaskada, and the <code>kaskada-cli sync</code> command makes whatever changes are needed to achieve this state.
-To create a table, add the table&#8217;s description to your spec file and run <code>kaskada-cli sync apply</code>.
-To update a table, change the table&#8217;s description in your spec file and run <code>kaskada-cli sync apply</code>.
-To delete a table, see <a href="#deleting-a-table">deleting a table</a></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="the-format-of-tables-in-a-spec-file"><a class="anchor" href="#the-format-of-tables-in-a-spec-file"></a><a class="link" href="#the-format-of-tables-in-a-spec-file">The format of tables in a spec file.</a></h3>
-<div class="paragraph">
-<p>Tables are described in a spec file as a list of table objects under the <code>tables</code> key:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  # The name of the table
-- tableName: GamePlay
-  # A field containing the time associated with each event
-  timeColumnName: event_at
-  # An initial entity key associated with each event
-  entityKeyColumnName: entity_key
-  # An (optional) subsort column associated with each event
-  subsortColumnName: offset
-  # A name describing the entity key
-  groupingId: User
-  # Where the table's data will be stored
-  # The default storage location is 'kaskada', and uses local files to store events.
-  source:
-    kaskada: {}
-
-  # The name of the table
-- tableName: Purchase
-  # A field containing the time associated with each event
-  timeColumnName: event_at
-  # An initial entity key associated with each event
-  entityKeyColumnName: entity_id
-  # A name describing the entity key
-  groupingId: User
-  # Where the table's data will be stored
-  # The default storage location is 'kaskada', and uses local files to store events.
-  source:
-    kaskada: {}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exporting-the-current-tables-as-a-spec-file"><a class="anchor" href="#exporting-the-current-tables-as-a-spec-file"></a><a class="link" href="#exporting-the-current-tables-as-a-spec-file">Exporting the current tables as a spec file.</a></h3>
-<div class="paragraph">
-<p>You can export all the tables currently defined using the CLI.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync export --all</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The export result is shown below</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
-- tableName: GamePlay
-  timeColumnName: event_at
-  entityKeyColumnName: entity_key
-  subsortColumnName: offset
-  groupingId: User
-  source:
-    kaskada: {}
-- tableName: Purchase
-  timeColumnName: event_at
-  entityKeyColumnName: entity_id
-  groupingId: User
-  source:
-    kaskada: {}
-views:
-    # ...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternately, if you know a specific table you&#8217;d like to export you can specify it explicitly.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync export --table Purchase</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
-- tableName: Purchase
-  timeColumnName: event_at
-  entityKeyColumnName: entity_id
-  groupingId: User
-  source:
-    kaskada: {}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="updating-kaskada-to-reflect-the-contents-of-a-spec-file"><a class="anchor" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file"></a><a class="link" href="#updating-kaskada-to-reflect-the-contents-of-a-spec-file">Updating Kaskada to reflect the contents of a spec file</a></h3>
-<div class="paragraph">
-<p>To change a table with the CLI, you first modify the table in a spec file, then "apply" the spec file with the CLI.
-When a spec file is applied, the CLI inspects all of the server&#8217;s resources and all of the resources
-defined in your spec file, then takes whatever actions are necessary to reconcile the server&#8217;s state.
-Applying a spec can create new tables, change a tables&#8217;s mutable fields, or delete tables.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="title">Table updates are destructive</div>
-<div class="paragraph">
-<p>Tables are currently immutable.
-When the CLI updates a table, it does so by deleting the table and re-creating it.
-When this happens, all data previously loaded into the table is lost.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Before applying a spec file, it&#8217;s a good idea to see what changes will be made.
-You can see these changes by creating an apply plan.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync plan --file spec.yaml
-
-# &gt; 2:18PM INF starting plan
-# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
-# &gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
-# &gt; 2:18PM INF Success!</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Running this command will not make any changes to the server, but will print out the changes that will be made if you apply the given spec file.</p>
-</div>
-<div class="paragraph">
-<p>You can apply a spec file using the CLI.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli sync apply --file spec.yaml
-
-# &gt; 2:25PM INF starting apply
-# &gt; 2:25PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
-# &gt; 2:25PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
-# &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=GamePlay
-# &gt; 2:25PM INF created resource with provided spec kind=*kaskadav1alpha.Table name=Purchase
-# &gt; 2:25PM INF Success!</code></pre>
 </div>
 </div>
 </div>
