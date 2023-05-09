@@ -227,7 +227,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Integrating</span>
+    <a class="nav-link" href="../integrating/index.html">Integrations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../integrating/apache-pulsar.html">Apache Pulsar</a>
@@ -779,7 +779,7 @@ Here&#8217;s a more sophisticated example that touches on many of the unique fea
 let cadence = hourly()
 
 # Anything can be named and re-used
-let hourly_big_purchases = purchase
+let hourly_big_purchases = Purchase
 | when(Purchase.amount &gt; 10)
 
 # Filter anywhere
@@ -900,6 +900,27 @@ Read more about configuring queries in <a href="../developing/queries.html#confi
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cleaning-up"><a class="anchor" href="#cleaning-up"></a><a class="link" href="#cleaning-up">Cleaning Up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you&#8217;re done with this tutorial, you can delete the table you created in order to free up resources. Note that this also deletes all of the data loaded into the table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().build()
+
+table.delete_table(
+  # The table's name
+  table_name = "Purchase",
+)</code></pre>
 </div>
 </div>
 </div>

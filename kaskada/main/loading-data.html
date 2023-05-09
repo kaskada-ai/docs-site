@@ -227,7 +227,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Integrating</span>
+    <a class="nav-link" href="integrating/index.html">Integrations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="integrating/apache-pulsar.html">Apache Pulsar</a>
@@ -423,15 +423,43 @@ table.load(
 )</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Python library infers a file&#8217;s format from the extension of the file&#8217;s path.
+Parquet file names must end in <code>.parquet</code>. CSV file names must end in <code>.csv</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
-    --table Purchase \
-    --file-path file:///path/to/file.parquet \
-    --file-type parquet</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table load Purchase file:///path/to/file.parquet</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The CLI client infers a file&#8217;s format from the extension of the file&#8217;s path.
+Parquet file names must end in <code>.parquet</code>. CSV file names must end in <code>.csv</code>.
+The <code>--type</code> flag can also be used to force a file to be treated as Parquet or CSV.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -502,11 +530,23 @@ Parquet file names must end in <code>.parquet</code>.</p>
 <div id="tabs-2-cli--panel" class="tabpanel" aria-labelledby="tabs-2-cli">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
-    --table Purchase \
-    --file-path file:///path/to/file.parquet \
-    --file-type parquet</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table load Purchase file:///path/to/file.parquet</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The CLI client infers a file&#8217;s format from the extension of the file&#8217;s path.
+The <code>--type parquet</code> flag can also be used to force a file to be treated as Parquet.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -568,11 +608,23 @@ CSV file names must end in <code>.csv</code>.</p>
 <div id="tabs-3-cli--panel" class="tabpanel" aria-labelledby="tabs-3-cli">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli load \
-    --table Purchase \
-    --file-path file:///path/to/file.csv \
-    --file-type csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli table load Purchase file:///path/to/file.csv</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The CLI client infers a file&#8217;s format from the extension of the file&#8217;s path.
+The <code>--type csv</code> flag can also be used to force a file to be treated as CSV.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

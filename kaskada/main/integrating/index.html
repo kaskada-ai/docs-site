@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Views :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/developing/views.html">
-    <link rel="prev" href="slices.html">
-    <link rel="next" href="materializations.html">
+    <title>Input / Output :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/integrating/index.html">
+    <link rel="prev" href="../developing/specFiles.html">
+    <link rel="next" href="apache-pulsar.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
@@ -196,22 +196,22 @@
     <span class="nav-text">Reference</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="tables.html">Tables</a>
+    <a class="nav-link" href="../developing/tables.html">Tables</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="queries.html">Queries</a>
+    <a class="nav-link" href="../developing/queries.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="slices.html">Slices</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="views.html">Views</a>
+    <a class="nav-link" href="../developing/slices.html">Slices</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="materializations.html">Materializations</a>
+    <a class="nav-link" href="../developing/views.html">Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="specFiles.html">Spec Files</a>
+    <a class="nav-link" href="../developing/materializations.html">Materializations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developing/specFiles.html">Spec Files</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="https://kaskada.readthedocs.io/en/latest/autoapi/kaskada/index.html">Python client ↪</a>
@@ -225,24 +225,24 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../integrating/index.html">Integrations</a>
+    <a class="nav-link" href="index.html">Integrations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrating/apache-pulsar.html">Apache Pulsar</a>
+    <a class="nav-link" href="apache-pulsar.html">Apache Pulsar</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrating/apache-cassandra.html">Apache Cassandra</a>
+    <a class="nav-link" href="apache-cassandra.html">Apache Cassandra</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrating/redis.html">Redis</a>
+    <a class="nav-link" href="redis.html">Redis</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrating/aws-redshift.html">AWS Redshift</a>
+    <a class="nav-link" href="aws-redshift.html">AWS Redshift</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrating/snowflake.html">Snowflake</a>
+    <a class="nav-link" href="snowflake.html">Snowflake</a>
   </li>
 </ul>
   </li>
@@ -346,334 +346,43 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
-    <li>Reference</li>
-    <li><a href="views.html">Views</a></li>
+    <li><a href="index.html">Integrations</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/developing/pages/views.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/integrating/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Views</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Input / Output</h1>
 <div class="paragraph">
-<p>Fenl expressions can be shared and re-used by creating a <em>view</em>. A view
-is a named expression. In subsequent Fenl expressions, the view&#8217;s name
-is synonymous with the view&#8217;s expression. Views are persisted in the
-Kaskada manager and are accessible to any query.</p>
-</div>
-<div class="paragraph">
-<p>Once you&#8217;ve created a view, you can use the view&#8217;s name anywhere you could use the view&#8217;s expression -  the only restriction placed on views is that they must be valid expressions.
-Views may reference other views.</p>
-</div>
-<div class="paragraph">
-<p>Views are useful any time you need to share or re-use expressions:</p>
+<p>Kaskada supports a variety of input sources and output sinks.
+For details on using a specific connector, refer to the corresponding page.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Cleaning operations</p>
+<p><a href="apache-pulsar.html" class="xref page">Apache Pulsar</a> is supported as a source and sink.</p>
 </li>
 <li>
-<p>Common business logic</p>
+<p><a href="apache-cassandra.html" class="xref page">Apache Cassandra</a> is supported as a destination using the Apache Pulsar sink and a Pulsar to Cassandra connector.</p>
 </li>
 <li>
-<p>ML feature definitions</p>
+<p><a href="redis.html" class="xref page">Redis</a> is supported as a destination using the Apache Pulsar sink and a Pulsar to Redis connector.</p>
+</li>
+<li>
+<p><a href="aws-redshift.html" class="xref page">AWS Redshift</a> is supported as a destination using the Parquet sink, followed by loading the Parquet files into Redshift.</p>
+</li>
+<li>
+<p><a href="snowflake.html" class="xref page">Snowflake</a> is supported as a destination using the Parquet sink, followed by loading the Parquet files into Snowflake.</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="managing-views"><a class="anchor" href="#managing-views"></a><a class="link" href="#managing-views">Managing views</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="creating-a-view"><a class="anchor" href="#creating-a-view"></a><a class="link" href="#creating-a-view">Creating a View</a></h3>
-<div class="paragraph">
-<p>To create a view, we&#8217;ll start by describing the expression we&#8217;d like to
-name. In this case, we&#8217;re interested in some purchase statistics for
-each user. This definition depends on business logic and might require
-some iteration to get just right.</p>
-</div>
-<div id="tabs-1" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-1-python" class="tab">
-<p>Python</p>
-</li>
-<li id="tabs-1-cli" class="tab">
-<p>CLI</p>
-</li>
-</ul>
-</div>
-<div id="tabs-1-python--panel" class="tabpanel" aria-labelledby="tabs-1-python">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-view.create_view(
-    view_name = "PurchaseStats",
-    expression = "{
-        time: Purchase.purchase_time,
-        entity: Purchase.customer_id,
-        max_amount: Purchase.amount | max(),
-        min_amount: Purchase.amount | min(),
-    }"
-)</code></pre>
-</div>
-</div>
-</div>
-<div id="tabs-1-cli--panel" class="tabpanel" aria-labelledby="tabs-1-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli view create PurchaseStats \
-    "{time: Purchase.purchase_time,entity: Purchase.customer_id,max_amount: Purchase.amount | max(),min_amount: Purchase.amount | min()}"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This creates a view names <code>PurchaseStats</code>.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">Idiomatic Kaskada</div>
-<div class="paragraph">
-<p>We like to use CamelCase for view names. This is
-the same naming convention as we use for tables, and helps to
-communicate that we&#8217;re referring to a persistent resource in the Kaskada
-system, as opposed to a temporary local value created as part of a
-query.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If you&#8217;re using IPython/Jupyter, you can create a view from the contents of a <code>%%fenl</code> block using the <code>--var</code> argument</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var purchase_stats
-{
-    time: Purchase.purchase_time,
-    entity: Purchase.customer_id,
-    max_amount: Purchase.amount | max(),
-    min_amount: Purchase.amount | min(),
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Adding <code>--var purchase_stats</code> to the beginning of the
-magic block causes the extension to assign the query result to the
-variable <code>purchase_stats</code> when the block is run.</p>
-</div>
-<div class="paragraph">
-<p>We can use this variable to create a view using the Python client
-without re-typing the expression:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-view.create_view(
-    view_name = "PurchaseStats",
-    expression = purchase_stats.expression,
-)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="list-views"><a class="anchor" href="#list-views"></a><a class="link" href="#list-views">List Views</a></h3>
-<div class="paragraph">
-<p>The list views method returns all views defined for your user. An
-optional search string can filter the response set.</p>
-</div>
-<div class="paragraph">
-<p>Here is an example of listing views:</p>
-</div>
-<div id="tabs-2" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-2-python" class="tab">
-<p>Python</p>
-</li>
-<li id="tabs-2-cli" class="tab">
-<p>CLI</p>
-</li>
-</ul>
-</div>
-<div id="tabs-2-python--panel" class="tabpanel" aria-labelledby="tabs-2-python">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-view.list_views()</code></pre>
-</div>
-</div>
-</div>
-<div id="tabs-2-cli--panel" class="tabpanel" aria-labelledby="tabs-2-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli view list</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="get-view"><a class="anchor" href="#get-view"></a><a class="link" href="#get-view">Get View</a></h3>
-<div class="paragraph">
-<p>You can get a view using its name:</p>
-</div>
-<div id="tabs-3" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-3-python" class="tab">
-<p>Python</p>
-</li>
-<li id="tabs-3-cli" class="tab">
-<p>CLI</p>
-</li>
-</ul>
-</div>
-<div id="tabs-3-python--panel" class="tabpanel" aria-labelledby="tabs-3-python">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-view.get_view("PurchaseStats")</code></pre>
-</div>
-</div>
-</div>
-<div id="tabs-3-cli--panel" class="tabpanel" aria-labelledby="tabs-3-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli view get PurchaseStats</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="updating-a-view"><a class="anchor" href="#updating-a-view"></a><a class="link" href="#updating-a-view">Updating a View</a></h3>
-<div class="paragraph">
-<p>Views are currently immutable. Updating a view requires deleting that
-view and then re-creating it.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-view"><a class="anchor" href="#deleting-a-view"></a><a class="link" href="#deleting-a-view">Deleting a view</a></h3>
-<div class="paragraph">
-<p>You can delete a view using its name:</p>
-</div>
-<div id="tabs-4" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-4-python" class="tab">
-<p>Python</p>
-</li>
-<li id="tabs-4-cli" class="tab">
-<p>CLI</p>
-</li>
-</ul>
-</div>
-<div id="tabs-4-python--panel" class="tabpanel" aria-labelledby="tabs-4-python">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-view.delete_view("PurchaseStats")</code></pre>
-</div>
-</div>
-</div>
-<div id="tabs-4-cli--panel" class="tabpanel" aria-labelledby="tabs-4-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli view delete PurchaseStats</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>A failed precondition error is returned when another view and/or
-materialization references the view. To continue with the deletion of
-the view we can either, delete the dependent resources manually with another delete operation, or, supply the <code>force</code> flag to
-delete the view forcefully. Forcefully deleting a view without
-deleting its dependent resources may result in its dependent resources
-functioning incorrectly.</p>
-</div>
-<div id="tabs-5" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="tabs-5-python" class="tab">
-<p>Python</p>
-</li>
-<li id="tabs-5-cli" class="tab">
-<p>CLI</p>
-</li>
-</ul>
-</div>
-<div id="tabs-5-python--panel" class="tabpanel" aria-labelledby="tabs-5-python">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import view
-from kaskada.api.session import LocalBuilder
-
-session = LocalBuilder().build()
-
-view.delete_view("PurchaseStats", force = True)</code></pre>
-</div>
-</div>
-</div>
-<div id="tabs-5-cli--panel" class="tabpanel" aria-labelledby="tabs-5-cli">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kaskada-cli view delete PurchaseStats --force</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="slices.html">Slices</a></span>
-  <span class="next"><a href="materializations.html">Materializations</a></span>
+  <span class="prev"><a href="../developing/specFiles.html">Spec Files</a></span>
+  <span class="next"><a href="apache-pulsar.html">Apache Pulsar</a></span>
 </nav>
 </article>
   </div>

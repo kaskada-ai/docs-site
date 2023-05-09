@@ -227,7 +227,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Integrating</span>
+    <a class="nav-link" href="../integrating/index.html">Integrations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../integrating/apache-pulsar.html">Apache Pulsar</a>
@@ -536,34 +536,11 @@ Don&#8217;t worry too much about picking the "right" value - it&#8217;s easy to 
 </div>
 </div>
 <div class="paragraph">
-<p>The CLI manages Kaskada resources declaratively by managing spec files.
-A spec file is a YAML file describing a set of Kaskada resources, for examples tables and views.</p>
-</div>
-<div class="listingblock">
-<div class="title">Listing 1. spec.yaml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">tables:
-  # The name of the table
-- tableName: Purchase
-
-  # A field containing the time associated with each event
-  timeColumnName: purchase_time
-
-  # An initial entity key associated with each event
-  entityKeyColumnName: customer_id
-
-  # Where the table's data will be stored
-  # The default storage location is 'kaskada', and uses local files to store events.
-  source:
-    kaskada: {}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To create this table, we must sync the state of the Kaskada service with the contents of the file.</p>
+<p>Start by running the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli sync apply -f spec.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./kaskada-cli table create Purchase  --timeColumn purchase_time --entityKeyColumn customer_id</code></pre>
 </div>
 </div>
 <details>
@@ -571,18 +548,20 @@ A spec file is a YAML file describing a set of Kaskada resources, for examples t
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">&gt; 2:18PM INF starting plan
-&gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=GamePlay
-&gt; 2:18PM INF resource not found on system, will create it kind=*kaskadav1alpha.Table name=Purchase
-&gt; 2:18PM INF Success!</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">&gt; tableId: 1ba8ed9a-76bd-4302-b9fa-3c8655535f4a
+&gt; tableName: Purchase
+&gt; timeColumnName: purchase_time
+&gt; entityKeyColumnName: customer_id
+&gt; createTime: 2023-05-08T13:16:00.237166Z
+&gt; updateTime: 2023-05-08T13:16:00.237167Z</code></pre>
 </div>
 </div>
 </div>
 </details>
 <div class="paragraph">
 <p>This creates a table named <code>Purchase</code>. Any data loaded into this table
-must have a timestamp field named <code>purchase_time</code>, a field named
-<code>customer_id</code>, and a field named <code>subsort_id</code>.</p>
+must have a timestamp field named <code>purchase_time</code>, and a field named
+<code>customer_id</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -638,11 +617,19 @@ load the contents of a Parquet file into the table.</p>
 curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS30UBhN0NJtslkk" -o purchase.parquet
 
 # Load the file into the Purchase table (which was created in the previous step)
-./kaskada-cli table load \
-    --table Purchase \
-    --file-path file://${PWD}/purchase.parquet</code></pre>
+./kaskada-cli table load Purchase file://${PWD}/purchase.parquet</code></pre>
 </div>
 </div>
+<details>
+<summary class="title">Show result</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">&gt; Successfully loaded "purchases.parquet" into "Purchase" table</code></pre>
+</div>
+</div>
+</div>
+</details>
 <div class="paragraph">
 <p>The file&#8217;s content is added to the table.</p>
 </div>
@@ -653,11 +640,16 @@ curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS3
 <h2 id="querying-data"><a class="anchor" href="#querying-data"></a><a class="link" href="#querying-data">Querying data</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Data loaded into Kaskada is accessed by performing Fenl Queries.</p>
+</div>
+<div class="sect2">
+<h3 id="identity-query"><a class="anchor" href="#identity-query"></a><a class="link" href="#identity-query">Identity query</a></h3>
+<div class="paragraph">
 <p>Let&#8217;s start by looking at the Purchase table without any filters.
 Begin by creating a text file with the following query:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. query.fenl</div>
+<div class="title">Listing 1. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">Purchase</code></pre>
 </div>
@@ -668,25 +660,77 @@ Run it by sending the query to <code>kaskada-cli query run</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | ./kaskada-cli query run --stdout --response-as csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | ./kaskada-cli query run --stdout</code></pre>
 </div>
 </div>
+<details>
+<summary class="title">Show result</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Enter the expression to run and then press CTRL+D to execute it, or CTRL+C to cancel:
+
+
+
+Executing query...
+
+_time,_subsort,_key_hash,_key,id,purchase_time,customer_id,vendor_id,amount,subsort_id
+2020-01-01T00:00:00.000000000,12232903146196084293,10966214875107816766,karen,cb_001,2020-01-01T00:00:00.000000000,karen,chum_bucket,9,0
+2020-01-01T00:00:00.000000000,12232903146196084294,15119067519137142314,patrick,kk_001,2020-01-01T00:00:00.000000000,patrick,krusty_krab,3,1
+2020-01-02T00:00:00.000000000,12232903146196084295,10966214875107816766,karen,cb_002,2020-01-02T00:00:00.000000000,karen,chum_bucket,2,2
+2020-01-02T00:00:00.000000000,12232903146196084296,15119067519137142314,patrick,kk_002,2020-01-02T00:00:00.000000000,patrick,krusty_krab,5,3
+2020-01-03T00:00:00.000000000,12232903146196084297,10966214875107816766,karen,cb_003,2020-01-03T00:00:00.000000000,karen,chum_bucket,4,4
+2020-01-03T00:00:00.000000000,12232903146196084298,15119067519137142314,patrick,kk_003,2020-01-03T00:00:00.000000000,patrick,krusty_krab,12,5
+2020-01-04T00:00:00.000000000,12232903146196084299,15119067519137142314,patrick,cb_004,2020-01-04T00:00:00.000000000,patrick,chum_bucket,5000,6
+2020-01-04T00:00:00.000000000,12232903146196084300,10966214875107816766,karen,cb_005,2020-01-04T00:00:00.000000000,karen,chum_bucket,3,7
+2020-01-05T00:00:00.000000000,12232903146196084301,10966214875107816766,karen,cb_006,2020-01-05T00:00:00.000000000,karen,chum_bucket,5,8
+2020-01-05T00:00:00.000000000,12232903146196084302,15119067519137142314,patrick,kk_004,2020-01-05T00:00:00.000000000,patrick,krusty_krab,9,9</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="filtering-by-a-single-entity"><a class="anchor" href="#filtering-by-a-single-entity"></a><a class="link" href="#filtering-by-a-single-entity">Filtering by a single Entity</a></h3>
 <div class="paragraph">
-<p>This query will return all of the columns and rows contained in a table.
-It can be helpful to limit your results to a single entity.
+<p>It can be helpful to limit your results to a single entity.
 This makes it easier to see how a single entity changes over time.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. query.fenl</div>
+<div class="title">Listing 2. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">Purchase | when(Purchase.customer_id == "patrick")</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | ./kaskada-cli query run --stdout --response-as csv</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat query.fenl | ./kaskada-cli query run --stdout</code></pre>
 </div>
 </div>
+<details>
+<summary class="title">Show result</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Enter the expression to run and then press CTRL+D to execute it, or CTRL+C to cancel:
+
+
+
+Executing query...
+
+_time,_subsort,_key_hash,_key,id,purchase_time,customer_id,vendor_id,amount,subsort_id
+2020-01-01T00:00:00.000000000,12232903146196084294,15119067519137142314,patrick,kk_001,2020-01-01T00:00:00.000000000,patrick,krusty_krab,3,1
+2020-01-02T00:00:00.000000000,12232903146196084296,15119067519137142314,patrick,kk_002,2020-01-02T00:00:00.000000000,patrick,krusty_krab,5,3
+2020-01-03T00:00:00.000000000,12232903146196084298,15119067519137142314,patrick,kk_003,2020-01-03T00:00:00.000000000,patrick,krusty_krab,12,5
+2020-01-04T00:00:00.000000000,12232903146196084299,15119067519137142314,patrick,cb_004,2020-01-04T00:00:00.000000000,patrick,chum_bucket,5000,6
+2020-01-05T00:00:00.000000000,12232903146196084302,15119067519137142314,patrick,kk_004,2020-01-05T00:00:00.000000000,patrick,krusty_krab,9,9</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="complex-examples-with-fenl-functions"><a class="anchor" href="#complex-examples-with-fenl-functions"></a><a class="link" href="#complex-examples-with-fenl-functions">Complex Examples with Fenl functions</a></h3>
 <div class="paragraph">
 <p>In this example, we build a pipeline of functions using the <code>|</code> character.
 We begin with the timeline produced by the table <code>Purchase</code>, then filter it to the set of times where the purchase&#8217;s customer is <code>"patrick"</code> using the <code><a href="../fenl/catalog.html#when" class="xref page">when()</a></code> function.</p>
@@ -696,13 +740,13 @@ We begin with the timeline produced by the table <code>Purchase</code>, then fil
 Here&#8217;s a more sophisticated example that touches on many of the unique features of Kaskada queries:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 4. query.fenl</div>
+<div class="title">Listing 3. query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl"># How many big purchases happen each hour and where?
 let cadence = hourly()
 
 # Anything can be named and re-used
-let hourly_big_purchases = purchase
+let hourly_big_purchases = Purchase
 | when(Purchase.amount &gt; 10)
 
 # Filter anywhere
@@ -728,6 +772,7 @@ in { hourly_big_purchases, purchases_in_last_day: purchases_now - purchases_yest
 <div class="content">
 <div class="paragraph">
 <p>⭢  Read more about writing queries in <a href="../developing/queries.html" class="xref page">Queries</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -795,6 +840,20 @@ When you configure <code>--preview-rows</code> Kaskada stops processing at the e
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cleaning-up"><a class="anchor" href="#cleaning-up"></a><a class="link" href="#cleaning-up">Cleaning Up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you&#8217;re done with this tutorial, you can delete the table you created in order to free up resources.  Note that this also deletes all of the data loaded into the table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Delete the Purchase table
+kaskada-cli table delete --table Purchase</code></pre>
 </div>
 </div>
 </div>
