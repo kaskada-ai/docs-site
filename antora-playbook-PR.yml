@@ -1,0 +1,55 @@
+####
+## This playbook is used to build pull requests.
+## There are 2 cases
+## 1. A PR for this repo will check out kaskada-ai/kaskada@main and build the docs
+## 2. A PR for kaskada-ai/kaskada will check out the PR branch and build the docs
+##
+## See .github/workflows/pull_request.yml for the input arguments when the workflow
+## is called vs when it is triggered by a PR on this repository.
+##
+## KEEP THIS FILE IN SYNC WITH  antora-playbook.yml
+## The only difference is the content.sources.url value. If you need to remove a key,
+## comment it out instead of deleting it.
+####
+
+site:
+  title: Kaskada Docs
+  start_page: kaskada::index.adoc
+  robots: allow
+  url: https://kaskada-ai.github.io/docs-site/
+  keys:
+    google_analytics: "G-HR9E2E6TG4"
+content:
+  sources:
+    - url: ./kaskada_branch
+      #branches: main
+      start_path: docs-src
+      worktrees: true
+
+asciidoc:
+  sourcemap: true
+  extensions:
+    - ./lib/generate_stream_viz.js
+    - asciidoctor-kroki
+    - "@asciidoctor/tabs"
+  attributes:
+    kroki-fetch-diagram: true
+    page-pagination: ""
+    sectanchors: ""
+    sectlinks: ""
+    idprefix: ""
+    idseparator: "-"
+    table-stripes: even
+    listing-caption: Listing
+    icons: font
+
+ui:
+  bundle:
+    url: https://github.com/kaskada-ai/docs-ui/releases/latest/download/ui-bundle.zip
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+
+antora:
+  extensions:
+    - require: "@antora/lunr-extension"
+      snippet_length: 250
