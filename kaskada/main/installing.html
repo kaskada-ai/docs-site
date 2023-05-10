@@ -425,14 +425,14 @@ Once you have Python installed ensure that you can run it.
 Open a terminal in your OS (command line prompt on Windows) and check the output of the following commands</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 1. Verifying Kaskada prerequisites. The output on your machine may vary.</div>
+<div class="title">Verifying Kaskada prerequisites. The output on your machine may vary.</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python --version
 # Python 3.10.6</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. Installing Kaskada using pip</div>
+<div class="title">Installing Kaskada using pip</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install kaskada</code></pre>
 </div>
@@ -457,7 +457,7 @@ If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code>
 <p>Kaskada is now installed. Kaskada can be used locally by creating a local session.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. Creating a local Kaskada session in Python</div>
+<div class="title">Creating a local Kaskada session in Python</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.session import LocalBuilder
 session = LocalBuilder().build()</code></pre>
@@ -468,7 +468,7 @@ session = LocalBuilder().build()</code></pre>
 To connect to an existing Kaskada process, initialize the client with the appropriate endpoint.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 4. Creating a remote Kaskada session in Python</div>
+<div class="title">Creating a remote Kaskada session in Python</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import client
 client.init(
@@ -512,7 +512,7 @@ provides a magic extension that simplifies querying Kaskada.</p>
 Open a terminal in your OS (command line prompt on Windows) and check the output of the following commands</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 5. Verifying Kaskada prerequisites. The output shown here is from an Ubuntu system&#8212;&#8203;the output on your machine may vary.</div>
+<div class="title">Verifying Kaskada prerequisites. The output shown here is from an Ubuntu system&#8212;&#8203;the output on your machine may vary.</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python --version
 # Python 3.10.6
@@ -540,7 +540,7 @@ jupyter --version
 We need to enable these customizations first before we can use them.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 6. Enable fenlmagic in this notebook</div>
+<div class="title">Enable fenlmagic in this notebook</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ipython hljs" data-lang="ipython">%load_ext fenlmagic</code></pre>
 </div>

@@ -691,7 +691,7 @@ curl -L "https://drive.google.com/uc?export=download&amp;id=1SLdIw9uc0RGHY-eKzS3
 Begin by creating a text file with the following query:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 1. query.fenl</div>
+<div class="title">query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">Purchase</code></pre>
 </div>
@@ -739,7 +739,7 @@ _time,_subsort,_key_hash,_key,id,purchase_time,customer_id,vendor_id,amount,subs
 This makes it easier to see how a single entity changes over time.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. query.fenl</div>
+<div class="title">query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">Purchase | when(Purchase.customer_id == "patrick")</code></pre>
 </div>
@@ -782,7 +782,7 @@ We begin with the timeline produced by the table <code>Purchase</code>, then fil
 Here&#8217;s a more sophisticated example that touches on many of the unique features of Kaskada queries:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. query.fenl</div>
+<div class="title">query.fenl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl"># How many big purchases happen each hour and where?
 let cadence = hourly()
