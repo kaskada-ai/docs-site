@@ -345,6 +345,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../fenl/working-with-records.html">Working with Records</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../fenl/fenl-diagnostic-codes.html">Fenl Diagnostic Error Codes</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -412,7 +415,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://realpython.com/installing-python/">Python</a> (version 3.6 and above)</p>
+<p><a href="https://realpython.com/installing-python/">Python</a> (version 3.8 and above)</p>
 </li>
 <li>
 <p><a href="https://docs.jupyter.org/en/latest/install/notebook-classic.html">Jupyter</a></p>
@@ -544,6 +547,29 @@ The command will generate some output during the download, install and run proce
 <p>⭢ Read more about connecting to Kaskada in <a href="../installing.html#using-kaskada-with-python" class="xref page">Installing</a></p>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Auto Recovery</div>
+<div class="paragraph">
+<p>Built into the local session, there are health check watchers that monitor the status of local services in case of failure or unavailability. If the services
+fail or are no longer available, the local session will attempt to automatically recover from failure. To disable this feature, use the <code>keep_alive(False)</code> builder argument.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.session import LocalBuilder
+
+session = LocalBuilder().keep_alive(False).build()</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s now create a small table and write a simple query to see that everything is working correctly with our setup.</p>
