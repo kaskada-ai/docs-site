@@ -483,7 +483,9 @@ You can remove the block placed on the file when it was downloaded with the foll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">xattr -dr com.apple.quarantine &lt;path to file&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">xattr -w com.apple.quarantine kaskada-cli
+xattr -w com.apple.quarantine kaskada-manager
+xattr -w com.apple.quarantine kaskada-engine</code></pre>
 </div>
 </div>
 </td>
