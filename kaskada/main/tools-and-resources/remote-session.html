@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Training real-time ML models :: Kaskada Docs</title>
-    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/tools-and-resources/training-realtime-ml-models.html">
-    <link rel="prev" href="../integrating/snowflake.html">
-    <link rel="next" href="exporting-for-training.html">
+    <title>Remote Session (Python) :: Kaskada Docs</title>
+    <link rel="canonical" href="https://kaskada-ai.github.io/docs-site/kaskada/main/tools-and-resources/remote-session.html">
+    <link rel="prev" href="exporting-for-training.html">
+    <link rel="next" href="../fenl/fenl-quick-start.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
@@ -299,13 +299,13 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Tools and Resources</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="training-realtime-ml-models.html">Training real-time ML models</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="exporting-for-training.html">Example Modeling Problem</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="remote-session.html">Remote Session (Python)</a>
   </li>
 </ul>
@@ -398,478 +398,109 @@
   <ul>
     <li><a href="../overview/what-is-kaskada.html">Kaskada Documentation</a></li>
     <li>Tools and Resources</li>
-    <li><a href="training-realtime-ml-models.html">Training real-time ML models</a></li>
+    <li><a href="remote-session.html">Remote Session (Python)</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/tools-and-resources/pages/training-realtime-ml-models.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/kaskada-ai/kaskada/edit/main/docs-src/modules/tools-and-resources/pages/remote-session.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Training real-time ML models</h1>
-<div class="sect1">
-<h2 id="what-is-real-time-ml"><a class="anchor" href="#what-is-real-time-ml"></a><a class="link" href="#what-is-real-time-ml">What is real-time ML?</a></h2>
+<h1 class="page">Remote Session (Python)</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Real-time ML is making predictions based on recent events - reacting to what&#8217;s happening now,
-rather than what happened yesterday.
-Many outcomes can&#8217;t be predicted accurately from features computed the day before.</p>
-</div>
-<div class="paragraph">
-<p>Real-time models can be difficult to build.
-Models must be trained from examples that each capture specific instants in time, computed over historical datasets spanning months or years.
-Once a model is trained those same features must be kept up-to-date as new events arrive.</p>
+<p>The Kaskada Python Client and IPython magic extension Fenlmagic are configurable to connect to a local and remote session.
+The majority of the examples are focused on running Kaskada locally but the clients are configurable to communicate to a remote service.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="how-does-kaskada-help-build-real-time-ml"><a class="anchor" href="#how-does-kaskada-help-build-real-time-ml"></a><a class="link" href="#how-does-kaskada-help-build-real-time-ml">How does Kaskada help build real-time ML?</a></h2>
+<h2 id="requirements"><a class="anchor" href="#requirements"></a><a class="link" href="#requirements">Requirements</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s start with an example - imagine we&#8217;re trying to build a real-time model for a mobile game.
-We want to predict an outcome, for example, if a user will pay for an upgrade.</p>
-</div>
-<div class="sect2">
-<h3 id="a-framework-for-training-real-time-ml-models"><a class="anchor" href="#a-framework-for-training-real-time-ml-models"></a><a class="link" href="#a-framework-for-training-real-time-ml-models">A framework for training real-time ML models</a></h3>
-<div class="paragraph">
-<p>We&#8217;re collecting and storing events about what users are doing.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/event.png" alt="Example event">
-</div>
-<div class="title">Figure 1. An example event</div>
-</div>
-<div class="paragraph">
-<p>These events describe when users win, when they lose, when they buy things, when they they talk to each other.
-To make predictions we must train a model using examples composed of input features and target labels.
-Each example must be computed from the events we&#8217;re collecting.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/event-context.png" alt="Events in time">
-</div>
-</div>
-<div class="paragraph">
-<p>Visualizing events chronologically allows us to understand the context of each event, and the story of what&#8217;s happening.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The first player likes to brag about their victories</p>
+<p>Kaskada Manager endpoint - An accessible endpoint from the current machine to the Kaskada Manager service. An endpoint consists of the hostname and the port of the service.</p>
 </li>
 <li>
-<p>The game was too hard for the second player</p>
-</li>
-<li>
-<p>The third player pays for upgrades when they get frustrated.</p>
+<p>Secure connection (optional) - It is highly recommended that the connection be secured by TLS but connection between the service and client can be optionally insecure.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>We&#8217;d like to capture this type of time-based insight as feature values we can use to train a model.
-We can do this by drawing the result of feature computations as a timeline showing how the feature&#8217;s value changes as each event is observed.
-This timeline allows us to “observe” the value of the feature at any point in time, giving us a framework for training real-time ML models:</p>
 </div>
-<div class="imageblock">
+</div>
+<div class="sect1">
+<h2 id="setup"><a class="anchor" href="#setup"></a><a class="link" href="#setup">Setup</a></h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
-<img src="_images/framework.png" alt="Real-time ML framework">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Kaskada Endpoint
+endpoint = "kaskada.io:50051"
+# Secure connection
+is_secure = True</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Start with raw events and compute feature timelines</p>
-</li>
-<li>
-<p>Observe features at the points in time a prediction would be made to build a training example</p>
-</li>
-<li>
-<p>Move each example forward in time until the predicted outcome can be observed</p>
-</li>
-<li>
-<p>Compute the correct target value and append it to the example</p>
-</li>
-</ol>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Implementing each of these four steps allows us to compute a set of training examples where each example captures the value of our model&#8217;s input features at a specific point in time as well as the model&#8217;s target label at a (potentially different) point in time.</p>
+<p>The above example uses an example endpoint and is not a valid remote session. The endpoint will need to be configured to be accessible by the current machine.</p>
 </div>
-<div class="paragraph">
-<p>Let&#8217;s explore how Kaskada allows us to implement this framework for our example problem. Kaskada treats events as rows in tables - we&#8217;ll focus on two tables describing the result of users playing our game, <code>GameVictory</code> and <code>GameDefeat</code>.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-even stretch">
-<caption class="title">Table 1. <code>GameVictory</code> events</caption>
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 28.5714%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">entity</th>
-<th class="tableblock halign-left valign-top">value</th>
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2:30</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 10s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3:58</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 23s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4:25</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 8s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5:05</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 53s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10:01</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 43s}</code></p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stripes-even stretch">
-<caption class="title">Table 2. <code>GameDefeat</code> events</caption>
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 28.5714%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">entity</th>
-<th class="tableblock halign-left valign-top">value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2:35</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 3s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3:46</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 8s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5:36</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 2s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7:22</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 7s}</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8:35</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{duration: 5s}</code></p></td>
-</tr>
-</tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="step-1-define-features"><a class="anchor" href="#step-1-define-features"></a><a class="link" href="#step-1-define-features">Step 1: Define features</a></h3>
 <div class="paragraph">
-<p>We want to predict if a user will pay for an upgrade - step one is to compute features from events.
-As a first simple feature, we describe the amount of time a user as spent losing at the game - users who lose a lot are probably more likely to pay for upgrades.</p>
+<p>Configure the remote session using a RemoteBuilder. The remote session does not configure automated session recovery and health checks are disabled by default.
+After configuring the remote session, all existing functionality e.g. table CRUD and queries will operate like normal.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = { <i class="conum" data-value="1"></i><b>(1)</b>
-  loss_duration: sum(GameVictory.duration) } <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.api.remote_session import RemoteBuilder
+session = RemoteBuilder(endpoint, is_secure).build()</code></pre>
 </div>
 </div>
-<div class="colist arabic">
+<div class="admonitionblock note">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Construct a record containing a single field named <code>loss_dur</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Compute the sum of each victory event&#8217;s duration field</td>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Under the hood, the Python Client uses the <a href="https://pypi.org/project/certifi/">Certifi Pypi library</a> for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts.
+Certifi does not support any addition/removal or other modification of the CA trust store content. This project is intended to provide a reliable and highly portable root of trust to python deployments. Look to upstream projects for methods to use alternate trust.
+Please submit a <a href="https://github.com/kaskada-ai/kaskada/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=feat%3A+&#8230;&#8203;">feature request</a> to prioritize the use of custom CA trust store content.</p>
+</div>
+</td>
 </tr>
 </table>
-</div>
-<table class="tableblock frame-all grid-all stripes-even stretch">
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 28.5714%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">entity</th>
-<th class="tableblock halign-left valign-top">result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2:30</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 10s }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3:58</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 23s }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4:25</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 31s }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5:05</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 63s }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10:01</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 106s }</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Notice that the result is a timeline describing the step function of how this feature has changed over time. We can “observe” the value of this step function at any time, regardless of the times at which the original events occurred.</p>
-</div>
-<div class="paragraph">
-<p>Another thing to notice is that these results are automatically grouped by user. We didn&#8217;t have to explicitly group by user because tables in Kaskada specify an "entity" associated with each row.</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="step-2-define-prediction-times"><a class="anchor" href="#step-2-define-prediction-times"></a><a class="link" href="#step-2-define-prediction-times">Step 2: Define prediction times</a></h3>
+<h3 id="use-the-remote-session"><a class="anchor" href="#use-the-remote-session"></a><a class="link" href="#use-the-remote-session">Use the remote session</a></h3>
 <div class="paragraph">
-<p>The second step is to observe our feature at the times a prediction would have been made.
-Let&#8217;s assume that the game designers want to offer an upgrade any time a user loses the game twice in a row.
-We can construct a set of examples associated with this prediction time by observing our feature <code>when</code> the user loses twice in a row.</p>
+<p>The remote session configures a local client to communicate with a remote service. All functionality between local and remote clients are the same.
+After configuring the remote session, simply run the same commands/Python code as expected.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = {
-  loss_duration: sum(GameVictory.duration) }
-
-let examples = features <i class="conum" data-value="1"></i><b>(1)</b>
-  | when(count(GameDefeat, window=since(GameVictory)) == 2) <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import table
+table.list_tables()</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The feature record we created previously</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Build a sequence of operations using the pipe operator</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>You can think of this query as walking over our events chronologically, counting how many <code>GameDefeat</code> events have bene seen since the most recent <code>GameVictory</code> event</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stripes-even stretch">
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 28.5714%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">entity</th>
-<th class="tableblock halign-left valign-top">result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3:46</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 23s }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8:35</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 63s }</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>This query gives us a set of examples, each containing input features computed at the specific times we would like to make a prediction.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="step-3-shift-examples"><a class="anchor" href="#step-3-shift-examples"></a><a class="link" href="#step-3-shift-examples">Step 3: Shift examples</a></h3>
-<div class="paragraph">
-<p>The third step is to move each example to the time when the outcome we&#8217;re predicting can be observed.
-We want to give the user some time to see the upgrade offer, decide to accept it, and pay - let&#8217;s check to see if they accepted an hour after we make the offer.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = {
-  loss_duration: sum(GameVictory.duration) }
-
-let examples = features
-  | when(count(GameDefeat, window=since(GameVictory)) == 2) <i class="conum" data-value="1"></i><b>(1)</b>
-  | shift_by(hours(1)) <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The examples we created previously</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Shift the results of the last step forward in time by one hour - visually you could imagine dragging the examples forward in the timeline by one hour</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stripes-even stretch">
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 28.5714%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">entity</th>
-<th class="tableblock halign-left valign-top">result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4:46</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 23s }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>9:35</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 63s }</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Our training examples have now moved to the point in time when the label we want to predict can be observed.
-Notice that the values in the time column are an hour later than the previous step.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="step-4-label-examples"><a class="anchor" href="#step-4-label-examples"></a><a class="link" href="#step-4-label-examples">Step 4: Label examples</a></h3>
-<div class="paragraph">
-<p>The final step is to see if a purchase happened after the prediction was made. This will be our target value and we&#8217;ll add it to the records that currently contain our feature.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">let features = {
-  loss_duration: sum(GameVictory.duration),
-  purchase_count: count(Purchase) }   <i class="conum" data-value="1"></i><b>(1)</b>
-
-let example = features
-  | when(count(GameDefeat, window=since(GameVictory)) == 2)
-  | shift_by(hours(1))
-
-let target = count(Purchase) &gt; example.purchase_count <i class="conum" data-value="2"></i><b>(2)</b>
-
-in extend(example, {target}) <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Capture purchase count as a feature</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Compare purchase count at prediction and label time.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Append the target value to each example</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stripes-even stretch">
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 28.5714%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">time</th>
-<th class="tableblock halign-left valign-top">entity</th>
-<th class="tableblock halign-left valign-top">result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4:46</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bob</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 23s, target: true }</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>9:35</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Alice</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ loss_dur: 63s, target: false }</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>We&#8217;re done! The result of this query is a training dataset ready to be used as input to a model algorithm. To review the process so far:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/framework.png" alt="Real-time ML framework">
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>We computed the time spent in loosing games from the events we collected</p>
-</li>
-<li>
-<p>We generated training examples each time the a user lost twice in a row</p>
-</li>
-<li>
-<p>We shifted those examples forward in time one hour</p>
-</li>
-<li>
-<p>Finally, we computed the target value by checking for purchases since the prediction was made.</p>
-</li>
-</ol>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../integrating/snowflake.html">Snowflake</a></span>
-  <span class="next"><a href="exporting-for-training.html">Example Modeling Problem</a></span>
+  <span class="prev"><a href="exporting-for-training.html">Example Modeling Problem</a></span>
+  <span class="next"><a href="../fenl/fenl-quick-start.html">Introduction</a></span>
 </nav>
 </article>
   </div>
