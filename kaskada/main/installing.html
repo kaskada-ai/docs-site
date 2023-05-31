@@ -453,10 +453,23 @@ Open a terminal in your OS (command line prompt on Windows) and check the output
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="title">Pip and pip3</div>
+<div class="title">Pip and pip3 and permissions</div>
 <div class="paragraph">
 <p>Depending on you Python installation and configuration you may have <code>pip3</code> instead of <code>pip</code> available in your terminal.
 If you do have <code>pip3</code> replace <code>pip</code> with <code>pip3</code> in your command, i.e., <code>pip3 install kaskada</code></p>
+</div>
+<div class="paragraph">
+<p>If you get a permission error when running the <code>pip</code> command, you may</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>need to run as an administrator using <code>sudo pip install kaskada</code></p>
+</li>
+<li>
+<p>or use <code>pip&#8217;s `--user</code> flag to install the package in your user directory for environments where you don&#8217;t have administrator access (e.g., in Google Collab or other hosted environments).</p>
+</li>
+</ul>
 </div>
 </td>
 </tr>
