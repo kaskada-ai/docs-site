@@ -553,7 +553,7 @@ training locally.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var training
 
 Examples
   | when(time_of($input) &gt; ("2020-01-01T00:00:00Z" as timestamp_ns))
@@ -566,7 +566,7 @@ validation dataset.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var training
+<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl --var validation
 
 Examples
   | when(time_of($input) &gt; ("2020-02-03T00:00:00Z" as timestamp_ns))
