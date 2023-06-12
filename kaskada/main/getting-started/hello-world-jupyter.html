@@ -823,7 +823,7 @@ query will return all of the columns and rows contained in a table:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
+<pre class="highlightjs highlight"><code class="language-fenl hljs" data-lang="fenl">%%fenl
 Purchase</code></pre>
 </div>
 </div>
@@ -850,17 +850,15 @@ Here&#8217;s a more sophisticated example that touches on many of the unique fea
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Fenl hljs" data-lang="Fenl">%%fenl
 # How many big purchases happen each hour and where?
-let cadence = hourly()
-
 # Anything can be named and re-used
 let hourly_big_purchases = Purchase
 | when(Purchase.amount &gt; 10)
 
 # Filter anywhere
-| count(window=since(cadence))
+| count(window=since(hourly()))
 
 # Aggregate anything
-| when(cadence)
+| when(hourly())
 
 # Shift timelines relative to each other
 let purchases_now = count(Purchase)
@@ -868,11 +866,7 @@ let purchases_yesterday =
    purchases_now | shift_by(days(1))
 
 # Records are just another type
-in { hourly_big_purchases, purchases_in_last_day: purchases_now - purchases_yesterday }
-| extend({
-  # …modify them sequentially
-  last_visit_region: last(Pageview.region)
-})</code></pre>
+in { hourly_big_purchases, purchases_in_last_day: purchases_now - purchases_yesterday }</code></pre>
 </div>
 </div>
 <div class="sidebarblock">
