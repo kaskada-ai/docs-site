@@ -638,15 +638,7 @@ This example assumes you have installed <code>curl</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s https://api.github.com/repos/kaskada-ai/kaskada/releases/latest |\
-grep "browser_download_url.*" |\
-grep $(uname -m | sed 's/x86_64/amd64/') |\
-grep $(uname -s | tr '[:upper:]' '[:lower:]') |\
-cut -d ':' -f2,3 |\
-tr -d \" |\
-xargs -I {} sh -c 'curl -L {} -o $(basename {}| cut -d '-' -f1,2)'
-
-chmod +x kaskada-*</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/kaskada-ai/kaskada/main/install/install.sh)"</code></pre>
 </div>
 </div>
 <div class="paragraph">
