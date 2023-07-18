@@ -459,7 +459,7 @@ entity_filter = EntityPercentFilter(filter_percentage)</code></pre>
 </div>
 <div class="paragraph">
 <p>The example above creates a new <code>EntityPercentFilter</code> from the Kaskada
-Compute module with a filtering percentage of 12.34%.</p>
+Slicing module with a filtering percentage of 12.34%.</p>
 </div>
 <div class="sect2">
 <h3 id="entity-key-percent-filter-additional-details"><a class="anchor" href="#entity-key-percent-filter-additional-details"></a><a class="link" href="#entity-key-percent-filter-additional-details">Entity Key Percent Filter Additional Details</a></h3>
@@ -523,10 +523,11 @@ filter on the same session.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.slice_filters import EntityPercentFilter
+from kaskada.client import set_default_slice
 
 filter_percentage = 12.34
 entity_filter = EntityPercentFilter(filter_percentage)
-kda.set_default_slice(entity_filter)</code></pre>
+set_default_slice(entity_filter)</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -545,15 +546,13 @@ kda.set_default_slice(entity_filter)</code></pre>
 <h3 id="python"><a class="anchor" href="#python"></a><a class="link" href="#python">Python</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import compute
-from kaskada.api.session import LocalBuilder
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada import query
 from kaskada.slice_filters import EntityPercentFilter
-
-session = LocalBuilder().build()
+from kaskada.client import set_default_slice
 
 filter_percentage = 12.34
 entity_filter = EntityPercentFilter(filter_percentage)
-kda.set_default_slice(entity_filter)
+set_default_slice(entity_filter)
 
 query = '''
 {
@@ -563,7 +562,7 @@ query = '''
 }
 '''
 
-compute.query(query=query)</code></pre>
+query.create_query(expression=query)</code></pre>
 </div>
 </div>
 </div>
@@ -584,13 +583,15 @@ numeric and string entity key filtering.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from kaskada.slice_filters import EntityFilter
+from kaskada.client import set_default_slice
 
 entity_keys = ["customer_01", "customer_03"]
-entity_filter = EntityFilter(entity_keys)</code></pre>
+entity_filter = EntityFilter(entity_keys)
+set_default_slice(entity_filter)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The example above creates a new <code>EntityFilter</code> from the Kaskada Compute
+<p>The example above creates a new <code>EntityFilter</code> from the Kaskada Slicing
 module with entity key filters for "customer_01" and "customer_03".</p>
 </div>
 <div class="sect2">
